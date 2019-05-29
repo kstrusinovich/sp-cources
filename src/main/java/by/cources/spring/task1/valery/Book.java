@@ -8,6 +8,12 @@ public class Book {
 	public Book(String name) {
 		this.name = name;
 	}
+	
+	public Book(String name, String autor) {
+		super();
+		this.name = name;
+		this.autor = autor;
+	}
 
 	public String getName() {
 		return name;

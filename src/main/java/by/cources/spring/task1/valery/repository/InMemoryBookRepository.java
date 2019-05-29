@@ -7,13 +7,10 @@ import java.util.List;
 
 public class InMemoryBookRepository implements BookRepository {
 
-  private List<Book> cache = Arrays.asList(
-      new Book("book1"),
-      new Book("book2")
-  );
+	private List<Book> cache = Arrays.asList(new Book("book1", "ivanov"), new Book("book2", "petrov"));
 
-  @Override
-  public List<Book> findAll() {
-    return cache;
-  }
+	@Override
+	public List<Book> findAll() {
+		return cache;
+	}
 }
