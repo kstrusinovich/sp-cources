@@ -1,10 +1,12 @@
 package by.cources.spring.task1.spring;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 public class Wheel {
 
   @Autowired
+  @Qualifier("car1")
   private Car owner;
 
   public Car getOwner() {
