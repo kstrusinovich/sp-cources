@@ -2,20 +2,20 @@ package by.cources.spring.task1.valery;
 
 public class Book {
 
-    private String name;
-    private String autor;
+	private String name;
+	private String autor;
 
-    public Book(String name) {
-        this.name = name;
-    }
+	public Book(String name) {
+		this.name = name;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
 	public String getAutor() {
 		return autor;
@@ -29,5 +29,5 @@ public class Book {
 	public String toString() {
 		return "Book [name=" + name + ", autor=" + autor + "]";
 	}
-	
+
 }
