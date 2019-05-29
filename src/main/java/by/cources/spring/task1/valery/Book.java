@@ -1,4 +1,4 @@
-package by.cources.spring.task1.voschilo;
+package by.cources.spring.task1.valery;
 
 public class Book {
 
