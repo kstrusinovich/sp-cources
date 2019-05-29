@@ -8,7 +8,7 @@ public class MysqlBookRepository implements BookRepository {
 
   private List<Book> cache = Arrays.asList(
       new Book("mysq-book1"),
-      new Book("mysq-book2")
+      new Book("myiq-book2")
   );
 
   @Override
