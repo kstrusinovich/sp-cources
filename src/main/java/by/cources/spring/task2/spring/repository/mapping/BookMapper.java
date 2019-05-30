@@ -7,11 +7,12 @@ import org.springframework.jdbc.core.RowMapper;
 
 public class BookMapper implements RowMapper<Book> {
 
-  public Book mapRow(ResultSet resultSet, int i) throws SQLException {
+	public Book mapRow(ResultSet resultSet, int i) throws SQLException {
 
-    Book person = new Book();
-    person.setId(resultSet.getLong("id"));
-    person.setName(resultSet.getString("name"));
-    return person;
-  }
+		Book book = new Book();
+		book.setId(resultSet.getLong("id"));
+		book.setName(resultSet.getString("name"));
+		book.setYear(resultSet.getInt("year"));
+		return book;
+	}
 }
