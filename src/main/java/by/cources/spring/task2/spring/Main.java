@@ -1,6 +1,7 @@
 package by.cources.spring.task2.spring;
 
 import by.cources.spring.task2.spring.model.Book;
+import by.cources.spring.task2.spring.repository.AutorRepository;
 import by.cources.spring.task2.spring.repository.BookRepository;
 import java.util.List;
 import org.springframework.context.ApplicationContext;
@@ -11,6 +12,9 @@ public class Main {
   public static void main(String[] args) {
     ApplicationContext ctx = new AnnotationConfigApplicationContext(BookConfig.class);
     BookRepository service = ctx.getBean(BookRepository.class);
+    AutorRepository service2 = ctx.getBean(AutorRepository.class);
+
+
     List<Book> all = service.findAll();
     for (Book book : all) {
       System.out.println("All books " + book);
