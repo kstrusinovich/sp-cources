@@ -1,14 +1,16 @@
-package by.cources.spring.task1.voschilo.repository;
+package by.cources.spring.task1.Sharay.repository;
 
-import by.cources.spring.task1.voschilo.Book;
+import by.cources.spring.task1.Sharay.Book;
+
 import java.util.Arrays;
 import java.util.List;
 
 public class MysqlBookRepository implements BookRepository {
 
   private List<Book> cache = Arrays.asList(
-      new Book("mysq-book1"),
-      new Book("myiq-book2")
+      new Book("myst-book1"),
+      new Book("mars-book2"),
+      new Book("bmv-book3")
   );
 
   @Override

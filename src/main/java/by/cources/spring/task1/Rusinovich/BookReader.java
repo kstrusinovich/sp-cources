@@ -5,14 +5,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 public class BookReader {
 
+    @Autowired
     private Book firstBook;
+    @Autowired
     private Book secondBook;
+
+    public BookReader() {
+    }
 
     public Book getFirstBook() {
         return firstBook;
     }
 
-    public void setFirstBook(Wheel firstBook) {
+    public void setFirstBook(Book firstBook) {
         this.firstBook = firstBook;
     }
 
@@ -20,7 +25,7 @@ public class BookReader {
         return secondBook;
     }
 
-    public void setSecondWheel(Wheel secondWheel) {
+    public void setSecondBook(Book secondBook) {
         this.secondBook = secondBook;
     }
 
