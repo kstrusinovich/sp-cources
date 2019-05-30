@@ -1,6 +1,6 @@
-package by.cources.spring.task1.voschilo;
+package by.cources.spring.task1.javaconfig;
 
-import by.cources.spring.task1.voschilo.repository.BookRepository;
+import by.cources.spring.task1.javaconfig.repository.BookRepository;
 import java.util.List;
 
 public class BookService {

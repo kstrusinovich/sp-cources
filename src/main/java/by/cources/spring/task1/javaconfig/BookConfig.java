@@ -1,8 +1,8 @@
-package by.cources.spring.task1.voschilo;
+package by.cources.spring.task1.javaconfig;
 
-import by.cources.spring.task1.voschilo.repository.BookRepository;
-import by.cources.spring.task1.voschilo.repository.InMemoryBookRepository;
-import by.cources.spring.task1.voschilo.repository.MysqlBookRepository;
+import by.cources.spring.task1.javaconfig.repository.BookRepository;
+import by.cources.spring.task1.javaconfig.repository.InMemoryBookRepository;
+import by.cources.spring.task1.javaconfig.repository.MysqlBookRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
