@@ -17,7 +17,7 @@ public class JdbcTemplateAuthorRepository implements AuthorRepository {
 
     @Override
     public List<Author> findAllAuthor() {
-        return jdbcTemplate.query("select * from author as a left join book as b in a.id and b.author_id where b.published > '1990-04-24'", new AuthorMapper());
+        return jdbcTemplate.query("select * from author as a, book as b where b.published > '1990-04-24'", new AuthorMapper());
     }
 
     @Override

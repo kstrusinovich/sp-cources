@@ -14,8 +14,16 @@ public class Service {
     @Qualifier("AuthorRepo")
     private AuthorRepository repository;
 
+    @Autowired
+    @Qualifier("BookRepo")
+    private BookRepository repositoryBook;
+
     public Service(AuthorRepository repository) {
         this.repository = repository;
+    }
+
+    public Service(BookRepository repository) {
+        this.repositoryBook = repository;
     }
 
     public List<Author> findAll() {
