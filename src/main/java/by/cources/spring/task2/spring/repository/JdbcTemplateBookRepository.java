@@ -23,4 +23,5 @@ public class JdbcTemplateBookRepository implements BookRepository {
   public Book findById(Long id) {
     return jdbcTemplate.queryForObject("select * from book where id = ?", new Object[]{id}, new BookMapper());
   }
+ 
 }

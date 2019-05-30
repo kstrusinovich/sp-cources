@@ -7,5 +7,8 @@ public interface BookRepository {
 
   List<Book> findAll();
 
-  Book findById(Long id);
+  public Book findById(Long id);
+  
+  
+  
 }
