@@ -1,6 +1,7 @@
-package by.cources.spring.task1.voschilo.repository;
+package by.cources.spring.task1.Kostik.repository;
 
-import by.cources.spring.task1.voschilo.Book;
+import by.cources.spring.task1.Kostik.Book;
+
 import java.util.Arrays;
 import java.util.List;
 
