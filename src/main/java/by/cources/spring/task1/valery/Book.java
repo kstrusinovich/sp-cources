@@ -1,26 +1,5 @@
 package by.cources.spring.task1.valery;
 
-<<<<<<< HEAD
-import org.springframework.beans.factory.annotation.Autowired;
-
-public class Book {
-  private String bookName;
-
-  public String getBookName() {
-    return bookName;
-  }
-
-  public void setBookName(String bookName) {
-    this.bookName = bookName;
-  }
-
-  @Override
-  public String toString() {
-    return "Book{" +
-            "bookName='" + bookName + '\'' +
-            '}';
-  }
-=======
 public class Book {
 
 	private String name;
@@ -56,6 +35,4 @@ public class Book {
 	public String toString() {
 		return "Book [name=" + name + ", autor=" + autor + "]";
 	}
-
->>>>>>> origin/master
 }
