@@ -5,6 +5,7 @@ import by.cources.spring.task2.spring.repository.mapping.AuthorMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
+import java.util.Date;
 import java.util.List;
 
 public class JdbcTemplateAuthorRepository implements AuthorRepository {
@@ -17,7 +18,12 @@ public class JdbcTemplateAuthorRepository implements AuthorRepository {
 
     @Override
     public List<Author> findAllAuthor() {
-        return jdbcTemplate.query("select * from author as a, book as b where b.published > '1990-04-24'", new AuthorMapper());
+        return jdbcTemplate.query("select * from author ", new AuthorMapper());
+    }
+
+    @Override
+    public List<Author> findAllPublished(Date date) {
+        return jdbcTemplate.query("select a.* from author as a  left join book as b  on (a.id = b.author_id) where b.published > ?", new Object[]{date}, new AuthorMapper());
     }
 
     @Override
