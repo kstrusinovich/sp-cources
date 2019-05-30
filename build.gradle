@@ -1,5 +1,5 @@
 plugins {
-    id 'java'
+  id 'java'
 }
 
 group 'sp-cources'
@@ -8,10 +8,14 @@ version '1.0-SNAPSHOT'
 sourceCompatibility = 1.8
 
 repositories {
-    mavenCentral()
+  mavenCentral()
 }
 
 dependencies {
-    compile 'org.springframework:spring-context:5.1.7.RELEASE'
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+  compile 'org.springframework:spring-context:5.1.7.RELEASE'
+  compile 'org.springframework:spring-jdbc:5.1.7.RELEASE'
+  compile 'com.h2database:h2:1.4.199'
+//    compile 'com.ibm.informix:jdbc:4.50.1'
+
+  testCompile group: 'junit', name: 'junit', version: '4.12'
 }
