@@ -23,6 +23,11 @@ public class BookConfig {
   }
 
   @Bean
+  BookService bookService(){
+    return new BookService(jdbcRepository());
+  }
+
+  @Bean
   DataSource dataSource() {
     DriverManagerDataSource source = new DriverManagerDataSource();
     source.setUrl(environment.getProperty("url"));
