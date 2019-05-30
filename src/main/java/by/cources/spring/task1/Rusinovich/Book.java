@@ -8,7 +8,7 @@ public class Book {
     @Autowired
     private BookReader owner;
 
-    public BookReader getOwner{ return owner; }
+//    public BookReader getOwner{ return owner; }
 
     public void setOwner(BookReader owner) {
         this.owner = owner;

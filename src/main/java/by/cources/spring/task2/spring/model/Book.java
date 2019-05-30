@@ -1,9 +1,16 @@
 package by.cources.spring.task2.spring.model;
 
+import java.util.Date;
+
 public class Book {
 
   private Long id;
   private String name;
+  private Date dateOfbirth ;
+  private int age;
+  private String Author;
+
+
 
   public String getName() {
     return name;
@@ -23,6 +30,9 @@ public class Book {
 
   @Override
   public String toString() {
-    return "Book{id=" + id + ", name='" + name + "\'}";
+    return "Book{id=" + id + ", name='" + name + ", Author='" +Author + ", Data= '"= dateOfbirth"/}";
   }
 }
+
+
+
