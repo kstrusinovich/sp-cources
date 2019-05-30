@@ -1,12 +1,17 @@
 package by.cources.spring.task2.spring.model;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+
 public class Author 
 {
+	public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd.MM.yyyy");  
+	
   private Long id;
   
   private String name;
   
-  private String dateOfBirth;
+  private Date dateOfBirth;
   
 
   public Long getId() {
@@ -25,17 +30,18 @@ public class Author
 	  this.name = name;
   }
 
-  public String getDateOfBirth() {
+  public Date getDateOfBirth() {
 	  return dateOfBirth;
   }
   
-  public void setDateOfBirth(String dateOfBirth) {
+  public void setDateOfBirth(Date dateOfBirth) {
 	  this.dateOfBirth = dateOfBirth;
   }
 
   @Override
-  public String toString() {
-	  return "Author [id=" + id + ", name=" + name + ", dateOfBirth=" + dateOfBirth + "]";
+  public String toString() 
+  {	  
+	  return "Author [id=" + id + ", name=" + name + ", dateOfBirth=" +  DATE_FORMAT.format ( dateOfBirth ) + "]";
   }
 
 }

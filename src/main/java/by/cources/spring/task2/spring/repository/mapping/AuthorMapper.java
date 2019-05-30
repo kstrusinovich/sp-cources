@@ -12,7 +12,7 @@ public class AuthorMapper implements RowMapper<Author> {
 	  Author author = new Author();
 	  author.setId(resultSet.getLong("id"));
 	  author.setName(resultSet.getString("name"));
-	  author.setDateOfBirth(resultSet.getString("date_of_birth"));
+	  author.setDateOfBirth(resultSet.getDate("date_of_birth"));
     return author;
   }
 }

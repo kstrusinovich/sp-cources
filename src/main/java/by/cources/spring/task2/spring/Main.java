@@ -6,35 +6,44 @@ import by.cources.spring.task2.spring.service.FindService;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-public class Main {
-
+public class Main
+{
+	/**  **/
+	private static final long TEST_BOOK_ID = 4;
 	
-  public static void main(String[] args) 
-  {
-    ApplicationContext ctx = new AnnotationConfigApplicationContext(BookConfig.class);
-    
-    FindService findService = ctx.getBean(FindService.class);
+	/**  **/
+	private static final long TEST_AUTHOR_ID = 1;
+	
+	/**  **/
+	private static final long TEST_YEAR = 1970;
+	
+	
+	public static void main(String[] args) 
+	{
+		//
+		@SuppressWarnings("resource")
+		ApplicationContext ctx = new AnnotationConfigApplicationContext(BookConfig.class);    
+		FindService findService = ctx.getBean(FindService.class);
       
-    System.out.println("BOOKS");
+		//    
+		System.out.println("BOOKS");
+		List <Book> bookList = findService.findAllBooks();
+		findService.viewBooks(bookList);				
+		    
+		//
+		System.out.println("\nAUTHORS");
+		List <Author> authorList = findService.findAllAuthors();
+		findService.viewAuthors(authorList);
+		
+		System.out.println("");
+		findService.findBookById(TEST_BOOK_ID);
+		findService.findAuthorById(TEST_AUTHOR_ID);
+		findService.findAuthorsWithBooksAfterYear(TEST_YEAR);
+				
     
-    List<Book> all = findService.findAllBooks();
-    for (Book book : all) {
-      System.out.println("All books " + book);
-    }
-    long id = 4L;
-    System.out.println("Book with id = " + id + " is " + findService.findBookById(id));
-    
-    System.out.println("\nAUTHORS");
-    List<Author> all2 = findService.findAllAuthors();
-    for (Author author : all2) {
-      System.out.println("All authors " + author);
-    }
-    id = 1L;
-    System.out.println("Book with id = " + id + " is " + findService.findAuthorById(id));
-    
-  }
+	}
+  
 }

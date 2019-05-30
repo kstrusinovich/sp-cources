@@ -14,10 +14,10 @@ import org.springframework.stereotype.Component;
 public class FindService 
 {	
 	@Autowired
-	BookRepository bookRepository;
+	private BookRepository bookRepository;
 	
 	@Autowired
-	AuthorRepository authorRepository;
+	private AuthorRepository authorRepository;
 
 	
 	public List < Book > findAllBooks()
@@ -25,9 +25,10 @@ public class FindService
 		return bookRepository.findAll();
 	}
 	
-	public Book findBookById(Long id)
+	public void findBookById(Long id)
 	{
-		return bookRepository.findById(id);
+		Book book = bookRepository.findById(id);
+		System.out.println("Book with id = " + id + " is " + book);		
 	}
 	
 	public List < Author > findAllAuthors()
@@ -35,9 +36,36 @@ public class FindService
 		return authorRepository.findAll();
 	}
 	
-	public Author findAuthorById(Long id)
+	public void findAuthorById(Long id)
+	{		
+		Author author = authorRepository.findById(id);
+		System.out.println("Author with id = " + id + " is " + author);		
+	}
+
+	public void viewAuthors(List <Author> all2) 
+	{		
+		for (Author author : all2) {
+			System.out.println(author);
+		}		
+	}
+
+	public void viewBooks(List <Book> all) 
+	{		
+		for (Book book : all) {
+			System.out.println(book);
+		}
+		
+	}
+
+	public void findAuthorsWithBooksAfterYear(long year)
 	{
-		return authorRepository.findById(id);
+		System.out.println("Authors with books after " + year + " year:");
+		List <Long> authorIdList = bookRepository.findBooksAfterYear(year);
+		for (Long authorId : authorIdList) 
+		{
+			Author author = authorRepository.findById(authorId);
+			System.out.println("   " + author);
+		}
 	}
 	
 }
