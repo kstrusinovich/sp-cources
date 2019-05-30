@@ -10,6 +10,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
+
 @Configuration
 @PropertySource("classpath:task2/database.properties")
 public class BookConfig {
@@ -18,7 +19,7 @@ public class BookConfig {
   Environment environment;
 
   @Bean
-  BookRepository jdbcRepository() {
+  public BookRepository jdbcRepository() {
     return new JdbcTemplateBookRepository(dataSource());
   }
 
@@ -30,5 +31,9 @@ public class BookConfig {
     source.setPassword(environment.getProperty("dbpassword"));
     source.setDriverClassName(environment.getProperty("driver"));
     return source;
+  }
+  @Bean
+  public BookService bookService() {
+    return new BookService(jdbcRepository());
   }
 }
