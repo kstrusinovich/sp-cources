@@ -13,6 +13,7 @@ public class BookMapper implements RowMapper<Book> {
 		book.setId(resultSet.getLong("id"));
 		book.setName(resultSet.getString("name"));
 		book.setYear(resultSet.getInt("year"));
+		book.setAutorId(resultSet.getLong("autor"));
 		return book;
 	}
 }
