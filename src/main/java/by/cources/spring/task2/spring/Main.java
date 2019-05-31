@@ -8,6 +8,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 public class Main {
   public static void main(String[] args) {
+	  
     ApplicationContext ctx = new AnnotationConfigApplicationContext(BookConfig.class);
     BookRepository service = ctx.getBean(BookRepository.class);
     List<Book> all = service.findAll();
