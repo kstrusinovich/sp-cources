@@ -7,7 +7,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class Main {
-
   public static void main(String[] args) {
     ApplicationContext ctx = new AnnotationConfigApplicationContext(BookConfig.class);
     BookRepository service = ctx.getBean(BookRepository.class);
@@ -15,7 +14,7 @@ public class Main {
     for (Book book : all) {
       System.out.println("All books " + book);
     }
-    long id = 4L;
+    long id = 2L;
     System.out.println("Book with id = " + id + " is " + service.findById(id));
   }
 }
