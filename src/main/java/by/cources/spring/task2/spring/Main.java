@@ -29,8 +29,8 @@ public class Main {
 		for (Autor autor : autors) {
 			books = service.findAll("autor=" + autor.getId()); // ищем книги автора
 			System.out.println("autorId = " + autor.getId() + " is " + autor);
-			for (Book book1 : books) {
-				System.out.println("bookId = " + book.getId() + " is " + book);
+			for (Book bookOne : books) {
+				System.out.println("bookId = " + bookOne.getId() + " is " + bookOne);
 			}
 			System.out.println("\n");
 		}
