@@ -6,7 +6,7 @@ public class Autor {
 
   private Long id;
   private String name;
-  private Date dateOfBirth;
+  private Date dateofbirth;
   public String getName() {
     return name;
   }
@@ -15,11 +15,11 @@ public class Autor {
     this.name = name;
   }
   public Date getDateOfBirth() {
-    return dateOfBirth;
+    return dateofbirth;
   }
 
-  public void setDateOfBirth(Date dateOfBirth) {
-    this.dateOfBirth = dateOfBirth;
+  public void setDateOfBirth(Date dateofbirth) {
+    this.dateofbirth = dateofbirth;
   }
 
   public Long getId() {
@@ -32,6 +32,6 @@ public class Autor {
 
   @Override
   public String toString() {
-    return "Book{id=" + id + ", name='" + name + "\'}";
+    return  name;
   }
 }

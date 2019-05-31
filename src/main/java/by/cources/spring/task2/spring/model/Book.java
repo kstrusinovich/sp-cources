@@ -1,11 +1,13 @@
 package by.cources.spring.task2.spring.model;
 
+import java.util.Date;
+
 public class Book {
 
   private Long id;
   private String name;
   private Long id_autor;
-  private long year;
+  private Date date_edition;
 
   public String getName() {
     return name;
@@ -28,11 +30,11 @@ public class Book {
 
   public void setIdAutor(Long id_autor) { this.id_autor = id_autor; }
 
-  public Long getYear() {
-    return year;
+  public Date getDateEdition() {
+    return date_edition;
   }
 
-  public void setYear(Long year) { this.year = year; }
+  public void setDateEdition(Date date_edition) { this.date_edition = date_edition; }
 
   @Override
   public String toString() {

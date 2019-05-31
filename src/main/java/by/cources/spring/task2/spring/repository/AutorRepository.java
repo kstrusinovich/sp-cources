@@ -1,12 +1,11 @@
 package by.cources.spring.task2.spring.repository;
 
-import by.cources.spring.task2.spring.model.Book;
-
+import by.cources.spring.task2.spring.model.Autor;
+import java.util.Date;
 import java.util.List;
 
 public interface AutorRepository {
 
-  //List<Book> findAll();
-
-  //Book findById(Long id);
+  List<Autor> findAllAutor();
+  List<Autor> findAutor(Date date);
 }
