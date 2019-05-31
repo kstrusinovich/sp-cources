@@ -4,6 +4,7 @@ public class Book {
 
   private Long id;
   private String name;
+  private Long authorCode;
 
   public String getName() {
     return name;
@@ -13,7 +14,15 @@ public class Book {
     this.name = name;
   }
 
-  public Long getId() {
+  public Long getAuthorCode() {
+	return authorCode;
+}
+
+public void setAuthorCode(Long authorCode) {
+	this.authorCode = authorCode;
+}
+
+public Long getId() {
     return id;
   }
 
@@ -23,6 +32,6 @@ public class Book {
 
   @Override
   public String toString() {
-    return "Book{id=" + id + ", name='" + name + "\'}";
+    return "Book [id=" + id + ", name='" + name + "; author code="+ authorCode + "]";
   }
 }
