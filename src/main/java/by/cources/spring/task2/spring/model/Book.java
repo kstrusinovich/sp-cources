@@ -1,16 +1,10 @@
 package by.cources.spring.task2.spring.model;
 
-import java.util.Date;
-
 public class Book {
 
   private Long id;
   private String name;
-  private Date dateOfbirth ;
-  private int age;
-  private String Author;
-
-
+  private Long idAuthor;
 
   public String getName() {
     return name;
@@ -28,11 +22,15 @@ public class Book {
     this.id = id;
   }
 
+  public Long getIdAuthor() {
+    return idAuthor; }
+
+  public void setIdAuthor(Long idAuthor) {
+    this.idAuthor = idAuthor; }
+
   @Override
   public String toString() {
-    return "Book{id=" + id + ", name='" + name + ", Author='" +Author + ", Data= '"= dateOfbirth"/}";
+    return "Book{id=" + id + ", name='" + name + "\'}";
   }
 }
-
-
 
