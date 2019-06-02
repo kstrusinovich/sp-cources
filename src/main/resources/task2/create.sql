@@ -19,8 +19,8 @@ create table Author (
   Bithday         DATE           NOT NULL
 );
 
-insert into Author (id, name) values (1, 'Author1');
-insert into Author (id, name) values (2, 'Author2');
-insert into Author (id, name) values (3, 'Author3');
-insert into Author (id, name) values (4, 'Author4');
-insert into Author (id, name) values (5, 'Author5');
+insert into Author (id, name) values (1, 'Author1','1932-10-01');
+insert into Author (id, name) values (2, 'Author2','1943-02-23');
+insert into Author (id, name) values (3, 'Author3','1921-01-24');
+insert into Author (id, name) values (4, 'Author4','1945-05-09');
+insert into Author (id, name) values (5, 'Author5','1932-06-07');
