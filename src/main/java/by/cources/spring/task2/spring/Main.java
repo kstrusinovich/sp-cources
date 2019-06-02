@@ -19,7 +19,7 @@ public class Main {
     for (Book book : all) {
       System.out.println("All books " + book);
     }
-    long id = 4L;
+    long id = 5L;
     System.out.println("Book with id = " + id + " is " + service.findById(id));
     AuthorRepository services = ctx.getBean(AuthorRepository.class);
     List<Author> alls = services.findAll();
@@ -27,7 +27,7 @@ public class Main {
     for (Author author: alls) {
       System.out.println("All Authors" + author);
     }
-    long ids = 4L;
+    long ids = 5L;
     System.out.println("Author with id = " + ids + " is " + services.findById(id));
   }
 }
