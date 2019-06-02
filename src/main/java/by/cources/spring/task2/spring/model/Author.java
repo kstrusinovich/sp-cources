@@ -1,8 +1,11 @@
 package by.cources.spring.task2.spring.model;
 
+import java.util.Date;
+
 public class Author {
     private Long id;
     private String name;
+    private Date Bithday;
 
     public String getName() {
         return name;
@@ -18,6 +21,14 @@ public class Author {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Date getBithday() {
+        return Bithday;
+    }
+
+    public void setBithday(Date bithday) {
+        Bithday = bithday;
     }
 
     @Override
