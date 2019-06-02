@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import by.cources.spring.task2.spring.repository.BookService;
 
 @Configuration
 @PropertySource("classpath:task2/database.properties")
@@ -22,6 +23,10 @@ public class BookConfig {
     return new JdbcTemplateBookRepository(dataSource());
   }
 
+  @Bean
+  BookService bookService(){
+    return new BookService(jdbcRepository());
+  }
   @Bean
   DataSource dataSource() {
     DriverManagerDataSource source = new DriverManagerDataSource();
