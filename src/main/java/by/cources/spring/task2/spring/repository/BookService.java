@@ -17,5 +17,6 @@ public class BookService {
     return repository.findAll();
   }
 
-
+  public Book findById(Long id){
+    return repository.findById(id);}
 }
