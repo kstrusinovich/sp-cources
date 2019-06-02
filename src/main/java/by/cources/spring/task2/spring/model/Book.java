@@ -4,6 +4,7 @@ public class Book {
 
   private Long id;
   private String name;
+  private Long year;
 
   public String getName() {
     return name;
@@ -21,8 +22,16 @@ public class Book {
     this.id = id;
   }
 
+  public Long getYear() {
+    return year;
+  }
+
+  public void setYear(Long year) {
+    this.year = year;
+  }
+
   @Override
   public String toString() {
-    return "Book{id=" + id + ", name='" + name + "\'}";
+    return "Book{id=" + id + ", name='" + name + ",year=" + year + "\'}";
   }
 }

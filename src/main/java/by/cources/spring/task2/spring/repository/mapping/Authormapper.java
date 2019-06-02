@@ -12,6 +12,7 @@ public class Authormapper implements RowMapper<Author> {
         Author person = new Author();
         person.setId(resultSet.getLong("id"));
         person.setName(resultSet.getString("name"));
+        person.setBithday(resultSet.getDate( "bithday"));
         return person;
     }
 }
