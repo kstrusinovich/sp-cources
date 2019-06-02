@@ -33,6 +33,6 @@ public class Author {
 
     @Override
     public String toString() {
-        return "Author{id=" + id + ", name='" + name + "\'}";
+        return "Author{id=" + id + ", name='" + name + ", Bithday='" + Bithday +"\'}";
     }
 }
