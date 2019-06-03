@@ -22,7 +22,7 @@ public class Main {
 //    long id = 4L;
 //    System.out.println("Book with id = " + id + " is " + service.findById(id));
 
-        LocalDate date = LocalDate.of(1925, 1, 1);
+        LocalDate date = LocalDate.of(1926, 1, 1);
         List<Book> allTwo = Collections.singletonList(service.findByDate(date));
         for (Book book : allTwo) {
             System.out.println(book);
