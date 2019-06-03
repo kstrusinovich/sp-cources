@@ -1,6 +1,12 @@
 CREATE SCHEMA IF NOT EXISTS test;
 SET SCHEMA test;
 
+CREATE TABLE language (
+ id number (7) NOT NULL PRIMARY KEY,
+ name VARCHAR2(50),
+
+)
+
 CREATE TABLE author (
   id              NUMBER(7)     NOT NULL PRIMARY KEY,
   first_name      VARCHAR2(50),
