@@ -11,56 +11,72 @@ import javax.persistence.Table;
 @Table(name = "book")
 public class Book {
 
-  @Id
-  @Column(name = "id")
-  private Long id;
-  @Column(name = "name")
-  private String name;
-  @ManyToOne
-  @JoinColumn(name = "author_id")
-  private Author author;
+    @Id
+    @Column(name = "id")
+    private Long id;
 
-  @Column(name = "published_in")
-  private Long publishedIn;
+    @Column(name = "name")
+    private String name;
 
-  public Long getPublishedIn() {
-    return publishedIn;
-  }
+    @ManyToOne
+    @JoinColumn(name = "author_id")
+    private Author author;
 
-  public void setPublishedIn(Long publishedIn) {
-    this.publishedIn = publishedIn;
-  }
+    @Column(name = "published_in")
+    private Long publishedIn;
 
-  public String getName() {
-    return name;
-  }
+    @ManyToOne
+    @JoinColumn(name = "language_id")
+    private Language language;
 
-  public void setName(String name) {
-    this.name = name;
-  }
+    public Long getPublishedIn() {
+        return publishedIn;
+    }
 
-  public Long getId() {
-    return id;
-  }
+    public void setPublishedIn(Long publishedIn) {
+        this.publishedIn = publishedIn;
+    }
 
-  public void setId(Long id) {
-    this.id = id;
-  }
+    public String getName() {
+        return name;
+    }
 
-  public Author getAuthor() {
-    return author;
-  }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-  public void setAuthor(Author author) {
-    this.author = author;
-  }
+    public Long getId() {
+        return id;
+    }
 
-  @Override
-  public String toString() {
-    return "Book{" +
-        "id=" + id +
-        ", name='" + name + '\'' +
-        ", publishedIn=" + publishedIn +
-        '}';
-  }
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Author getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(Author author) {
+        this.author = author;
+    }
+
+    public Language getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(Language language) {
+        this.language = language;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", author=" + author +
+                ", publishedIn=" + publishedIn +
+                ", language=" + language +
+                '}';
+    }
 }
