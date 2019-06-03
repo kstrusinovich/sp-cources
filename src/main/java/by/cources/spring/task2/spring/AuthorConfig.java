@@ -22,15 +22,12 @@ public class AuthorConfig {
   Environment environment;
 
   @Bean
-  AuthorRepository jdbcRepository() {
+  AuthorRepository jdbcAuthorRepository() {
     return new JdbcTemplateAuthorRepository(dataSource());
   }
 
   @Bean
-  AuthorService authorService{
-    AuthorService authorService1 = new AuthorService(jdbcRepository());
-    return authorService1;
-  }
+  AuthorService authorService{ return new AuthorService(jdbcAuthorRepository()); }
 
   @Bean
   DataSource dataSource() {
