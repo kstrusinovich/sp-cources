@@ -32,7 +32,7 @@ INSERT INTO language VALUES (1, 'RU');
 INSERT INTO language VALUES (2, 'EN');
 
 INSERT INTO book VALUES (1, 1, 1, 'Sense and Sensibility', 1811);
-INSERT INTO book VALUES (2, 1, 1, 'Pride and Prejudice', 1813);
-INSERT INTO book VALUES (3, 2, 2, 'Le Capitaine Paul', 1838);
-INSERT INTO book VALUES (4, 2, 2, 'Le Capitaine Pamphile', 1839);
+INSERT INTO book VALUES (2, 1, 2, 'Pride and Prejudice', 1813);
+INSERT INTO book VALUES (3, 2, 3, 'Le Capitaine Paul', 1838);
+INSERT INTO book VALUES (4, 2, 4, 'Le Capitaine Pamphile', 1839);
 INSERT INTO book VALUES (5, 2, 1, 'Northanger Abbey', 1818);

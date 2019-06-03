@@ -28,6 +28,8 @@ public class Main {
 		query6(service);
 		System.out.println("\n----------------------findAuthorsWritingLanguage");
 		query7(service);
+		System.out.println("\n----------------------findAuthorsByLangAndYear");
+		query8(service);
 	}
 
 	private static void query1(BookService service) {
@@ -68,7 +70,7 @@ public class Main {
 	private static void query6(BookService service) {
 		String lang = "EN";
 		System.out.println("-----Language = " + lang);
-		List<Book> all = service.findBooksByLanguage(lang);
+		List<Book> all = service.findBooksByLang(lang);
 		for (Book book : all) {
 			System.out.println("Query6: " + book);
 		}
@@ -77,9 +79,19 @@ public class Main {
 	private static void query7(BookService service) {
 		String lang = "RU";
 		System.out.println("-----Language = " + lang);
-		List<Author> all = service.findAuthorsWritingLanguage(lang);
+		List<Author> all = service.findAuthorsByLang(lang);
 		for (Author author : all) {
 			System.out.println("Query7: " + author);
+		}
+	}
+	
+	private static void query8(BookService service) {
+		String lang = "RU";
+		Long year = 1813L;
+		System.out.println("-----Language = " + lang + " -------- year = " + year);
+		List<Author> all = service.findAuthorsByLangAndYear(lang, year);
+		for (Author author : all) {
+			System.out.println("Query8: " + author);
 		}
 	}
 

@@ -12,5 +12,7 @@ public interface AuthorRepository {
 
 	List<Author> findAll();
 
-	List<Author> findAuthorsWritingLanguage(String value);
+	List<Author> findAuthorsByLang(String value);
+	
+	List<Author> findAuthorsByLangAndYear(String lang, Long year);
 }

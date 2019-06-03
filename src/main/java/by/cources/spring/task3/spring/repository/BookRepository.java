@@ -16,5 +16,5 @@ public interface BookRepository extends CrudRepository<Book, Long> {
 	List<Book> findByName(String name);
 	
 	@Query("select a from Book a join a.language b where b.name = :value")
-	List<Book> findBooksByLangage(@Param("value") String value);
+	List<Book> findBooksByLang(@Param("value") String value);
 }
