@@ -64,13 +64,7 @@ public class Main {
 	}
 
 	private static void query6(BookService service) {
-		/*
-		List<Language> all = service.findBooksByLanguage("RU");
-		for (Language language : all) {
-			System.out.println("Query6: " + language);
-		}
-		*/
-		List<Book> all = service.findBooksByLang("RU");
+		List<Book> all = service.findBooksByLanguage("EN");
 		for (Book book : all) {
 			System.out.println("Query6: " + book);
 		}

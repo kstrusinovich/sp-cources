@@ -20,7 +20,5 @@ public interface BookService {
 
   List<Author> findAuthorsAll();
   
-  List<Language> findBooksByLanguage(String value);
-  
-  List<Book> findBooksByLang(String value);
+  List<Book> findBooksByLanguage(String value);
 }

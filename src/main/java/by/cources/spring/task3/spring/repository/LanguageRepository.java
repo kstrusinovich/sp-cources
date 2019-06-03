@@ -10,8 +10,5 @@ public interface LanguageRepository {
 
   Optional<Language> findById(Long id);
 
-  List<Language> findBooksByLanguage(String value);
-  
-  List<Book> findBooksByLang(String value);
 }
 
