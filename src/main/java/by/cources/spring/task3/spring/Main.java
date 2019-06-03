@@ -13,7 +13,6 @@ public class Main {
   public static void main(String[] args) {
     ApplicationContext ctx = new AnnotationConfigApplicationContext(BookConfig.class);
     BookService service = ctx.getBean(BookService.class);
-    save(service);
     System.out.println("---------------------");
     query1(service);
     System.out.println("---------------------");
@@ -24,14 +23,6 @@ public class Main {
     query4(service);
     System.out.println("---------------------");
     query5(service);
-  }
-
-  private static void save(BookService service) {
-    Author author = new Author();
-    author.setDateOfBirth(LocalDate.now());
-    author.setFirstName("FirstName");
-    author.setLastName("LastName");
-    System.out.println("Save1: " + service.saveAuthor(author));
   }
 
   private static void query1(BookService service) {
