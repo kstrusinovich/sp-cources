@@ -13,15 +13,15 @@ public class Main {
   public static void main(String[] args) {
     ApplicationContext ctx = new AnnotationConfigApplicationContext(BookConfig.class);
     BookService service = ctx.getBean(BookService.class);
-    System.out.println("---------------------");
+    System.out.println("----------------------");
     query1(service);
-    System.out.println("---------------------");
+    System.out.println("----------------------");
     query2(service);
-    System.out.println("---------------------");
+    System.out.println("----------------------");
     query3(service);
-    System.out.println("---------------------");
+    System.out.println("----------------------");
     query4(service);
-    System.out.println("---------------------");
+    System.out.println("----------------------");
     query5(service);
   }
 
