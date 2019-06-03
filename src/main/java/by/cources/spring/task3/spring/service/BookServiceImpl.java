@@ -2,8 +2,11 @@ package by.cources.spring.task3.spring.service;
 
 import by.cources.spring.task3.spring.model.Author;
 import by.cources.spring.task3.spring.model.Book;
+import by.cources.spring.task3.spring.model.Language;
 import by.cources.spring.task3.spring.repository.AuthorRepository;
 import by.cources.spring.task3.spring.repository.BookRepository;
+import by.cources.spring.task3.spring.repository.LanguageRepository;
+
 import java.util.ArrayList;
 import java.util.List;
 import javax.transaction.Transactional;
@@ -14,10 +17,12 @@ public class BookServiceImpl implements BookService {
 
   private final BookRepository bookRepository;
   private final AuthorRepository authorRepository;
+  private final LanguageRepository languageRepository;
 
-  public BookServiceImpl(BookRepository bookRepository, AuthorRepository authorRepository) {
+  public BookServiceImpl(BookRepository bookRepository, AuthorRepository authorRepository, LanguageRepository languageRepository) {
     this.bookRepository = bookRepository;
     this.authorRepository = authorRepository;
+    this.languageRepository = languageRepository;
   }
 
   @Transactional
@@ -50,6 +55,18 @@ public class BookServiceImpl implements BookService {
     return authorRepository.findAll();
   }
 
+  @Override
+  @Transactional
+  public List<Language> findBooksByLanguage(String value) {
+    return languageRepository.findBooksByLanguage(value);
+  }
+  
+  @Override
+  @Transactional
+  public List<Book> findBooksByLang(String value) {
+    return languageRepository.findBooksByLang(value);
+  }
+  
   private <T> List<T> toList(Iterable<T> items) {
     List<T> list = new ArrayList<>();
     for (T t : items) {
