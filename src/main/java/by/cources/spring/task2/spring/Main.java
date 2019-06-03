@@ -6,11 +6,9 @@ import by.cources.spring.task2.spring.repository.AuthorRepository;
 import by.cources.spring.task2.spring.repository.BookRepository;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.List;
 
-import org.h2.util.DateTimeUtils;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -28,11 +26,11 @@ public class Main {
 
         //  all.forEach(item-> System.out.println(item));
         for (Book book : all) {
-            if (book.getDate().isAfter(date)) {
+            if (date.isAfter(book.getDate())) {
                 for (Author author : allAuthor) {
-                    if (author.getId_author().equals(book.getId_author())) {
+                    if (author.getId().equals(book.getAuthorId())) {
                         //System.out.println("All books " + book);
-                        System.out.println(author.getName_author());
+                        System.out.println(author.getName());
                     }
                 }
             }

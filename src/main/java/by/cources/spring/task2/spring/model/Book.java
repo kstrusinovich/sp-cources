@@ -1,21 +1,20 @@
 package by.cources.spring.task2.spring.model;
 
-import java.sql.Date;
 import java.time.LocalDate;
 
 public class Book {
 
   private Long id;
-  private Long id_author;
+  private Long authorId;
   private String name;
   private LocalDate date;
 
-  public Long getId_author() {
-    return id_author;
+  public Long getAuthorId() {
+    return authorId;
   }
 
-  public void setId_author(Long id_author) {
-    this.id_author = id_author;
+  public void setAuthorId(Long authorId) {
+    this.authorId = authorId;
   }
 
   public String getName() {
@@ -46,7 +45,7 @@ public class Book {
   public String toString() {
     return "Book{" +
             "id=" + id +
-            ", id_author=" + id_author +
+            ", authorId=" + authorId +
             ", name='" + name + '\'' +
             ", date=" + date +
             '}';
