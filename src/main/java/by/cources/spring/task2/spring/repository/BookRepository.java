@@ -11,5 +11,5 @@ public interface BookRepository {
 
   Book findById(Long id);
 
-  Book findByDate(LocalDate date);
+  List<Book> findByDate(LocalDate date);
 }

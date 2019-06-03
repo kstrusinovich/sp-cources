@@ -23,10 +23,12 @@ public class Book {
   }
 
   public Long getIdAuthor() {
-    return idAuthor; }
+    return idAuthor;
+  }
 
   public void setIdAuthor(Long idAuthor) {
-    this.idAuthor = idAuthor; }
+    this.idAuthor = idAuthor;
+  }
 
   @Override
   public String toString() {

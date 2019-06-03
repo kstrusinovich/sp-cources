@@ -2,19 +2,16 @@ package by.cources.spring.task2.spring;
 
 import by.cources.spring.task2.spring.model.Book;
 import by.cources.spring.task2.spring.repository.BookRepository;
-
 import java.time.LocalDate;
-import java.util.Collections;
 import java.util.List;
-
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class Main {
 
-    public static void main(String[] args) {
-        ApplicationContext ctx = new AnnotationConfigApplicationContext(BookConfig.class);
-        BookRepository service = ctx.getBean(BookRepository.class);
+  public static void main(String[] args) {
+    ApplicationContext ctx = new AnnotationConfigApplicationContext(BookConfig.class);
+    BookRepository service = ctx.getBean(BookRepository.class);
 //    List<Book> all = service.findAll();
 //    for (Book book : all) {
 //      System.out.println("All books " + book);
@@ -22,11 +19,10 @@ public class Main {
 //    long id = 4L;
 //    System.out.println("Book with id = " + id + " is " + service.findById(id));
 
-        LocalDate date = LocalDate.of(1936, 1, 1);
-        List<Book> allTwo = Collections.singletonList(service.findByDate(date));
-        for (Book book : allTwo) {
-            System.out.println(book);
-        }
-
+    LocalDate date = LocalDate.of(2010, 1, 1);
+    List<Book> allTwo = service.findByDate(date);
+    for (Book book : allTwo) {
+      System.out.println(book);
     }
+  }
 }
