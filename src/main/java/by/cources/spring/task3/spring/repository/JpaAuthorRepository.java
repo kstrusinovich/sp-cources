@@ -11,25 +11,33 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class JpaAuthorRepository implements AuthorRepository {
 
-  @PersistenceContext
-  private EntityManager em;
+	@PersistenceContext
+	private EntityManager em;
 
-  @Override
-  public List<Author> findWithBookOlderThan(Long value) {
-    String hql = "select a from Author a join a.books b where b.publishedIn >= :value";
-    TypedQuery<Author> query = em.createQuery(hql, Author.class);
-    query.setParameter("value", value);
-    return query.getResultList();
-  }
+	@Override
+	public List<Author> findWithBookOlderThan(Long value) {
+		String hql = "select a from Author a join a.books b where b.publishedIn >= :value";
+		TypedQuery<Author> query = em.createQuery(hql, Author.class);
+		query.setParameter("value", value);
+		return query.getResultList();
+	}
 
-  @Override
-  public Optional<Author> findById(Long id) {
-    return Optional.ofNullable(em.find(Author.class, id));
-  }
+	@Override
+	public Optional<Author> findById(Long id) {
+		return Optional.ofNullable(em.find(Author.class, id));
+	}
 
-  @Override
-  public List<Author> findAll() {
-    return em.createQuery("select a from Author a", Author.class).getResultList();
-  }
-  
+	@Override
+	public List<Author> findAll() {
+		return em.createQuery("select a from Author a", Author.class).getResultList();
+	}
+
+	@Override
+	public List<Author> findAuthorsWritingLanguage(String value) {
+		String hql = "select a from Author a join a.books b join b.language c where c.name = :value";
+		TypedQuery<Author> query = em.createQuery(hql, Author.class);
+		query.setParameter("value", value);
+		return query.getResultList();
+	}
+
 }

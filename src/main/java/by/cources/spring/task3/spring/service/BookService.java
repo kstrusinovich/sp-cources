@@ -10,15 +10,17 @@ import org.springframework.data.repository.query.Param;
 
 public interface BookService {
 
-  List<Book> findBooksAll();
+	List<Book> findBooksAll();
 
-  List<Author> findAuthorsWithBookOlderThan(Long value);
+	List<Author> findAuthorsWithBookOlderThan(Long value);
 
-  List<Book> findBooksWithBookOlderThan(Long value);
+	List<Book> findBooksWithBookOlderThan(Long value);
 
-  List<Book> findBooksWithBookName(String value);
+	List<Book> findBooksWithBookName(String value);
 
-  List<Author> findAuthorsAll();
-  
-  List<Book> findBooksByLanguage(String value);
+	List<Author> findAuthorsAll();
+
+	List<Book> findBooksByLanguage(String value);
+	
+	List<Author> findAuthorsWritingLanguage(String value);
 }

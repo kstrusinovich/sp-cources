@@ -1,5 +1,6 @@
 package by.cources.spring.task3.spring.service;
 
+import by.cources.spring.task2.spring.model.Autor;
 import by.cources.spring.task3.spring.model.Author;
 import by.cources.spring.task3.spring.model.Book;
 import by.cources.spring.task3.spring.model.Language;
@@ -68,4 +69,9 @@ public class BookServiceImpl implements BookService {
     }
     return list;
   }
+
+@Override
+public List<Author> findAuthorsWritingLanguage(String value) {
+	return authorRepository.findAuthorsWritingLanguage(value);
+}
 }

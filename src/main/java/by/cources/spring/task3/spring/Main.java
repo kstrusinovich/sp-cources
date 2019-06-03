@@ -14,18 +14,20 @@ public class Main {
 	public static void main(String[] args) {
 		ApplicationContext ctx = new AnnotationConfigApplicationContext(BookConfig.class);
 		BookService service = ctx.getBean(BookService.class);
-		System.out.println("----------------------");
+		System.out.println("\n----------------------");
 		query1(service);
-		System.out.println("----------------------");
+		System.out.println("\n----------------------");
 		query2(service);
-		System.out.println("----------------------");
+		System.out.println("\n----------------------");
 		query3(service);
-		System.out.println("----------------------");
+		System.out.println("\n----------------------");
 		query4(service);
-		System.out.println("----------------------");
+		System.out.println("\n----------------------");
 		query5(service);
-		System.out.println("----------------------");
+		System.out.println("\n----------------------findBooksByLanguage");
 		query6(service);
+		System.out.println("\n----------------------findAuthorsWritingLanguage");
+		query7(service);
 	}
 
 	private static void query1(BookService service) {
@@ -64,9 +66,20 @@ public class Main {
 	}
 
 	private static void query6(BookService service) {
-		List<Book> all = service.findBooksByLanguage("EN");
+		String lang = "EN";
+		System.out.println("-----Language = " + lang);
+		List<Book> all = service.findBooksByLanguage(lang);
 		for (Book book : all) {
 			System.out.println("Query6: " + book);
+		}
+	}
+
+	private static void query7(BookService service) {
+		String lang = "RU";
+		System.out.println("-----Language = " + lang);
+		List<Author> all = service.findAuthorsWritingLanguage(lang);
+		for (Author author : all) {
+			System.out.println("Query7: " + author);
 		}
 	}
 
