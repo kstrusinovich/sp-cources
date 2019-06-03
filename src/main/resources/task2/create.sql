@@ -1,25 +1,29 @@
 CREATE SCHEMA IF NOT EXISTS test;
 SET SCHEMA test;
 
-create table autor (
+CREATE TABLE author (
   id              NUMBER(7)     NOT NULL PRIMARY KEY,
-  name            VARCHAR2(50)  NOT NULL,
-  birthday        DATE          NOT NULL
+  first_name      VARCHAR2(50),
+  last_name       VARCHAR2(50)  NOT NULL,
+  date_of_birth   DATE
 );
 
 create table book (
   id              NUMBER(7)     NOT NULL PRIMARY KEY,
-  name            VARCHAR2(50)  NOT NULL,
-  year            NUMBER(7)     NOT NULL,
-  autor           NUMBER(7)     NOT NULL,
-  FOREIGN KEY (autor) REFERENCES autor(id)
+  author_id       NUMBER(7)     NOT NULL,
+  name            VARCHAR2(50)       NOT NULL,
+  published_in    NUMBER(7)     NOT NULL,
+  CONSTRAINT fk_book_author     FOREIGN KEY (author_id)   REFERENCES author(id)
 );
 
-insert into autor (id, name, birthday) values (1, 'Ivanov', '1977-03-18');
-insert into autor (id, name, birthday) values (2, 'Petrov', '1980-04-12');
-insert into autor (id, name, birthday) values (3, 'Pupkin', '1960-11-21');
+insert into author values(1, 'Jane', 'Austen', '1775-12-16');
+insert into author values(2, 'Alexandre', 'Dumas', '1802-07-24');
+insert into author values(3, 'Joanne', 'Rowling', '1965-07-31');
+insert into author values(4, 'Stephen', 'King', '1947-09-21');
 
-insert into book (id, name, year, autor) values (1, 'Book1', 2015, 1);
-insert into book (id, name, year, autor) values (2, 'Book2', 1964, 3);
-insert into book (id, name, year, autor) values (3, 'Book3', 1966, 2);
-insert into book (id, name, year, autor) values (4, 'Book4', 1985, 1);
+
+INSERT INTO book VALUES (1, 1, 'Sense and Sensibility', 1811);
+INSERT INTO book VALUES (2, 1, 'Pride and Prejudice', 1813);
+INSERT INTO book VALUES (3, 2, 'Le Capitaine Paul', 1838);
+INSERT INTO book VALUES (4, 2, 'Le Capitaine Pamphile', 1839);
+INSERT INTO book VALUES (5, 1, 'Northanger Abbey', 1818);
