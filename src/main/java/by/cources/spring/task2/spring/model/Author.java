@@ -1,30 +1,27 @@
 package by.cources.spring.task2.spring.model;
 
-import java.time.LocalDate;
-import java.util.Date;
-
 /**
  * Created by Shpakovski on 31.05.2019.
  */
 public class Author {
 
-    private Long id_author;
-    private String name_author;
+    private Long id;
+    private String name;
 
-    public Long getId_author() {
-        return id_author;
+    public Long getId() {
+        return id;
     }
 
-    public void setId_author(Long id_author) {
-        this.id_author = id_author;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getName_author() {
-        return name_author;
+    public String getName() {
+        return name;
     }
 
-    public void setName_author(String name_author) {
-        this.name_author = name_author;
+    public void setName(String name) {
+        this.name = name;
     }
 
 
