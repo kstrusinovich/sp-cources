@@ -4,11 +4,9 @@ import by.cources.spring.task3.spring.model.Author;
 import by.cources.spring.task3.spring.model.Book;
 import by.cources.spring.task3.spring.repository.AuthorRepository;
 import by.cources.spring.task3.spring.repository.BookRepository;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 import javax.transaction.Transactional;
-import javax.transaction.Transactional.TxType;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -52,9 +50,11 @@ public class BookServiceImpl implements BookService {
     return authorRepository.findAll();
   }
 
-  private <T> List<T> toList(Iterable<T> result) {
-    return StreamSupport
-        .stream(result.spliterator(), false)
-        .collect(Collectors.toList());
+  private <T> List<T> toList(Iterable<T> items) {
+    List<T> list = new ArrayList<>();
+    for (T t : items) {
+      list.add(t);
+    }
+    return list;
   }
 }
