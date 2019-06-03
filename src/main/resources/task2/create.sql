@@ -3,28 +3,27 @@ SET SCHEMA test;
 
 CREATE TABLE author (
   id              NUMBER(7)     NOT NULL PRIMARY KEY,
-  name      VARCHAR2(50),
+  first_name      VARCHAR2(50),
+  last_name       VARCHAR2(50)  NOT NULL,
   date_of_birth   DATE
 );
 
-
-CREATE TABLE book (
+create table book (
   id              NUMBER(7)     NOT NULL PRIMARY KEY,
   author_id       NUMBER(7)     NOT NULL,
-  name           VARCHAR2(400) NOT NULL,
-  published    DATE     NOT NULL,
-
+  name            VARCHAR2(50)       NOT NULL,
+  published_in    NUMBER(7)     NOT NULL,
   CONSTRAINT fk_book_author     FOREIGN KEY (author_id)   REFERENCES author(id)
 );
 
+insert into author values(1, 'Jane', 'Austen', '1775-12-16');
+insert into author values(2, 'Alexandre', 'Dumas', '1802-07-24');
+insert into author values(3, 'Joanne', 'Rowling', '1965-07-31');
+insert into author values(4, 'Stephen', 'King', '1947-09-21');
 
-insert into author (id, name, date_of_birth) values (1, 'Ivan', '1775-12-16');
-insert into author (id, name, date_of_birth) values (2, 'Serj', '1835-03-12');
-insert into author (id, name, date_of_birth) values (3, 'Kate', '1732-11-30');
-insert into author (id, name, date_of_birth) values (4, 'Victory', '1932-04-01');
 
-insert into book (id, author_id, name, published) values (1, 3, 'Pervoe prishestvie', '1895-02-05');
-insert into book (id, author_id, name, published) values (2, 2, 'Yama', '1920-04-24');
-insert into book (id, author_id, name, published) values (3, 4, 'Voina', '2013-12-04');
-insert into book (id, author_id, name, published) values (4, 1, 'Titanic', '1888-03-05');
-
+INSERT INTO book VALUES (1, 1, 'Sense and Sensibility', 1811);
+INSERT INTO book VALUES (2, 1, 'Pride and Prejudice', 1813);
+INSERT INTO book VALUES (3, 2, 'Le Capitaine Paul', 1838);
+INSERT INTO book VALUES (4, 2, 'Le Capitaine Pamphile', 1839);
+INSERT INTO book VALUES (5, 1, 'Northanger Abbey', 1818);
