@@ -6,7 +6,7 @@ import by.cources.spring.task2.spring.repository.AuthorRepository;
 import by.cources.spring.task2.spring.repository.BookRepository;
 import java.util.List;
 
-import by.cources.spring.task2.spring.repository.JdbcTemplateAuthorRepository;
+//import by.cources.spring.task2.spring.repository.JdbcTemplateAuthorRepository;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -21,7 +21,8 @@ public class Main {
     }
     long id = 3L;
     System.out.println("Book with id = " + id + " is " + service.findById(id));
-    AuthorRepository services = ctx.getBean(AuthorRepository.class);
+    ApplicationContext ctx2 = new AnnotationConfigApplicationContext(AuthorConfig.class);
+    AuthorRepository services = ctx2.getBean(AuthorRepository.class);
     List<Author> alls = services.findAll();
 
     for (Author author: alls) {
