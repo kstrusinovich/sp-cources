@@ -12,8 +12,9 @@ public class Main {
 
   public static void main(String[] args) {
     ApplicationContext ctx = new AnnotationConfigApplicationContext(BookConfig.class);
+    ApplicationContext ctxSeconde = new AnnotationConfigApplicationContext(AuthorConfig.class);
     BookRepository service = ctx.getBean(BookRepository.class);
-    AuthorRepository serviceAuthor = ctx.getBean(AuthorRepository.class);
+    AuthorRepository serviceAuthor = ctxSeconde.getBean(AuthorRepository.class);
 
     List<Book> all = service.findAll();
     for (Book book : all) {
@@ -23,5 +24,9 @@ public class Main {
     System.out.println("Book with id = " + id + " is " + service.findById(id));
 
     List<Author> allAuthor = serviceAuthor.findAll();
+    for(Author author : allAuthor)
+    {
+      System.out.println("All author : " + author);
+    }
   }
 }

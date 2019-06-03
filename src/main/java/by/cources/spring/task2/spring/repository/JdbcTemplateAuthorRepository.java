@@ -7,21 +7,21 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import javax.sql.DataSource;
 import java.util.List;
 
-public class JdbcTemplateAuthorReository implements AuthorRepository {
+public class JdbcTemplateAuthorRepository implements AuthorRepository {
 
     private final JdbcTemplate jdbcTemplateAutor;
 
-    public JdbcTemplateAuthorReository(DataSource ds) {
+    public JdbcTemplateAuthorRepository(DataSource ds) {
         this.jdbcTemplateAutor = new JdbcTemplate(ds);
     }
 
     @Override
     public List<Author> findAll(){
-        return jdbcTemplateAutor.query("select * from book", new AuthorMapper());
+        return jdbcTemplateAutor.query("SELECT * FROM author", new AuthorMapper());
     }
 
     @Override
     public Author findByIdAuthor(int idAuthor){
-        return jdbcTemplateAutor.queryForObject("select * from book where id = ?", new Object[]{idAuthor}, new AuthorMapper());
+        return jdbcTemplateAutor.queryForObject("SELECT * FROM author WHERE id = ?", new Object[]{idAuthor}, new AuthorMapper());
     }
 }
