@@ -10,10 +10,17 @@ CREATE TABLE author (
 
 create table book (
   id              NUMBER(7)     NOT NULL PRIMARY KEY,
+  language_id     NUMBER(7)     NOT NULL,
   author_id       NUMBER(7)     NOT NULL,
-  name            VARCHAR2(50)       NOT NULL,
+  name            VARCHAR2(50)  NOT NULL,
   published_in    NUMBER(7)     NOT NULL,
-  CONSTRAINT fk_book_author     FOREIGN KEY (author_id)   REFERENCES author(id)
+  CONSTRAINT fk_book_author     FOREIGN KEY (author_id)   REFERENCES author(id),
+  CONSTRAINT fk_book_language   FOREIGN KEY (language_id) REFERENCES language(id)
+);
+
+create table language (
+  id              NUMBER(7)    NOT NULL PRIMARY KEY,
+  name            VARCHAR2(2)  NOT NULL
 );
 
 insert into author values(1, 'Jane', 'Austen', '1775-12-16');
