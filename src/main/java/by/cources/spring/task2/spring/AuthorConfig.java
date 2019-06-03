@@ -27,6 +27,10 @@ public class AuthorConfig {
   }
 
   @Bean
+  AuthorService authorServices(){
+    return new AuthorService(jdbcAuthorRepository());
+  }
+  @Bean
   DataSource dataSource() {
     DriverManagerDataSource source = new DriverManagerDataSource();
     source.setUrl(environment.getProperty("url"));
