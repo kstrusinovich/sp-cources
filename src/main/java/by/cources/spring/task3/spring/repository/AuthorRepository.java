@@ -11,4 +11,12 @@ public interface AuthorRepository {
   Optional<Author> findById(Long id);
 
   List<Author> findAll();
+  
+  List<Author> findWithBookOnLanguage(Long value);
+
+  List<Author> findAuthorsWithBookOnLanguage(String languageName);
+
+  List<Author> findAuthorsWithBooksOnLanguageAfterYear(String languageName, Long year);
+  
+  
 }

@@ -16,13 +16,14 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+
 @Configuration
-@PropertySource("classpath:task2/database.properties")
+@PropertySource("classpath:task3/database.properties")
 @ComponentScan("by.cources.spring.task3")
 @EnableJpaRepositories
 @EnableTransactionManagement
-public class BookConfig {
-
+public class BookConfig 
+{
   @Autowired
   Environment environment;
 
@@ -55,4 +56,5 @@ public class BookConfig {
     txManager.setEntityManagerFactory(entityManagerFactory().getObject());
     return txManager;
   }
+   
 }
