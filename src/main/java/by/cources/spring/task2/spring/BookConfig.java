@@ -1,5 +1,6 @@
 package by.cources.spring.task2.spring;
 
+
 import by.cources.spring.task2.spring.repository.BookRepository;
 import by.cources.spring.task2.spring.repository.JdbcTemplateBookRepository;
 import javax.sql.DataSource;
@@ -27,6 +28,7 @@ public class BookConfig {
   BookService bookService(){
     return new BookService(jdbcRepository());
   }
+
   @Bean
   DataSource dataSource() {
     DriverManagerDataSource source = new DriverManagerDataSource();
