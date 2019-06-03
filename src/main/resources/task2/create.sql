@@ -19,8 +19,8 @@ create table book (
 );
 
 create table language (
-  id              NUMBER(7)    NOT NULL PRIMARY KEY,
-  name            VARCHAR2(2)  NOT NULL
+  id    NUMBER(7)    NOT NULL PRIMARY KEY,
+  name  VARCHAR2(2)  NOT NULL
 );
 
 insert into author values(1, 'Jane', 'Austen', '1775-12-16');
