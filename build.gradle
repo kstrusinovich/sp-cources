@@ -16,6 +16,7 @@ dependencies {
   compile 'org.springframework:spring-jdbc:5.1.7.RELEASE'
   compile 'com.h2database:h2:1.4.199'
 //    compile 'com.ibm.informix:jdbc:4.50.1'
-
+  compile 'org.springframework.data:spring-data-jpa:2.1.8.RELEASE'
+  compile 'org.hibernate:hibernate-core:5.4.3.Final'
   testCompile group: 'junit', name: 'junit', version: '4.12'
 }
