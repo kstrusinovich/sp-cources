@@ -20,35 +20,42 @@ public class BookServiceImpl implements BookService {
     this.authorRepository = authorRepository;
   }
 
-  @Transactional
-  @Override
-  public List<Book> findBooksAll() {
-    return toList(bookRepository.findAll());
-  }
+//  @Transactional
+//  @Override
+//  public List<Book> findBooksAll() {
+//    return toList(bookRepository.findAll());
+//  }
+//
+//  @Override
+//  @Transactional
+//  public List<Author> findAuthorsWithBookOlderThan(Long value) {
+//    return authorRepository.findWithBookOlderThan(value);
+//  }
+//
+//  @Override
+//  @Transactional
+//  public List<Book> findBooksWithBookOlderThan(String value) {
+//    return bookRepository.findOlderThan(value);
+//  }
+//
+//  @Override
+//  @Transactional
+//  public List<Book> findBooksWithBookName(String value) {
+//    return bookRepository.findByName(value);
+//  }
+//
+//  @Override
+//  @Transactional
+//  public List<Author> findAuthorsAll() {
+//    return authorRepository.findAll();
+//  }
 
   @Override
   @Transactional
-  public List<Author> findAuthorsWithBookOlderThan(Long value) {
-    return authorRepository.findWithBookOlderThan(value);
+  public List<Book> findBooksOnLanguage(String value) {
+    return bookRepository.findOnLanguage(value);
   }
 
-  @Override
-  @Transactional
-  public List<Book> findBooksWithBookOlderThan(Long value) {
-    return bookRepository.findOlderThan(value);
-  }
-
-  @Override
-  @Transactional
-  public List<Book> findBooksWithBookName(String value) {
-    return bookRepository.findByName(value);
-  }
-
-  @Override
-  @Transactional
-  public List<Author> findAuthorsAll() {
-    return authorRepository.findAll();
-  }
 
   private <T> List<T> toList(Iterable<T> items) {
     List<T> list = new ArrayList<>();

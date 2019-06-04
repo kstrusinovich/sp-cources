@@ -19,9 +19,19 @@ public class Book {
   @ManyToOne
   @JoinColumn(name = "author_id")
   private Author author;
-
+  @ManyToOne
+  @JoinColumn(name = "language_id")
+  private Language language;
   @Column(name = "published_in")
   private Long publishedIn;
+
+  public Language getLanguage() {
+    return language;
+  }
+
+  public void setLanguage(Language language) {
+    this.language = language;
+  }
 
   public Long getPublishedIn() {
     return publishedIn;
@@ -58,9 +68,11 @@ public class Book {
   @Override
   public String toString() {
     return "Book{" +
-        "id=" + id +
-        ", name='" + name + '\'' +
-        ", publishedIn=" + publishedIn +
-        '}';
+            "id=" + id +
+            ", name='" + name + '\'' +
+            ", author=" + author +
+            ", language=" + language +
+            ", publishedIn=" + publishedIn +
+            '}';
   }
 }
