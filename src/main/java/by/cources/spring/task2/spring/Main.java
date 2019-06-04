@@ -26,9 +26,21 @@ public class Main {
     List<Author> alls = services.findAll();
 
     for (Author author: alls) {
-      System.out.println("All Authors" + author);
+      System.out.println("All Authors " + author);
     }
     long ids = 3L;
     System.out.println("Author with id = " + ids + " is " + services.findById(id));
+
+    ApplicationContext ctx3 = new AnnotationConfigApplicationContext(BookConfig.class);
+    BookRepository service1 = ctx3.getBean(BookRepository.class);
+    long year = 1965L;
+    List<Book> years = service1.findByyear(year);
+     //for (Book book: years) {
+       System.out.println("Book with Year > " + year) ;
+       System.out.println(" is" + service1.findByyear(year));
+     //}
+   // ApplicationContext ctx3 = new AnnotationConfigApplicationContext(AuthorConfig.class);
+    //AuthorRepository services1 = ctx3.getBean(AuthorRepository.class);
+   // List<Author> year = services1.findByyear(year);
   }
 }

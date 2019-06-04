@@ -5,6 +5,7 @@ public class Book {
   private Long id;
   private String name;
   private Long year;
+  private Long authorid;
 
   public String getName() {
     return name;
@@ -30,8 +31,16 @@ public class Book {
     this.year = year;
   }
 
+  public Long getAuthorid() {
+    return authorid;
+  }
+
+  public void setAuthorid(Long authorid) {
+    this.authorid = authorid;
+  }
+
   @Override
   public String toString() {
-    return "Book{id=" + id + ", name='" + name + ",year=" + year + "\'}";
+    return "Book{id=" + id + ", name='" + name + "',year=" + year + ",authorid=" + authorid + "}";
   }
 }

@@ -9,4 +9,6 @@ public interface BookRepository {
 
   Book findById(Long id);
 
+  List<Book> findByyear (Long year);
+
 }

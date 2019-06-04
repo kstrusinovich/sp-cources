@@ -17,6 +17,7 @@ public class BookService {
     return repository.findAll();
   }
 
-  public Book findById(Long id){
-    return repository.findById(id);}
+  public Book findById(Long id){ return repository.findById(id);}
+
+  public List<Book> findByyear(Long  year){return  repository.findByyear(year);}
 }

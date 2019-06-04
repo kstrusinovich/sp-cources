@@ -5,6 +5,7 @@ import by.cources.spring.task2.spring.repository.mapping.BookMapper;
 import java.util.List;
 import javax.sql.DataSource;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowCallbackHandler;
 
 public class JdbcTemplateBookRepository implements BookRepository {
 
@@ -22,5 +23,9 @@ public class JdbcTemplateBookRepository implements BookRepository {
   @Override
   public Book findById(Long id) {
     return jdbcTemplate.queryForObject("select * from book where id = ?", new Object[]{id}, new BookMapper());
+  }
+  @Override
+  public List<Book> findByyear (Long year) {
+    return jdbcTemplate.query("select * from book where year > ?", new Object[]{year}, new BookMapper());
   }
 }

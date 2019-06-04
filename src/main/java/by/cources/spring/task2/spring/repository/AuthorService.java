@@ -17,6 +17,7 @@ public class AuthorService {
     return repository.findAll();
   }
 
-  public Author findById(Long id){
-    return repository.findById(id);}
+  public Author findById(Long id){ return repository.findById(id);}
+
+  public  List<Author> findByyear(Long year) {return repository.findByyear(year);}
 }

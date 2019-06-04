@@ -4,14 +4,15 @@ SET SCHEMA test;
 create table book (
   id              NUMBER(7)     NOT NULL PRIMARY KEY,
   name            VARCHAR2(50)       NOT NULL,
-  year            NUMBER(4)     NOT NULL
+  year            NUMBER(4)     NOT NULL,
+  authorid        NUMBER (7)    NOT NULL
 );
 
-insert into book  values (1, 'Book1',1963);
-insert into book  values (2, 'Book2',1964);
-insert into book  values (3, 'Book3',1965);
-insert into book  values (4, 'Book4',1966);
-insert into book  values (5, 'Book5',1967);
+insert into book  values (1, 'Book1',1963,2);
+insert into book  values (2, 'Book2',1964,2);
+insert into book  values (3, 'Book3',1965,5);
+insert into book  values (4, 'Book4',1966,3);
+insert into book  values (5, 'Book5',1967,1);
 
 create table Author (
   id              NUMBER(7)     NOT NULL PRIMARY KEY,

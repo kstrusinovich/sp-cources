@@ -9,4 +9,6 @@ public interface AuthorRepository {
   List<Author> findAll();
 
   Author findById(Long id);
+
+  List<Author> findByyear(Long year);
 }

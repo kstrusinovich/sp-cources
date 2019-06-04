@@ -4,6 +4,8 @@ import by.cources.spring.task2.spring.model.Author;
 import java.util.List;
 import javax.sql.DataSource;
 import by.cources.spring.task2.spring.repository.mapping.Authormapper;
+import by.cources.spring.task2.spring.repository.mapping.BookMapper;
+import com.sun.istack.Nullable;
 import org.springframework.jdbc.core.JdbcTemplate;
 
     public class JdbcTemplateAuthorRepository implements AuthorRepository {
@@ -23,7 +25,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
         @Override
         public Author findById(Long id) {
             return jdbcTemplate.queryForObject("select * from Author where id = ?", new Object[]{id}, new Authormapper());
-
-        }
+            }
+       // @Override
+       // public List<Author> findByyear(Long year){return jdbcTemplate.queryForMap("select * from Author  where id in (select authorid from Book where year>?)" );       }
 
     }
