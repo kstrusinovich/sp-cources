@@ -1,11 +1,6 @@
 package by.cources.spring.task3.spring.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "book")
@@ -19,9 +14,10 @@ public class Book {
   @ManyToOne
   @JoinColumn(name = "author_id")
   private Author author;
-
   @Column(name = "published_in")
   private Long publishedIn;
+  @OneToMany(targetEntity = Language.class)
+  @JoinColumn(name = "langauge_id",referencedColumnName="id")
 
   public Long getPublishedIn() {
     return publishedIn;
