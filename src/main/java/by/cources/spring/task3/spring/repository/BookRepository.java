@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 public interface BookRepository extends CrudRepository<Book, Long> {
 
   @Query("select b from Book b where b.publishedIn >= :value")
+
   List<Book> findOlderThan(@Param("value") Long value);
 
   List<Book> findByName(String name);
