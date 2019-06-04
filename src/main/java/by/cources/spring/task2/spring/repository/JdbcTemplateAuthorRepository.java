@@ -21,7 +21,12 @@ public class JdbcTemplateAuthorRepository implements AuthorRepository {
     }
 
     @Override
-    public Author findByIdAuthor(int idAuthor){
+    public Author findById(int idAuthor){
         return jdbcTemplateAutor.queryForObject("SELECT * FROM author WHERE id = ?", new Object[]{idAuthor}, new AuthorMapper());
+    }
+
+    @Override
+    public List<Author> findAuthorsWithBookOlder(Long publicationYear){
+        return jdbcTemplateAutor.query("SELECT * FROM author WHERE id IN (SELECT author_id FROM book WHERE published_in>?)", new Object[]{publicationYear}, new AuthorMapper());
     }
 }

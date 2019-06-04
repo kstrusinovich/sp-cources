@@ -16,6 +16,7 @@ public class Main {
     BookRepository service = ctx.getBean(BookRepository.class);
     AuthorRepository serviceAuthor = ctxSeconde.getBean(AuthorRepository.class);
 
+    System.out.println("=======================================================");
     List<Book> all = service.findAll();
     for (Book book : all) {
       System.out.println("All books " + book);
@@ -23,10 +24,20 @@ public class Main {
     long id = 4L;
     System.out.println("Book with id = " + id + " is " + service.findById(id));
 
+    System.out.println("=======================================================");
     List<Author> allAuthor = serviceAuthor.findAll();
     for(Author author : allAuthor)
     {
       System.out.println("All author : " + author);
+    }
+    int idAuthor = 2;
+    System.out.println("Book with id = " + idAuthor + " is " + serviceAuthor.findById(idAuthor));
+
+    System.out.println("=======================================================");
+    List<Author> allAuthors = serviceAuthor.findAuthorsWithBookOlder(1830L);
+    for(Author authors : allAuthors)
+    {
+      System.out.println("All authors : " + authors);
     }
   }
 }
