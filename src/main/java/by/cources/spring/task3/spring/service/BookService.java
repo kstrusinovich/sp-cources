@@ -18,4 +18,6 @@ public interface BookService {
 
 
   List<Book> findBooksOnLanguage(String value);
+
+  List<Author> findAuthorsLang(String value);
 }

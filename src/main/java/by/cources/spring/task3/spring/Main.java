@@ -25,6 +25,8 @@ public class Main {
     query5(service);
     System.out.println("---------------------");
     query6(service);
+    System.out.println("---------------------");
+    query7(service);
   }
 
   private static void query1(BookService service) {
@@ -66,6 +68,13 @@ public class Main {
     List<Book> all = service.findBooksOnLanguage("Russian");
     for (Book book : all) {
       System.out.println("Zadanie4: " + book);
+    }
+  }
+
+  private static void query7(BookService service) {
+    List<Author> all = service.findAuthorsLang("Russian");
+    for (Author author : all) {
+      System.out.println("Zadanie4: " + author);
     }
   }
 }

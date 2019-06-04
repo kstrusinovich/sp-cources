@@ -61,6 +61,10 @@ public class BookServiceImpl implements BookService {
   }
 
 
+  @Override
+  public List<Author> findAuthorsLang(String value) { return authorRepository.findAuthorsLang(value);
+  }
+
   private <T> List<T> toList(Iterable<T> items) {
     List<T> list = new ArrayList<>();
     for (T t : items) {

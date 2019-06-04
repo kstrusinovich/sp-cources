@@ -14,9 +14,9 @@ public interface BookRepository extends CrudRepository<Book, Long> {
   List<Book> findOlderThan(@Param("value") Long value);
 
   List<Book> findByName(String name);
-
-  @Query("select a from Book a join a.language b where b.name >= :value")
+  @Query("select a from Book a join a.language b where b.languageName >= :value")
   List<Book> findOnLanguage(@Param("value") String value);
+
 
 
 }

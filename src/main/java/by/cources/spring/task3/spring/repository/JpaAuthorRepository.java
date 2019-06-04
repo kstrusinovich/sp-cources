@@ -31,4 +31,13 @@ public class JpaAuthorRepository implements AuthorRepository {
   public List<Author> findAll() {
     return em.createQuery("select a from Author a", Author.class).getResultList();
   }
+
+
+  @Override
+  public List<Author> findAuthorsLang(String value) {
+    String hql = "select a from Author a join a.books b join b.language c where c.languageName = :value";
+    TypedQuery<Author> query = em.createQuery(hql, Author.class);
+    query.setParameter("value", value);
+    return query.getResultList();
+  }
 }
