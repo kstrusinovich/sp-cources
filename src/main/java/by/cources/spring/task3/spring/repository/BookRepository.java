@@ -10,12 +10,12 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface BookRepository extends CrudRepository<Book, Long> {
 
-//  @Query("select b from Book b where b.publishedIn >= :value")
-//  List<Book> findOlderThan(@Param("value") Long value);
-//
-//  List<Book> findByName(String name);
+  @Query("select b from Book b where b.publishedIn >= :value")
+  List<Book> findOlderThan(@Param("value") Long value);
 
-  @Query("select a.name from Book a join a.language b where b.name >= :value")
+  List<Book> findByName(String name);
+
+  @Query("select a from Book a join a.language b where b.name >= :value")
   List<Book> findOnLanguage(@Param("value") String value);
 
 

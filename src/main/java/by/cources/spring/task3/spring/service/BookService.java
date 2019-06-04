@@ -6,15 +6,15 @@ import java.util.List;
 
 public interface BookService {
 
-//  List<Book> findBooksAll();
-//
-//  List<Author> findAuthorsWithBookOlderThan(Long value);
-//
-//  List<Book> findBooksWithBookOlderThan(String value);
-//
-//  List<Book> findBooksWithBookName(String value);
-//
-//  List<Author> findAuthorsAll();
+  List<Book> findBooksAll();
+
+  List<Author> findAuthorsWithBookOlderThan(Long value);
+
+  List<Book> findBooksWithBookOlderThan(Long value);
+
+  List<Book> findBooksWithBookName(String value);
+
+  List<Author> findAuthorsAll();
 
 
   List<Book> findBooksOnLanguage(String value);
