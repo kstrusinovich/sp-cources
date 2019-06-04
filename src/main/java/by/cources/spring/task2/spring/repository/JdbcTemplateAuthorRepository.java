@@ -9,29 +9,19 @@ import java.util.List;
 
 public class JdbcTemplateAuthorRepository implements AuthorRepository {
 
-    private final JdbcTemplate jdbcTemplateAuthor;
+    private final JdbcTemplate jdbcTemplateAutor;
 
     public JdbcTemplateAuthorRepository(DataSource ds) {
-
-        this.jdbcTemplateAuthor = new JdbcTemplate(ds);
+        this.jdbcTemplateAutor = new JdbcTemplate(ds);
     }
 
     @Override
     public List<Author> findAll(){
-
-        return jdbcTemplateAuthor.query("select * from author", new AuthorMapper());
+        return jdbcTemplateAutor.query("SELECT * FROM author", new AuthorMapper());
     }
 
     @Override
-    public Author findById(int id){
-
-        return jdbcTemplateAuthor.queryForObject("select * from author where id = ?", new Object[]{id}, new AuthorMapper());
+    public Author findByIdAuthor(int idAuthor){
+        return jdbcTemplateAutor.queryForObject("SELECT * FROM author WHERE id = ?", new Object[]{idAuthor}, new AuthorMapper());
     }
-
-    @Override
-    public List<Author> findAuthorsWithBookOlder(Long publicationYear){
-
-        return jdbcTemplateAuthor.query("SELECT * FROM author WHERE id IN (SELECT author_id FROM book WHERE published_in>?)", new Object[]{publicationYear}, new AuthorMapper());
-    }
-
 }
