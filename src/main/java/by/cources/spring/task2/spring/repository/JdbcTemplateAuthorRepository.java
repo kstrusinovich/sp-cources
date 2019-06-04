@@ -26,7 +26,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
         public Author findById(Long id) {
             return jdbcTemplate.queryForObject("select * from Author where id = ?", new Object[]{id}, new Authormapper());
             }
-       // @Override
-       // public List<Author> findByyear(Long year){return jdbcTemplate.queryForMap("select * from Author  where id in (select authorid from Book where year>?)" );       }
+       @Override
+       public List<Author> findByyear(Long year){ return jdbcTemplate.query("select a.* from Author a,Book b where b.authorid = a.id and year>?",new Object[]{year}, new Authormapper()); }
 
     }

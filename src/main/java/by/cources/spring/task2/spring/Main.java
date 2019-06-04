@@ -38,6 +38,13 @@ public class Main {
      //for (Book book: years) {
        System.out.println("Book with Year > " + year) ;
        System.out.println(" is" + service1.findByyear(year));
+
+    ApplicationContext ctx5 = new AnnotationConfigApplicationContext(AuthorConfig.class);
+    AuthorRepository service2 = ctx5.getBean(AuthorRepository.class);
+    List<Author> yeart = service2.findByyear(year);
+    System.out.println("Author with Year > " + year) ;
+    System.out.println(" is" + service2.findByyear(year));
+
      //}
    // ApplicationContext ctx3 = new AnnotationConfigApplicationContext(AuthorConfig.class);
     //AuthorRepository services1 = ctx3.getBean(AuthorRepository.class);
