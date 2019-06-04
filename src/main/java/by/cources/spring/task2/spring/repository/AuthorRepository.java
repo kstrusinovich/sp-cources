@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface AuthorRepository {
 
-    List<Author> findAll();
+    List<Author> findAllAuthors();
 
-    Author findById(int id);
+    Author findAuthorById(int id);
 
     List<Author> findAuthorsWithBookOlder(Long publicationYear);
 }

@@ -1,10 +1,10 @@
 package by.cources.spring.task2.spring;
 
-import by.cources.spring.task2.spring.repository.AuthorRepository;
-import by.cources.spring.task2.spring.repository.BookRepository;
 import by.cources.spring.task2.spring.repository.JdbcTemplateAuthorRepository;
 import by.cources.spring.task2.spring.repository.JdbcTemplateBookRepository;
 import javax.sql.DataSource;
+
+import by.cources.spring.task2.spring.service.BookAuthorServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,15 +20,20 @@ public class BookConfig {
   Environment environment;
 
   @Bean
-  BookRepository jdbcRepositoryBook() {
+  JdbcTemplateBookRepository jdbcRepositoryBook() {
 
     return new JdbcTemplateBookRepository(dataSource());
   }
 
   @Bean
-  AuthorRepository jdbcRepositoryAuthor() {
+  JdbcTemplateAuthorRepository jdbcRepositoryAuthor() {
 
     return new JdbcTemplateAuthorRepository(dataSource());
+  }
+
+  @Bean
+  BookAuthorServiceImpl bookService(){
+    return new BookAuthorServiceImpl(jdbcRepositoryBook(), jdbcRepositoryAuthor());
   }
 
   @Bean

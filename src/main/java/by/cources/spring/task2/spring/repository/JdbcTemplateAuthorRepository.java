@@ -16,12 +16,12 @@ public class JdbcTemplateAuthorRepository implements AuthorRepository {
     }
 
     @Override
-    public List<Author> findAll(){
+    public List<Author> findAllAuthors(){
         return jdbcTemplateAutor.query("SELECT * FROM author", new AuthorMapper());
     }
 
     @Override
-    public Author findById(int idAuthor){
+    public Author findAuthorById(int idAuthor){
         return jdbcTemplateAutor.queryForObject("SELECT * FROM author WHERE id = ?", new Object[]{idAuthor}, new AuthorMapper());
     }
 

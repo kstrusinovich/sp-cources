@@ -1,7 +1,5 @@
 package by.cources.spring.task2.spring.model;
 
-import sun.util.resources.LocaleData;
-
 import java.time.LocalDate;
 
 public class Author {

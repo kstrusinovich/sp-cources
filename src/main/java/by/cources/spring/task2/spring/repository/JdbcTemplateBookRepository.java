@@ -15,12 +15,12 @@ public class JdbcTemplateBookRepository implements BookRepository {
   }
 
   @Override
-  public List<Book> findAll() {
+  public List<Book> findAllBooks() {
     return jdbcTemplate.query("select * from book", new BookMapper());
   }
 
   @Override
-  public Book findById(Long id) {
+  public Book findBookById(Long id) {
     return jdbcTemplate.queryForObject("select * from book where id = ?", new Object[]{id}, new BookMapper());
   }
 }

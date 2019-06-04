@@ -5,8 +5,8 @@ import java.util.List;
 
 public interface BookRepository {
 
-  List<Book> findAll();
+  List<Book> findAllBooks();
 
-  Book findById(Long id);
+  Book findBookById(Long id);
 
 }
