@@ -1,6 +1,8 @@
 package by.cources.spring.task2.spring;
 
+import by.cources.spring.task2.spring.repository.AuthorRepository;
 import by.cources.spring.task2.spring.repository.BookRepository;
+import by.cources.spring.task2.spring.repository.JdbcTemplateAuthorRepository;
 import by.cources.spring.task2.spring.repository.JdbcTemplateBookRepository;
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +20,15 @@ public class BookConfig {
   Environment environment;
 
   @Bean
-  BookRepository jdbcRepository() {
+  BookRepository jdbcRepositoryBook() {
+
     return new JdbcTemplateBookRepository(dataSource());
+  }
+
+  @Bean
+  AuthorRepository jdbcRepositoryAuthor() {
+
+    return new JdbcTemplateAuthorRepository(dataSource());
   }
 
   @Bean

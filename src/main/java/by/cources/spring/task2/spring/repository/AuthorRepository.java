@@ -8,5 +8,7 @@ public interface AuthorRepository {
 
     List<Author> findAll();
 
-    Author findByIdAuthor(int idAuthor);
+    Author findById(int id);
+
+    List<Author> findAuthorsWithBookOlder(Long publicationYear);
 }

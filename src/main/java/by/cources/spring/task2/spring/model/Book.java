@@ -4,6 +4,8 @@ public class Book {
 
   private Long id;
   private String name;
+  private String publishedIn;
+  private Long authorId;
 
   public String getName() {
     return name;
@@ -21,8 +23,24 @@ public class Book {
     this.id = id;
   }
 
+  public String getPublishedIn() {
+    return publishedIn;
+  }
+
+  public void setPublishedIn(String publishedIn) {
+    this.publishedIn = publishedIn;
+  }
+
+  public Long getAuthorId() {
+    return authorId;
+  }
+
+  public void setAuthorId(Long authorId) {
+    this.authorId = authorId;
+  }
+
   @Override
   public String toString() {
-    return "Book{id=" + id + ", name='" + name + "\'}";
+    return "Book{id=" + id + ", name='" + name + ", publishedIn='" + publishedIn + ", authorId='" + authorId +"\'}";
   }
 }

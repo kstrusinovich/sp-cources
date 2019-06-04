@@ -13,7 +13,9 @@ public class AuthorMapper implements RowMapper<Author> {
 
         Author personAuthor = new Author();
         personAuthor.setId(resultSet.getInt("id"));
-        personAuthor.setNameAuthor(resultSet.getString("name"));
+        personAuthor.setFirstName(resultSet.getString("first_name"));
+        personAuthor.setLastName(resultSet.getString("last_name"));
+        personAuthor.setDateOfBirth(resultSet.getDate("date_of_birth").toLocalDate());
         return personAuthor;
     }
 }

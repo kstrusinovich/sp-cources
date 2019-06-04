@@ -1,9 +1,13 @@
 package by.cources.spring.task2.spring.model;
 
+import java.time.LocalDate;
+
 public class Author {
 
     private int id;
-    private String nameAuthor;
+    private String firstName;
+    private String lastName;
+    private LocalDate dateOfBirth;
 
     public int getId() {
         return id;
@@ -13,16 +17,32 @@ public class Author {
         this.id = id;
     }
 
-    public String getNameAuthor() {
-        return nameAuthor;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setNameAuthor(String nameAuthor) {
-        this.nameAuthor = nameAuthor;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public LocalDate getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(LocalDate dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 
     @Override
     public String toString(){
-        return  "Author {id=" + id + ", name='" + nameAuthor + "\'}";
+        return  "Author {id=" + id + ", firstName='" + firstName + ", lastName='" + lastName + ", dateOfBirth='" + dateOfBirth + "\'}";
     }
 }
