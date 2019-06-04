@@ -2,22 +2,27 @@ package by.cources.spring.task3.spring.service;
 
 import by.cources.spring.task3.spring.model.Author;
 import by.cources.spring.task3.spring.model.Book;
+import by.cources.spring.task3.spring.model.Language;
 import by.cources.spring.task3.spring.repository.AuthorRepository;
 import by.cources.spring.task3.spring.repository.BookRepository;
+import by.cources.spring.task3.spring.repository.LanguageRepository;
+
 import java.util.ArrayList;
 import java.util.List;
 import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 @Service
-public class BookServiceImpl implements BookService {
+public class SerchServiceDefault implements SearchService {
 
   private final BookRepository bookRepository;
   private final AuthorRepository authorRepository;
+  private final LanguageRepository languageRepository;
 
-  public BookServiceImpl(BookRepository bookRepository, AuthorRepository authorRepository) {
+  public SerchServiceDefault(BookRepository bookRepository, AuthorRepository authorRepository, LanguageRepository languageRepository) {
     this.bookRepository = bookRepository;
     this.authorRepository = authorRepository;
+    this.languageRepository = languageRepository;
   }
 
   @Transactional
@@ -57,4 +62,23 @@ public class BookServiceImpl implements BookService {
     }
     return list;
   }
+  
+
+@Override
+public List<Language> findLanguagesAll() {
+	return languageRepository.findAll();
+}
+
+@Override
+@Transactional
+public List<Book> findBooksByLanguage(String language) {
+	return bookRepository.findByLanguage(language);
+}
+
+@Override
+@Transactional
+public List<Author> findAuthorsByLanguage(String language) {
+	return authorRepository.findByLanguage(language);
+}
+
 }

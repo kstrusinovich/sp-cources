@@ -16,7 +16,7 @@ public class JpaAuthorRepository implements AuthorRepository {
 
   @Override
   public List<Author> findWithBookOlderThan(Long value) {
-    String hql = "select a from Author a join a.books b where b.publishedIn >= :value";
+    String hql = "select distinct a from Author a join a.books b where b.publishedIn >= :value";
     TypedQuery<Author> query = em.createQuery(hql, Author.class);
     query.setParameter("value", value);
     return query.getResultList();
@@ -31,4 +31,12 @@ public class JpaAuthorRepository implements AuthorRepository {
   public List<Author> findAll() {
     return em.createQuery("select a from Author a", Author.class).getResultList();
   }
+
+@Override
+public List<Author> findByLanguage(String language) {
+	String hql ="select distinct a from Author a join a.books b where b.language.name = :value";
+	TypedQuery<Author> query = em.createQuery(hql, Author.class);
+	query.setParameter("value", language);
+	return query.getResultList();
+}
 }

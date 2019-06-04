@@ -21,7 +21,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @ComponentScan("by.cources.spring.task3")
 @EnableJpaRepositories
 @EnableTransactionManagement
-public class BookConfig {
+public class Config {
 
   @Autowired
   Environment environment;

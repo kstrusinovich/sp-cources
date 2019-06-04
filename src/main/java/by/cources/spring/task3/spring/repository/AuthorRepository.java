@@ -11,4 +11,6 @@ public interface AuthorRepository {
   Optional<Author> findById(Long id);
 
   List<Author> findAll();
+  
+  List<Author> findByLanguage(String language);
 }
