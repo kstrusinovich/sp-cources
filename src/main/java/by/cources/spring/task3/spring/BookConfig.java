@@ -39,8 +39,9 @@ public class BookConfig {
   @Bean
   LocalContainerEntityManagerFactoryBean entityManagerFactory() {
     HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-    vendorAdapter.setDatabase(Database.HSQL);
+    vendorAdapter.setDatabase(Database.H2);
     vendorAdapter.setGenerateDdl(true);
+    vendorAdapter.setShowSql(true);
 
     LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
     factory.setJpaVendorAdapter(vendorAdapter);
