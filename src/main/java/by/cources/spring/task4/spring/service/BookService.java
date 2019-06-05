@@ -19,6 +19,4 @@ public interface BookService {
   List<Book> findBooksWithBookName(String value);
 
   List<Author> findAuthorsAll();
-
-  Book saveBook(Book book);
 }

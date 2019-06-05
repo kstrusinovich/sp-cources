@@ -6,8 +6,6 @@ import java.util.Optional;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-
-import by.cources.spring.task4.spring.model.Book;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -49,9 +47,4 @@ public class JpaAuthorRepository implements AuthorRepository {
       return em.merge(author);
     }
   }
-
-
-
-
-
 }
