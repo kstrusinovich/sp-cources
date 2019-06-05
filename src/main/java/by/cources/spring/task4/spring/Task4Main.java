@@ -34,11 +34,11 @@ public class Task4Main {
 
     System.out.println("----------------------");
     query5(service);
-    System.out.println("----------------------");
+    System.out.println("---------------------- ALL AUTHORS");
     query6(service);
-    System.out.println("----------------------");
+    System.out.println("---------------------- ALL LANGUAGE");
     query7(service);
-    System.out.println("----------------------");
+    System.out.println("---------------------- ALL BOOKS");
   }
 
   private static void query5(BookService service) {
@@ -49,16 +49,17 @@ public class Task4Main {
   }
 
   private static void query6(BookService service) {
+    List<Language> languages = service.findLangAll();
+    for (Language lang : languages) {
+      System.out.println("Query7: " + lang);
+    }
+  }
+
+  private static void query7(BookService service) {
     List<Book> books = service.findBooksAll();
     for (Book book : books) {
       System.out.println("Query6: " + book);
     }
   }
 
-  private static void query7(BookService service) {
-    List<Language> languages = service.findLangAll();
-    for (Language lang : languages) {
-      System.out.println("Query7: " + lang);
-    }
-  }
 }
