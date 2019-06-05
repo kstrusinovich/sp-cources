@@ -42,7 +42,19 @@ public class Task4Main {
 			System.out.println(i + " Saved book with id = " + book.getId());
 		}
 		System.out.println("---------------------");
-
+		
+		System.out.println("---------------------");
+		lang.setName("EN");
+		for (int i = 100; i <= 110; i++) {
+			lang.setId(null);
+			book.setId(null);
+			book.setName("bookName_" + i);
+			service.saveBook1(book);
+			System.out.println(i + " Saved book with id = " + book.getId());
+		}
+		System.out.println("---------------------");
+		
+		
 		System.out.println("---------------------- ALL AUTHORS");
 		query5(service);
 		System.out.println("---------------------- ALL LANGUAGE");
