@@ -62,7 +62,7 @@ public class BookServiceImpl implements BookService {
 
 
   @Override
-  public List<Author> findAuthorsLang(String value) { return authorRepository.findAuthorsLang(value);
+  public List<Author> findAuthorsLang(String value) { return authorRepository.findByLang(value);
   }
 
   private <T> List<T> toList(Iterable<T> items) {

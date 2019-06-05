@@ -1,7 +1,9 @@
 package by.cources.spring.task3.spring.model;
 
-import javax.persistence.*;
-import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * Created by Shpakovski on 04.06.2019.
@@ -11,37 +13,34 @@ import java.util.List;
 @Table(name = "language")
 public class Language {
 
-    @Id
-    @Column(name = "id")
-    private Long id;
+  @Id
+  @Column(name = "id")
+  private Long id;
 
-    @Column(name = "name")
-    private String languageName;
+  @Column(name = "name")
+  private String name;
 
+  public Long getId() {
+    return id;
+  }
 
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-    public Long getId() {
-        return id;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    public String getLanguageName() {
-        return languageName;
-    }
-
-    public void setLanguageName(String languageName) {
-        this.languageName = languageName;
-    }
-
-
-    @Override
-    public String toString() {
-        return "Language{" +
-                "id=" + id +
-                ", languageName='" + languageName + '\'' +
-                '}';
-    }
+  @Override
+  public String toString() {
+    return "Language{" +
+        "id=" + id +
+        ", name='" + name + '\'' +
+        '}';
+  }
 }
