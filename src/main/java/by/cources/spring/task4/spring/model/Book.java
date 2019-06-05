@@ -16,6 +16,9 @@ public class Book {
   @JoinColumn(name = "author_id")
   private Author author;
 
+  @ManyToOne
+  @JoinColumn(name = "languages_id")
+  private  Languages languages;
   @Column(name = "published_in")
   private Long publishedIn;
 

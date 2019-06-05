@@ -1,2 +1,3 @@
 CREATE TABLE author (id NUMBER(7) auto_increment NOT NULL PRIMARY KEY, first_name VARCHAR2(50), last_name VARCHAR2(50) NOT NULL, date_of_birth DATE);
-create table book (id NUMBER(7) auto_increment NOT NULL PRIMARY KEY, author_id NUMBER(7) NOT NULL, name VARCHAR2(50) NOT NULL, published_in NUMBER(7) NOT NULL, CONSTRAINT fk_book_author FOREIGN KEY (author_id) REFERENCES author(id));
+create table book (id NUMBER(7) auto_increment NOT NULL PRIMARY KEY, author_id NUMBER(7) NOT NULL, languages_id     NUMBER(7)     NOT NULL, name VARCHAR2(50) NOT NULL, published_in NUMBER(7) NOT NULL, CONSTRAINT fk_book_author FOREIGN KEY (author_id) REFERENCES author(id), CONSTRAINT fk_book_languages     FOREIGN KEY (languages_id)    REFERENCES languages(id) );
+CREATE TABLE languages (id   NUMBER(7)     NOT NULL PRIMARY KEY, name_languages  VARCHAR2(50));
