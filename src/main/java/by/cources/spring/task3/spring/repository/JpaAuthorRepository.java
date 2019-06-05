@@ -34,7 +34,8 @@ public class JpaAuthorRepository implements AuthorRepository {
 
   @Override
   public List<Author> findAuthorByLang(String value) {
-    String hql = "select a from Author a join a.books b where b.language = (select a from Language a where a.name=:value)";
+    String hql = "select a from Author a join a.books b "
+        + "where b.language = (select a from Language a where a.name=:value)";
     TypedQuery<Author> query = em.createQuery(hql, Author.class);
     query.setParameter("value", value);
     return query.getResultList();
@@ -42,7 +43,8 @@ public class JpaAuthorRepository implements AuthorRepository {
 
   @Override
   public List<Author> findAuthorByLangByDate(String value, Long year) {
-    String hql = "select a from Author a join a.books b where b.language = (select a from Language a where a.name=:value) and b.publishedIn > :year";
+    String hql = "select distinct a from Author a join a.books b "
+        + "where b.language.name = :value and b.publishedIn > :year";
     TypedQuery<Author> query = em.createQuery(hql, Author.class);
     query.setParameter("value", value);
     query.setParameter("year", year);
