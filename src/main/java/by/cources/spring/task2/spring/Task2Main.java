@@ -8,7 +8,7 @@ import by.cources.spring.task2.spring.service.BookAuthorService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-public class Main {
+public class Task2Main {
 
   public static void main(String[] args) {
     ApplicationContext ctx = new AnnotationConfigApplicationContext(BookConfig.class);
