@@ -16,8 +16,8 @@ public interface BookRepository extends CrudRepository<Book, Long> {
   List<Book> findOlderThan(@Param("value") Long value);
 
   List<Book> findByName(String name);
-  @Query("insert into Book :values  ")
-  Book save(@Param("values")Book book);
+
+  Book save(Book book);
 
 
 

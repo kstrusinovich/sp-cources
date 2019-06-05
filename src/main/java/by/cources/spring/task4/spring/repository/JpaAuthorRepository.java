@@ -6,8 +6,6 @@ import java.util.Optional;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-
-import by.cources.spring.task4.spring.model.Book;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -51,14 +49,4 @@ public class JpaAuthorRepository implements AuthorRepository {
     }
   }
 
- /* @Override
-  @Transactional(propagation = Propagation.REQUIRES_NEW)
-  public Book save(Book book) {
-    if (book.getId() == null) {
-      em.persist(book);
-      return book;
-    } else {
-      return em.merge(book);
-    }
-  }*/
-}
+ }
