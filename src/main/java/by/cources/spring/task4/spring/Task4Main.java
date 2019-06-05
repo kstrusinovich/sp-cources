@@ -14,6 +14,7 @@ public class Task4Main {
   public static void main(String[] args) {
     ApplicationContext ctx = new AnnotationConfigApplicationContext(BookConfig.class);
     BookService service = ctx.getBean(BookService.class);
+    
     System.out.println("---------------------");
     Author author = new Author();
     author.setLastName("lastName");
@@ -22,23 +23,37 @@ public class Task4Main {
     service.saveAuthor(author);
     System.out.println("Saved author with id = " + author.getId());
     System.out.println("---------------------");
+    
+    System.out.println("---------------------");
+    Language lang = new Language();
+    lang.setName("RU");
+    System.out.println("---------------------");
 
     System.out.println("---------------------");
     Book book = new Book();
     book.setName("bookName");
     book.setAuthor(author);
     book.setPublishedIn(1990L);
+    book.setLanguage(lang);
     service.saveBook(book);
-    System.out.println("Saved book with id = " + book.getId());
+    System.out.println("1 Saved book with id = " + book.getId());
+    
+    lang.setId(null);
+    book.setId(null);
+    service.saveBook(book);
+    System.out.println("2 Saved book with id = " + book.getId());
+    
+    
     System.out.println("---------------------");
 
-    System.out.println("---------------------");
-    query5(service);
     System.out.println("---------------------- ALL AUTHORS");
-    query6(service);
+    query5(service);
     System.out.println("---------------------- ALL LANGUAGE");
-    query7(service);
+    query6(service);
     System.out.println("---------------------- ALL BOOKS");
+    query7(service);
+    System.out.println("---------------------");
+    
   }
 
   private static void query5(BookService service) {
