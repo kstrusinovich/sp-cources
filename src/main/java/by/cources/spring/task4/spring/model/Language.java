@@ -7,6 +7,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * язык
+ * 
+ * @author Home
+ */
 @Entity
 @Table(name = "language")
 public class Language 
@@ -39,7 +44,7 @@ public class Language
 
   @Override
   public String toString() {
-    return "Language{" +
+    return "Language {" +
         "id=" + id +
         ", name='" + name + '\'' +        
         '}';

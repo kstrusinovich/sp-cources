@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import by.cources.spring.util.TextUtil;
+
 @Entity
 @Table(name = "author")
 public class Author {
@@ -72,11 +74,11 @@ public class Author {
 
   @Override
   public String toString() {
-    return "Author{" +
+    return "Author {" +
         "id=" + id +
-        ", firstName='" + firstName + '\'' +
-        ", lastName='" + lastName + '\'' +
-        ", dateOfBirth=" + dateOfBirth +
+        ", " + firstName +
+        " " + lastName + 
+        ", born " + TextUtil.dateToView(dateOfBirth) +
         '}';
   }
 }

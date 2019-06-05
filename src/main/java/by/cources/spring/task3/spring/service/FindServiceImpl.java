@@ -6,7 +6,7 @@ import by.cources.spring.task3.spring.model.Language;
 import by.cources.spring.task3.spring.repository.AuthorRepository;
 import by.cources.spring.task3.spring.repository.BookRepository;
 import by.cources.spring.task3.spring.repository.LanguageRepository;
-import by.cources.spring.task3.spring.util.TextUtil;
+import by.cources.spring.util.TextUtil;
 
 import java.util.List;
 import javax.transaction.Transactional;

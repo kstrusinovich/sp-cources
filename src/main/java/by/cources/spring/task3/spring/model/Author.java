@@ -12,7 +12,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
-import by.cources.spring.task3.spring.util.TextUtil;
+import by.cources.spring.util.TextUtil;
 
 @Entity
 @Table(name = "author")

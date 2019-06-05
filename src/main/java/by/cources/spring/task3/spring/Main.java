@@ -4,7 +4,7 @@ import by.cources.spring.task3.spring.model.Author;
 import by.cources.spring.task3.spring.model.Book;
 import by.cources.spring.task3.spring.model.Language;
 import by.cources.spring.task3.spring.service.FindService;
-import by.cources.spring.task3.spring.util.TextUtil;
+import by.cources.spring.util.TextUtil;
 
 import java.util.List;
 import org.springframework.context.ApplicationContext;
