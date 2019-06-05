@@ -14,25 +14,25 @@ public class Task4Main {
   public static void main(String[] args) {
     ApplicationContext ctx = new AnnotationConfigApplicationContext(BookConfig.class);
     BookService service = ctx.getBean(BookService.class);
-    System.out.println("----------------------");
+    System.out.println("---------------------");
     Author author = new Author();
     author.setLastName("lastName");
     author.setFirstName("firstName");
     author.setDateOfBirth(LocalDate.now());
     service.saveAuthor(author);
     System.out.println("Saved author with id = " + author.getId());
-    System.out.println("----------------------");
+    System.out.println("---------------------");
 
-    System.out.println("----------------------");
+    System.out.println("---------------------");
     Book book = new Book();
     book.setName("bookName");
     book.setAuthor(author);
     book.setPublishedIn(1990L);
     service.saveBook(book);
     System.out.println("Saved book with id = " + book.getId());
-    System.out.println("----------------------");
+    System.out.println("---------------------");
 
-    System.out.println("----------------------");
+    System.out.println("---------------------");
     query5(service);
     System.out.println("---------------------- ALL AUTHORS");
     query6(service);
