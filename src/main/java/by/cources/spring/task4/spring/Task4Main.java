@@ -21,6 +21,15 @@ public class Task4Main {
     System.out.println("Saved author with id = " + author.getId());
     System.out.println("---------------------");
     query5(service);
+
+    System.out.println("---------------------");
+    Book book = new Book();
+    book.Name("Name");
+    service.saveBook(book);
+    System.out.println("Saved book with id = " + author.getId());
+    System.out.println("---------------------");
+
+
   }
 
   private static void query5(BookService service) {
@@ -28,5 +37,7 @@ public class Task4Main {
     for (Author author : authors) {
       System.out.println("Query5: " + author);
     }
+
+
   }
 }
