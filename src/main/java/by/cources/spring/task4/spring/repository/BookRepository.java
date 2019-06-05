@@ -1,6 +1,5 @@
 package by.cources.spring.task4.spring.repository;
 
-import by.cources.spring.task4.spring.model.Author;
 import by.cources.spring.task4.spring.model.Book;
 import java.util.List;
 import org.springframework.data.jpa.repository.Query;

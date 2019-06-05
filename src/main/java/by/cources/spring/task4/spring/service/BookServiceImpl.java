@@ -2,8 +2,10 @@ package by.cources.spring.task4.spring.service;
 
 import by.cources.spring.task4.spring.model.Author;
 import by.cources.spring.task4.spring.model.Book;
+import by.cources.spring.task4.spring.model.Language;
 import by.cources.spring.task4.spring.repository.AuthorRepository;
 import by.cources.spring.task4.spring.repository.BookRepository;
+import by.cources.spring.task4.spring.repository.LanguageRepository;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Service;
@@ -15,10 +17,12 @@ public class BookServiceImpl implements BookService {
 
   private final BookRepository bookRepository;
   private final AuthorRepository authorRepository;
+  private final LanguageRepository languageRepository;
 
-  public BookServiceImpl(BookRepository bookRepository, AuthorRepository authorRepository) {
+  public BookServiceImpl(BookRepository bookRepository, AuthorRepository authorRepository, LanguageRepository languageRepository) {
     this.bookRepository = bookRepository;
     this.authorRepository = authorRepository;
+    this.languageRepository = languageRepository;
   }
 
   @Transactional
@@ -69,5 +73,11 @@ public class BookServiceImpl implements BookService {
   @Override
   public Book saveBook(Book book) {
     return bookRepository.save(book);
+  }
+
+  @Transactional
+  @Override
+  public List<Language> findLangAll() {
+    return toList(languageRepository.findAll());
   }
 }

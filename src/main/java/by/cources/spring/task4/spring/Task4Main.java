@@ -2,6 +2,7 @@ package by.cources.spring.task4.spring;
 
 import by.cources.spring.task4.spring.model.Author;
 import by.cources.spring.task4.spring.model.Book;
+import by.cources.spring.task4.spring.model.Language;
 import by.cources.spring.task4.spring.service.BookService;
 import java.time.LocalDate;
 import java.util.List;
@@ -31,13 +32,33 @@ public class Task4Main {
     System.out.println("Saved book with id = " + book.getId());
     System.out.println("----------------------");
 
+    System.out.println("----------------------");
     query5(service);
+    System.out.println("----------------------");
+    query6(service);
+    System.out.println("----------------------");
+    query7(service);
+    System.out.println("----------------------");
   }
 
   private static void query5(BookService service) {
     List<Author> authors = service.findAuthorsAll();
     for (Author author : authors) {
       System.out.println("Query5: " + author);
+    }
+  }
+
+  private static void query6(BookService service) {
+    List<Book> books = service.findBooksAll();
+    for (Book book : books) {
+      System.out.println("Query6: " + book);
+    }
+  }
+
+  private static void query7(BookService service) {
+    List<Language> languages = service.findLangAll();
+    for (Language lang : languages) {
+      System.out.println("Query7: " + lang);
     }
   }
 }
