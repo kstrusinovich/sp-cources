@@ -14,17 +14,24 @@ public class Task4Main {
     ApplicationContext ctx = new AnnotationConfigApplicationContext(BookConfig.class);
     BookService service = ctx.getBean(BookService.class);
     System.out.println("---------------------");
+
     Author author = new Author();
-      Book book = new Book();
     author.setLastName("lastName");
     author.setFirstName("firstName");
     author.setDateOfBirth(LocalDate.now());
     service.saveAuthor(author);
+
+    Book book = new Book();
+    book.setAuthor(author.getId());
+    book.setName("Book");
+    book.setPublishedIn(2019L);
+    service.saveBook(book);
+
     System.out.println("Saved author with id = " + author.getId());
     System.out.println("---------------------");
     query5(service);
     System.out.println("---------------------");
-    service.saveBook(book);
+
     System.out.println("Saved book with id = " + book.getId());
   }
 
@@ -32,6 +39,10 @@ public class Task4Main {
     List<Author> authors = service.findAuthorsAll();
     for (Author author : authors) {
       System.out.println("Query5: " + author);
+    }
+    List<Book> books = service.findBooksAll();
+    for (Book book : books) {
+      System.out.println("Query5: " + book);
     }
   }
 }

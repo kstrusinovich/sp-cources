@@ -55,8 +55,14 @@ public class Book {
   public String toString() {
     return "Book{" +
         "id=" + id +
+         " author_id=" + author +
         ", name='" + name + '\'' +
         ", publishedIn=" + publishedIn +
         '}';
+  }
+
+
+  public void setAuthor(Long id) {
+    return ;
   }
 }
