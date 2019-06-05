@@ -27,16 +27,16 @@ public class Task4Main {
 
     Language language = new Language();
     language.setName("Spain");
-    service.saveLanguage(language);
+    //service.saveLanguage(language);
     System.out.println("Saved language with id = " + language.getId());
     System.out.println("---------------------");
 
     Book book = new Book();
     book.setName("Mir");
     book.setPublishedIn(1933L);
-//    book.setLanguage(language);
+    book.setLanguage(language);
     service.saveBook(book);
-    System.out.println("Saved book = " + book.getName());
+    System.out.println("Saved book = " + book.getName() + "  " + book.getLanguage() + "  " + book.getPublishedIn());
 
     System.out.println("---------------------");
 

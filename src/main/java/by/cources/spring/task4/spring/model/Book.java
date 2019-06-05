@@ -20,9 +20,9 @@ public class Book {
   @Column(name = "published_in")
   private Long publishedIn;
 
-//  @ManyToOne(optional = false, cascade = CascadeType.ALL)
-//  @JoinColumn(name = "language_id")
-//  private Language language;
+  @ManyToOne(cascade = CascadeType.ALL)
+  @JoinColumn(name = "language_id")
+  private Language language;
 
   public Long getPublishedIn() {
     return publishedIn;
@@ -36,13 +36,13 @@ public class Book {
     return name;
   }
 
-//  public Language getLanguage() {
-//    return language;
-//  }
-//
-//  public void setLanguage(Language language) {
-//    this.language = language;
-//  }
+  public Language getLanguage() {
+    return language;
+  }
+
+  public void setLanguage(Language language) {
+    this.language = language;
+  }
 
   public void setName(String name) {
     this.name = name;
