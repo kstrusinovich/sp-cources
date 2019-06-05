@@ -74,11 +74,11 @@ public class Author {
 
   @Override
   public String toString() {
-    return "Author {" +
+    return "Author { " +
         "id=" + id +
         ", " + firstName +
         " " + lastName + 
         ", born " + TextUtil.dateToView(dateOfBirth) +
-        '}';
+        " }";
   }
 }

@@ -76,12 +76,12 @@ public class Book
 
 @Override
   public String toString() {
-    return "Book {" +
+    return "Book { " +
         "id=" + id +
-        ", name='" + name + '\'' +
-        ", author=" + author +
+        ", \"" + name + '\"' +
+        ", " + author +
         ", publishedIn=" + publishedIn +
-        ", language=" + language +
-        '}';
+        ", " + language +
+        " }";
   }
 }
