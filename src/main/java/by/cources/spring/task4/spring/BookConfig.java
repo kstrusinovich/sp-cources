@@ -50,7 +50,7 @@ public class BookConfig {
     HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
     vendorAdapter.setDatabase(Database.H2);
     vendorAdapter.setShowSql(true);
-    vendorAdapter.setGenerateDdl(true);
+//    vendorAdapter.setGenerateDdl(true);
 
 
     LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
@@ -66,7 +66,7 @@ public class BookConfig {
 //    jpaProperties.put("javax.persistence.schema-generation.drop-script-source", "drop.sql");
     jpaProperties.put("javax.persistence.schema-generation.drop-source", "script");
     jpaProperties.put("javax.persistence.sql-load-script-source", "/task4/data.sql");
-//    factory.setJpaProperties(jpaProperties);
+    factory.setJpaProperties(jpaProperties);
     return factory;
   }
 
