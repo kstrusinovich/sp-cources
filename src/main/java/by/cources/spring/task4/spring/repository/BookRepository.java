@@ -18,6 +18,5 @@ public interface BookRepository extends CrudRepository<Book, Long> {
   List<Book> findByName(String name);
 
   @Override
-  @Transactional(propagation = Propagation.REQUIRES_NEW)
   Book save(Book book);
 }
