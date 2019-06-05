@@ -11,6 +11,8 @@ public interface BookService {
 
   List<Book> findBooksAll();
 
+  List<Language> findLanguageAll();
+
   @Transactional
   Author saveAuthor(Author author);
 

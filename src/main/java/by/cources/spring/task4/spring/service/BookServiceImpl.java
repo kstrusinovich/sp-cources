@@ -32,6 +32,12 @@ public class BookServiceImpl implements BookService {
     return toList(bookRepository.findAll());
   }
 
+  @Transactional
+  @Override
+  public List<Language> findLanguageAll() {
+    return toList(languageRepository.findAll());
+  }
+
   @Transactional(propagation = Propagation.REQUIRES_NEW)
   @Override
   public Author saveAuthor(Author author) {

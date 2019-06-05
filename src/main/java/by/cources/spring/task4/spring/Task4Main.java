@@ -14,22 +14,22 @@ public class Task4Main {
   public static void main(String[] args) {
     ApplicationContext ctx = new AnnotationConfigApplicationContext(BookConfig.class);
     BookService service = ctx.getBean(BookService.class);
-    System.out.println("---------------------");
-    Author author = new Author();
-    author.setLastName("lastName");
-    author.setFirstName("firstName");
-    author.setDateOfBirth(LocalDate.now());
-    service.saveAuthor(author);
-    System.out.println("Saved author with id = " + author.getId());
-    System.out.println("---------------------");
-    query5(service);
+//    System.out.println("---------------------");
+//    Author author = new Author();
+//    author.setLastName("lastName");
+//    author.setFirstName("firstName");
+//    author.setDateOfBirth(LocalDate.now());
+//    service.saveAuthor(author);
+//    System.out.println("Saved author with id = " + author.getId());
+//    System.out.println("---------------------");
+
 
     System.out.println("---------------------");
     Book book = new Book();
     book.setPublishedIn(1970L);
     book.setName("Challenger");
     service.saveBook(book);
-    System.out.println("Query6" + book);
+    System.out.println("Task1" + book);
     System.out.println("---------------------");
 
     book.setPublishedIn(1835L);
@@ -38,28 +38,39 @@ public class Task4Main {
     Language language = new Language();
     language.setName("Russian");
     service.saveLanguage(language);
-    System.out.println("QueryBook6" + book);
-    System.out.println("QueryLanguage6" + language);
+    System.out.println("Task2Book" + book);
+    System.out.println("Task2Language" + language);
 
 
 
+    Book book1 = new Book();
+    book1.setPublishedIn(1835L);
+    book1.setName("gold fish1");
+    service.saveBook(book1);
 
-    book.setPublishedIn(1835L);
-    book.setName("gold fish1");
-    service.saveBook(book);
+    Language language1 = new Language();
+    language1.setName("Russian");
+    service.saveLanguage(language1);
+//    System.out.println("QueryBook61" + book);
+//    System.out.println("QueryLanguage61" + language1);
 
-    language.setName("Russian1");
-    service.saveLanguage(language);
-    System.out.println("QueryBook61" + book);
-    System.out.println("QueryLanguage61" + language);
+    query5(service);
+    query6(service);
   }
 
   private static void query5(BookService service) {
-    List<Author> authors = service.findAuthorsAll();
-    for (Author author : authors) {
-      System.out.println("Query5: " + author);
+    List<Book> books = service.findBooksAll();
+    for (Book book : books) {
+      System.out.println("BOOKS: " + book);
     }
   }
+  private static void query6(BookService service) {
+    List<Language> languages = service.findLanguageAll();
+    for (Language language : languages) {
+      System.out.println("LANGUAGE: " + language);
+    }
+  }
+
 
 
 }
