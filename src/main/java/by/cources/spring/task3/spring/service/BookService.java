@@ -10,7 +10,13 @@ public interface BookService {
 
   List<Author> findAuthorsWithBookOlderThan(Long value);
 
+  List<Author> findAuthorsWithLanguageIs(String value);
+
+  List<Author> findAuthorsWithLanguageAndDate(String value, Long year);
+
   List<Book> findBooksWithBookOlderThan(Long value);
+
+  List<Book> findBooksWithBookLanguage(String value);
 
   List<Book> findBooksWithBookName(String value);
 

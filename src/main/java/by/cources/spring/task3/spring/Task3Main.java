@@ -23,6 +23,12 @@ public class Task3Main {
     query4(service);
     System.out.println("---------------------");
     query5(service);
+    System.out.println("***********************");
+    query6(service);
+    System.out.println("***********************");
+    query7(service);
+    System.out.println("***********************");
+    query8(service);
   }
 
   private static void query1(BookService service) {
@@ -57,6 +63,27 @@ public class Task3Main {
     List<Author> authors = service.findAuthorsAll();
     for (Author author : authors) {
       System.out.println("Query5: " + author);
+    }
+  }
+
+  private static void query6(BookService service) {
+    List<Book> all = service.findBooksWithBookLanguage("ru");
+    for (Book book : all){
+      System.out.println("Query6: " + book);
+    }
+  }
+
+  private static void query7(BookService service){
+    List<Author> authors = service.findAuthorsWithLanguageIs("espanolo");
+    for (Author author : authors){
+      System.out.println("Query7: " + author);
+    }
+  }
+
+  private static void query8(BookService service){
+    List<Author> authors = service.findAuthorsWithLanguageAndDate("ru", 1818L);
+    for (Author author : authors){
+      System.out.println("Query8: " + author);
     }
   }
 }

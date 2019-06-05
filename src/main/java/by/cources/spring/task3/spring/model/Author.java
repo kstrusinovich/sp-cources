@@ -2,15 +2,7 @@ package by.cources.spring.task3.spring.model;
 
 import java.time.LocalDate;
 import java.util.List;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.TableGenerator;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "author")
@@ -27,6 +19,9 @@ public class Author {
   private String lastName;
   @Column(name = "date_of_birth")
   private LocalDate dateOfBirth;
+  @ManyToOne
+  @JoinColumn(name = "language_id")
+  private Language language;
 
 //  @OneToMany(targetEntity = Book.class)
 //  @JoinColumn(name = "author_id",referencedColumnName="id")
@@ -73,13 +68,34 @@ public class Author {
     this.dateOfBirth = dateOfBirth;
   }
 
+  public Language getLanguage() {
+    return language;
+  }
+
+  public void setLanguage(Language language) {
+    this.language = language;
+  }
+
+//  @Override
+//  public String toString() {
+//    return "Author{" +
+//        "id=" + id +
+//        ", firstName='" + firstName + '\'' +
+//        ", lastName='" + lastName + '\'' +
+//        ", dateOfBirth=" + dateOfBirth +
+//        '}';
+//  }
+
   @Override
   public String toString() {
     return "Author{" +
-        "id=" + id +
-        ", firstName='" + firstName + '\'' +
-        ", lastName='" + lastName + '\'' +
-        ", dateOfBirth=" + dateOfBirth +
-        '}';
+            "id=" + id +
+            ", firstName='" + firstName + '\'' +
+            ", lastName='" + lastName + '\'' +
+            ", dateOfBirth=" + dateOfBirth +
+            ", language=" + language.getName() +
+            '}';
   }
+
+
 }
