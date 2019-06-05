@@ -64,4 +64,10 @@ public class BookServiceImpl implements BookService {
     }
     return list;
   }
+
+  @Transactional(propagation = Propagation.REQUIRES_NEW)
+  @Override
+  public Book saveBook(Book book) {
+    return bookRepository.save(book);
+  }
 }

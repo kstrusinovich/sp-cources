@@ -12,6 +12,9 @@ public interface BookService {
   @Transactional
   Author saveAuthor(Author author);
 
+  @Transactional
+  Book saveBook(Book book);
+
   List<Author> findAuthorsWithBookOlderThan(Long value);
 
   List<Book> findBooksWithBookOlderThan(Long value);

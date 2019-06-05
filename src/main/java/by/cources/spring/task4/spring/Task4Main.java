@@ -1,6 +1,7 @@
 package by.cources.spring.task4.spring;
 
 import by.cources.spring.task4.spring.model.Author;
+import by.cources.spring.task4.spring.model.Book;
 import by.cources.spring.task4.spring.service.BookService;
 import java.time.LocalDate;
 import java.util.List;
@@ -20,6 +21,16 @@ public class Task4Main {
     service.saveAuthor(author);
     System.out.println("Saved author with id = " + author.getId());
     System.out.println("----------------------");
+
+    System.out.println("----------------------");
+    Book book = new Book();
+    book.setName("bookName");
+    book.setAuthor(author);
+    book.setPublishedIn(1990L);
+    service.saveBook(book);
+    System.out.println("Saved book with id = " + book.getId());
+    System.out.println("----------------------");
+
     query5(service);
   }
 
