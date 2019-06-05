@@ -7,4 +7,5 @@ import org.springframework.data.repository.CrudRepository;
  * Created by Shpakovski on 05.06.2019.
  */
 public interface LanguageRepository extends CrudRepository<Language, Long> {
+    Language save(Language language);
 }

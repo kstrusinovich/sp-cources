@@ -56,12 +56,22 @@ public class Book {
     this.author = author;
   }
 
+  public Language getLanguage() {
+    return language;
+  }
+
+  public void setLanguage(Language language) {
+    this.language = language;
+  }
+
   @Override
   public String toString() {
     return "Book{" +
-        "id=" + id +
-        ", name='" + name + '\'' +
-        ", publishedIn=" + publishedIn +
-        '}';
+            "id=" + id +
+            ", name='" + name + '\'' +
+            ", author=" + author +
+            ", language=" + language +
+            ", publishedIn=" + publishedIn +
+            '}';
   }
 }
