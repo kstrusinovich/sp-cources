@@ -16,8 +16,8 @@ public class Book {
   private Author author;
   @Column(name = "published_in")
   private Long publishedIn;
-  @OneToMany(targetEntity = Language.class)
-  @JoinColumn(name = "langauge_id",referencedColumnName="id")
+  //@OneToMany(targetEntity = Language.class)
+  //@JoinColumn(name = "langauge_id",referencedColumnName="id")
 
   public Long getPublishedIn() {
     return publishedIn;

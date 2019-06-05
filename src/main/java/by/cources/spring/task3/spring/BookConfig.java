@@ -17,7 +17,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
-@PropertySource("classpath:task3/database.properties")
+@PropertySource("classpath:task2/database.properties")
 @ComponentScan("by.cources.spring.task3")
 @EnableJpaRepositories
 @EnableTransactionManagement
