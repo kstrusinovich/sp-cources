@@ -42,7 +42,10 @@ public class JpaAuthorRepository implements AuthorRepository {
 
 	@Override
 	public List<Author> findAuthorsByLangAndYear(String lang, Long year) {
-		String hql = "select a from Author a join a.books b join b.language c where c.name = :lang and b.publishedIn >= :year";
+		String hql = "select a from Author a "
+				+ "join a.books b "
+//				+ "join b.language c "
+				+ "where b.language.name = :lang and b.publishedIn >= :year";
 		TypedQuery<Author> query = em.createQuery(hql, Author.class);
 		query.setParameter("year", year);
 		query.setParameter("lang", lang);
