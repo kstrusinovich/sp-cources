@@ -27,6 +27,7 @@ public class Task3Main {
 
   private static void query1(BookService service) {
     List<Book> all = service.findBooksAll();
+    System.out.println("++++++++++++++++++++++++++++++");
     for (Book book : all) {
       System.out.println("Query1: " + book);
     }
@@ -34,6 +35,7 @@ public class Task3Main {
 
   private static void query2(BookService service) {
     List<Book> all = service.findBooksWithBookOlderThan(1818L);
+    System.out.println("++++++++++++++++++++++++++++++");
     for (Book book : all) {
       System.out.println("Query2: " + book);
     }
@@ -41,6 +43,7 @@ public class Task3Main {
 
   private static void query3(BookService service) {
     List<Author> authors = service.findAuthorsWithBookOlderThan(1818L);
+    System.out.println("++++++++++++++++++++++++++++++");
     for (Author author : authors) {
       System.out.println("Query3: " + author);
     }
@@ -48,6 +51,7 @@ public class Task3Main {
 
   private static void query4(BookService service) {
     List<Book> books = service.findBooksWithBookName("Le Capitaine Paul");
+    System.out.println("++++++++++++++++++++++++++++++");
     for (Book book : books) {
       System.out.println("Query4: " + book);
     }
@@ -55,6 +59,7 @@ public class Task3Main {
 
   private static void query5(BookService service) {
     List<Author> authors = service.findAuthorsAll();
+    System.out.println("++++++++++++++++++++++++++++++");
     for (Author author : authors) {
       System.out.println("Query5: " + author);
     }

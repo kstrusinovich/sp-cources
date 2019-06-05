@@ -28,6 +28,12 @@ public class BookServiceImpl implements BookService {
 
   @Override
   @Transactional
+  public List<Author> findAuthorsAll() {
+    return authorRepository.findAll();
+  }
+
+  @Override
+  @Transactional
   public List<Author> findAuthorsWithBookOlderThan(Long value) {
     return authorRepository.findWithBookOlderThan(value);
   }
@@ -44,11 +50,7 @@ public class BookServiceImpl implements BookService {
     return bookRepository.findByName(value);
   }
 
-  @Override
-  @Transactional
-  public List<Author> findAuthorsAll() {
-    return authorRepository.findAll();
-  }
+
 
   private <T> List<T> toList(Iterable<T> items) {
     List<T> list = new ArrayList<>();

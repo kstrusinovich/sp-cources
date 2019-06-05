@@ -1,23 +1,30 @@
 package by.cources.spring.task3.spring.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "book")
 public class Book {
 
   @Id
+
   @Column(name = "id")
   private Long id;
+
   @Column(name = "name")
   private String name;
+
   @ManyToOne
   @JoinColumn(name = "author_id")
   private Author author;
+
   @Column(name = "published_in")
   private Long publishedIn;
-  //@OneToMany(targetEntity = Language.class)
-  //@JoinColumn(name = "langauge_id",referencedColumnName="id")
+
+  @ManyToOne
+  @JoinColumn(name = "language_id")
+  private Language language;
 
   public Long getPublishedIn() {
     return publishedIn;
@@ -49,6 +56,14 @@ public class Book {
 
   public void setAuthor(Author author) {
     this.author = author;
+  }
+
+  public Language getLanguage() {
+    return language;
+  }
+
+  public void setLanguage(Language language) {
+    this.language = language;
   }
 
   @Override

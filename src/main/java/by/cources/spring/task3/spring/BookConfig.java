@@ -17,7 +17,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
-@PropertySource("classpath:task2/database.properties")
+@PropertySource("classpath:task3/database.properties")
 @ComponentScan("by.cources.spring.task3")
 @EnableJpaRepositories
 @EnableTransactionManagement
@@ -40,6 +40,7 @@ public class BookConfig {
   LocalContainerEntityManagerFactoryBean entityManagerFactory() {
     HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
     vendorAdapter.setDatabase(Database.HSQL);
+    vendorAdapter.setShowSql(true);
     vendorAdapter.setGenerateDdl(true);
 
     LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
