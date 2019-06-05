@@ -13,10 +13,6 @@ public class Language {
     @Column(name = "name")
     private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "book_id")
-    private Book book;
-
     public Long getId() {
         return Id;
     }
@@ -33,20 +29,12 @@ public class Language {
         this.name = name;
     }
 
-    public Book getBook() {
-        return book;
-    }
-
-    public void setBook(Book book) {
-        this.book = book;
-    }
 
     @Override
     public String toString() {
         return "Language{" +
                 "Id=" + Id +
                 ", name='" + name + '\'' +
-                ", book=" + book +
                 '}';
     }
 }

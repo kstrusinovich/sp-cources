@@ -11,11 +11,9 @@ import java.util.List;
 public class Service {
 
     @Autowired
-    //@Qualifier("AuthorRepo")
     private AuthorRepository repository;
 
    @Autowired
-//    @Qualifier("BookRepo")
     private BookRepository repositoryBook;
 
     public Service(AuthorRepository repository) {

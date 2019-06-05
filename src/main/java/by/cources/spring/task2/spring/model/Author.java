@@ -3,6 +3,7 @@ package by.cources.spring.task2.spring.model;
 import java.util.Date;
 
 public class Author {
+
     private Long id;
     private String name;
     private Date dateOfBirth;

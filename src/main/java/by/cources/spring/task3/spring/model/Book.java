@@ -14,14 +14,20 @@ public class Book {
   @Id
   @Column(name = "id")
   private Long id;
+
   @Column(name = "name")
   private String name;
+
   @ManyToOne
   @JoinColumn(name = "author_id")
   private Author author;
 
   @Column(name = "published_in")
   private Long publishedIn;
+
+  @ManyToOne
+  @JoinColumn(name = "language_id")
+  private Language language;
 
   public Long getPublishedIn() {
     return publishedIn;
@@ -55,12 +61,22 @@ public class Book {
     this.author = author;
   }
 
+  public Language getLanguage() {
+    return language;
+  }
+
+  public void setLanguage(Language language) {
+    this.language = language;
+  }
+
   @Override
   public String toString() {
     return "Book{" +
-        "id=" + id +
-        ", name='" + name + '\'' +
-        ", publishedIn=" + publishedIn +
-        '}';
+            "id=" + id +
+            ", name='" + name + '\'' +
+            ", author=" + author +
+            ", publishedIn=" + publishedIn +
+            ", language=" + language +
+            '}';
   }
 }
