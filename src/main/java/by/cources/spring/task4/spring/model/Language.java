@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- * Язык
+ * пїЅпїЅпїЅпїЅ
  * 
  * @author Home
  */
@@ -22,7 +22,7 @@ public class Language
   private Long id;
   
   @Column(name = "name")
-  private String name;
+  private String Name;
   
 
   public String getName() {
