@@ -73,6 +73,11 @@ public class BookServiceImpl implements BookService {
     return authorRepository.findAll();
   }
 
+  @Override
+  public Book saveBook(Book book) {
+    return bookRepository.save(book);
+  }
+
   private <T> List<T> toList(Iterable<T> items) {
     List<T> list = new ArrayList<>();
     for (T t : items) {
