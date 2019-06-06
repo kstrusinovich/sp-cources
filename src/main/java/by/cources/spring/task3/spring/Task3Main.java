@@ -23,6 +23,7 @@ public class Task3Main {
     query4(service);
     System.out.println("---------------------");
     query5(service);
+    System.out.println("---------------------");
   }
 
   private static void query1(BookService service) {
