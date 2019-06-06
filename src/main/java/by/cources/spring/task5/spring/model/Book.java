@@ -1,5 +1,6 @@
-package by.cources.spring.task4.spring.model;
+package by.cources.spring.task5.spring.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,6 +22,7 @@ public class Book {
   private String name;
   @ManyToOne
   @JoinColumn(name = "author_id")
+  @JsonIgnore
   private Author author;
 
   @Column(name = "published_in")

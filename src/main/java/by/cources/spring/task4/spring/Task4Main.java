@@ -14,49 +14,44 @@ public class Task4Main {
     ApplicationContext ctx = new AnnotationConfigApplicationContext(BookConfig.class);
     BookService service = ctx.getBean(BookService.class);
     System.out.println("---------------------");
+    save(service);
+    save(service);
+    save(service);
+    save(service);
+    save(service);
+    System.out.println("---------------------");
+    query1(service);
+    System.out.println("---------------------");
+    query5(service);
+  }
+
+  private static void save(BookService service) {
     Author author = new Author();
     author.setLastName("lastName");
     author.setFirstName("firstName");
     author.setDateOfBirth(LocalDate.now());
     service.saveAuthor(author);
-    Author author1 = new Author();
-    author1.setLastName("lastName1");
-    author1.setFirstName("firstName1");
-    author1.setDateOfBirth(LocalDate.now());
-    service.saveAuthor(author1);
 
-    System.out.println("Saved author with id = " + author.getId());
-    System.out.println("---------------------");
-    query5(service);
-    System.out.println("=======================================");
     Book book = new Book();
-    //book.setId("id");
     book.setAuthor(author);
     book.setName("name");
-    book.setPublishedIn(1833L);
-    System.out.println("1======================================");
+    book.setPublishedIn(1922L);
+
     service.saveBook(book);
-    System.out.println("2======================================");
-    service.saveBook(book);
-    System.out.println("3======================================");
-    service.saveBook(book);
-    System.out.println("4======================================");
-    service.saveBook(book);
-    query6(service);
+    System.out.println("Saved author with id = " + author.getId());
   }
 
+  private static void query1(BookService service) {
+    List< Book> all = service.findBooksAll();
+    for ( Book book : all) {
+      System.out.println("Query1: " + book);
+    }
+  }
+  
   private static void query5(BookService service) {
     List<Author> authors = service.findAuthorsAll();
     for (Author author : authors) {
       System.out.println("Query5: " + author);
-    }
-  }
-
-  private static void query6(BookService service) {
-    System.out.println("=======================================");
-    List<Book> books = service.findBooksAll();
-    for (Book book : books) {
-      System.out.println("Query6: " + book);
     }
   }
 }
