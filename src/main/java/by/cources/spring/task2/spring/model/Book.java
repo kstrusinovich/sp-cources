@@ -3,8 +3,13 @@ package by.cources.spring.task2.spring.model;
 public class Book {
 
   private Long id;
+  
+  private Long authorId;
+  
   private String name;
-  private Long idAuthor;
+  
+  private int year;
+  
 
   public String getName() {
     return name;
@@ -22,17 +27,30 @@ public class Book {
     this.id = id;
   }
 
-  public Long getIdAuthor() {
-    return idAuthor;
-  }
-
-  public void setIdAuthor(Long idAuthor) {
-    this.idAuthor = idAuthor;
-  }
-
-  @Override
-  public String toString() {
-    return "Book{id=" + id + ", name='" + name + "\'}";
-  }
+public Long getAuthorId() {
+	return authorId;
 }
 
+public void setAuthorId(Long authorId) {
+	this.authorId = authorId;
+}
+
+
+
+public int getYear() {
+	return year;
+}
+
+public void setYear(int year) {
+	this.year = year;
+}
+
+@Override
+public String toString() {
+	return "Book [id=" + id + ", authorId=" + authorId + ", name=" + name + ", year=" + year + "]";
+}
+
+
+  
+
+}

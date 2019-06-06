@@ -2,15 +2,15 @@ package by.cources.spring.task4.spring.service;
 
 import by.cources.spring.task4.spring.model.Author;
 import by.cources.spring.task4.spring.model.Book;
+import by.cources.spring.task4.spring.model.Language;
+
+import java.time.LocalDate;
 import java.util.List;
 import javax.transaction.Transactional;
 
 public interface BookService {
 
   List<Book> findBooksAll();
-
-  @Transactional
-  Author saveAuthor(Author author);
 
   List<Author> findAuthorsWithBookOlderThan(Long value);
 
@@ -19,6 +19,14 @@ public interface BookService {
   List<Book> findBooksWithBookName(String value);
 
   List<Author> findAuthorsAll();
+  
+  @Transactional
+  Book saveBookAndLanguage(Author author, String bookName, Long year,
+		  String languageName, boolean isDoubles);
+  
+  List<Language> findLanguagesAll();
 
-  Book saveBook(Book book);
+  @Transactional
+  Author saveAuthor(String lastName, String firstName, LocalDate dateOfBirth);
+  
 }

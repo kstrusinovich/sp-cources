@@ -38,7 +38,7 @@ public class JpaAuthorRepository implements AuthorRepository {
   }
 
   @Override
-  @Transactional(propagation = Propagation.REQUIRED)
+  @Transactional(propagation = Propagation.REQUIRES_NEW)
   public Author save(Author author) {
     if (author.getId() == null) {
       em.persist(author);
