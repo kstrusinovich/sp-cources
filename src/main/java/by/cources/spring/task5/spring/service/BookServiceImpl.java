@@ -1,9 +1,9 @@
-package by.cources.spring.task4.spring.service;
+package by.cources.spring.task5.spring.service;
 
-import by.cources.spring.task4.spring.model.Author;
-import by.cources.spring.task4.spring.model.Book;
-import by.cources.spring.task4.spring.repository.AuthorRepository;
-import by.cources.spring.task4.spring.repository.BookRepository;
+import by.cources.spring.task5.spring.model.Author;
+import by.cources.spring.task5.spring.model.Book;
+import by.cources.spring.task5.spring.repository.AuthorRepository;
+import by.cources.spring.task5.spring.repository.BookRepository;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Service;
