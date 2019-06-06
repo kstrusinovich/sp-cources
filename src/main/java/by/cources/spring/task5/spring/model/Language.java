@@ -1,6 +1,9 @@
 package by.cources.spring.task5.spring.model;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.List;
 
 @Entity
@@ -16,6 +19,7 @@ public class Language {
 	private String name;
 
 	@OneToMany(mappedBy = "language")
+	@JsonIgnore
 	private List<Book> books;
 
 	public Long getId() {

@@ -6,6 +6,8 @@ import by.cources.spring.task5.spring.repository.AuthorRepository;
 import by.cources.spring.task5.spring.repository.BookRepository;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -69,4 +71,11 @@ public class BookServiceImpl implements BookService {
     }
     return list;
   }
+
+@Override
+public Optional<Author> findAuthorById(Long id) {
+	return authorRepository.findById(id);
+}
+  
+  
 }

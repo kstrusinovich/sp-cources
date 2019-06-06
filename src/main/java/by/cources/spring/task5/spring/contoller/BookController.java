@@ -2,6 +2,7 @@ package by.cources.spring.task5.spring.contoller;
 
 import by.cources.spring.task5.spring.model.Author;
 import by.cources.spring.task5.spring.model.Book;
+import by.cources.spring.task5.spring.model.Language;
 import by.cources.spring.task5.spring.service.BookService;
 import java.util.List;
 import org.springframework.http.HttpStatus;
@@ -21,39 +22,60 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/book")
 public class BookController {
 
-  private final BookService bookService;
+	private final BookService bookService;
 
-  public BookController(BookService bookService) {
-    this.bookService = bookService;
-  }
+	public BookController(BookService bookService) {
+		this.bookService = bookService;
+	}
 
-  @GetMapping(value = "/sample1", produces = MediaType.APPLICATION_JSON_VALUE)
-  @ResponseBody
-  public ResponseEntity<List<Author>> sample1(ModelMap model) {
-    model.addAttribute("message", "Hello Spring MVC Framework!");
-    return new ResponseEntity<>(bookService.findAuthorsAll(), HttpStatus.OK);
-  }
+	@GetMapping(value = "/sample1", produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public ResponseEntity<List<Author>> sample1(ModelMap model) {
+		model.addAttribute("message", "Hello Spring MVC Framework!");
+		return new ResponseEntity<>(bookService.findAuthorsAll(), HttpStatus.OK);
+	}
 
-  @GetMapping(value = "/sample2/{year}")
-  @ResponseBody
-  public List<Book> sample2(@PathVariable("year") Long year) {
-    return bookService.findBooksWithBookOlderThan(year);
-  }
+	@GetMapping(value = "/sample2/{year}")
+	@ResponseBody
+	public List<Book> sample2(@PathVariable("year") Long year) {
+		return bookService.findBooksWithBookOlderThan(year);
+	}
 
-  @GetMapping(value = "/sample3")
-  @ResponseBody
-  public List<Book> sample3(@RequestParam String name) {
-    return bookService.findBooksWithBookName(name);
-  }
+	@GetMapping(value = "/sample3")
+	@ResponseBody
+	public List<Book> sample3(@RequestParam String name) {
+		return bookService.findBooksWithBookName(name);
+	}
 
-  @PostMapping(value = "/sample4")
-  @ResponseBody
-  public Book sample4(@RequestBody Book book) {
-    book.setName("*" + book.getName());
-    return book;
-  }
+	@PostMapping(value = "/sample4")
+	@ResponseBody
+	public Book sample4(@RequestBody Book book) {
+		book.setName("*" + book.getName());
+		return book;
+	}
 
-    @GetMapping(value = "/all")
-    @ResponseBody
-    public List<Book> all() { return bookService.findBooksAll(); }
+	@GetMapping(value = "/all")
+	@ResponseBody
+	public List<Book> all() {
+		return bookService.findBooksAll();
+	}
+	
+	@GetMapping(value = "/olderThan")
+	@ResponseBody
+	public List<Book> all(@RequestParam Long year) {
+		return bookService.findBooksWithBookOlderThan(year);
+	}
+	
+	@PostMapping(value = "/add/{lang}/{authorId}")
+	@ResponseBody
+	public Book add(@RequestBody Book book, @PathVariable("lang") String lang, @PathVariable("authorId") Long authorId) {
+		Author author = bookService.findAuthorById(authorId).get();
+		book.setAuthor(author);
+		Language language = new Language();
+		language.setName(lang);
+		book.setLanguage(language);
+		System.out.println("book = " + book);
+		bookService.saveBook(book);
+		return book;
+	}
 }

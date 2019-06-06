@@ -16,13 +16,13 @@ public class Book {
   private String name;
   @ManyToOne
   @JoinColumn(name = "author_id")
-  @JsonIgnore
+  //@JsonIgnore
   private Author author;
 
-  //@ManyToOne(optional=false, cascade = CascadeType.PERSIST)
-  @ManyToOne
+  //@ManyToOne
+  @ManyToOne(optional=false, cascade = CascadeType.PERSIST)
   @JoinColumn(name = "language_id")
-  @JsonIgnore
+  //@JsonIgnore
   private Language language;
 
   @Column(name = "published_in")
