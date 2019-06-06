@@ -27,7 +27,7 @@ public class BookController {
     this.bookService = bookService;
   }
 
-  @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+  @GetMapping(value = "/sample1", produces = MediaType.APPLICATION_JSON_VALUE)
   @ResponseBody
   public ResponseEntity<List<Author>> sample1(ModelMap model) {
     model.addAttribute("message", "Hello Spring MVC Framework!");
