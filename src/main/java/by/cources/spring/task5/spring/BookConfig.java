@@ -102,11 +102,11 @@ public class BookConfig implements WebMvcConfigurer {
     Properties jpaProperties = new Properties();
     jpaProperties.put("javax.persistence.schema-generation.database.action", "create");
     jpaProperties.put("javax.persistence.schema-generation.create-source", "script");
-    jpaProperties.put("javax.persistence.schema-generation.create-script-source", "/task4/create.sql");
+    jpaProperties.put("javax.persistence.schema-generation.create-script-source", "/task5/create.sql");
 //    jpaProperties.put("javax.persistence.schema-generation.drop-source", "script");
 //    jpaProperties.put("javax.persistence.schema-generation.drop-script-source", "drop.sql");
     jpaProperties.put("javax.persistence.schema-generation.drop-source", "script");
-    jpaProperties.put("javax.persistence.sql-load-script-source", "/task4/data.sql");
+    jpaProperties.put("javax.persistence.sql-load-script-source", "/task5/data.sql");
     return jpaProperties;
   }
 

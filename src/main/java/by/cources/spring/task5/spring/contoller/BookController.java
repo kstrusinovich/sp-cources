@@ -52,4 +52,8 @@ public class BookController {
     book.setName("*" + book.getName());
     return book;
   }
+
+    @GetMapping(value = "/all")
+    @ResponseBody
+    public List<Book> all() { return bookService.findBooksAll(); }
 }

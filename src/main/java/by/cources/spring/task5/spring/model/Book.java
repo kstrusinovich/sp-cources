@@ -1,14 +1,8 @@
 package by.cources.spring.task5.spring.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "book")
@@ -24,6 +18,12 @@ public class Book {
   @JoinColumn(name = "author_id")
   @JsonIgnore
   private Author author;
+
+  //@ManyToOne(optional=false, cascade = CascadeType.PERSIST)
+  @ManyToOne
+  @JoinColumn(name = "language_id")
+  @JsonIgnore
+  private Language language;
 
   @Column(name = "published_in")
   private Long publishedIn;
@@ -58,6 +58,14 @@ public class Book {
 
   public void setAuthor(Author author) {
     this.author = author;
+  }
+
+  public Language getLanguage() {
+    return language;
+  }
+
+  public void setLanguage(Language language) {
+    this.language = language;
   }
 
   @Override
