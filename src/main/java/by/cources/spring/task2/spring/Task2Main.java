@@ -9,7 +9,7 @@ import java.util.List;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-public class Main
+public class Task2Main
 {
 	/**  **/
 	private static final long TEST_BOOK_ID = 4;
