@@ -49,6 +49,7 @@ public class BookConfig implements WebMvcConfigurer {
     MappingJackson2HttpMessageConverter jacksonMessageConverter = new MappingJackson2HttpMessageConverter();
     ObjectMapper objectMapper = jacksonMessageConverter.getObjectMapper();
 
+    objectMapper.configure(SerializationFeature.INDENT_OUTPUT, true);
     objectMapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
     objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
 
