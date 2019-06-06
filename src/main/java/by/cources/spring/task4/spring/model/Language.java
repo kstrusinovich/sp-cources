@@ -22,7 +22,7 @@ public class Language
   private Long id;
   
   @Column(name = "name")
-  private String Name;
+  private String name;
   
 
   public String getName() {
