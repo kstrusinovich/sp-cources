@@ -11,16 +11,9 @@ CREATE TABLE author (
 CREATE TABLE book (
     id              NUMBER(7)     NOT NULL PRIMARY KEY,
     author_id       NUMBER(7)     NOT NULL,
-    langauge_id     NUMBER(7)     NOT NULL,
     name            VARCHAR2(50)  NOT NULL,
     published_in    NUMBER(7)     NOT NULL,
     CONSTRAINT fk_book_author     FOREIGN KEY (author_id)   REFERENCES author(id),
-    CONSTRAINT fk_book_langauge   FOREIGN KEY (langauge_id) REFERENCES langauge(id)
-);
-
-CREATE TABLE langauge (
-    id              NUMBER(7)     NOT NULL PRIMARY KEY,
-    langauge_name   VARCHAR2(50)  NOT NULL
 );
 
 INSERT INTO author VALUES (1, 'Jane', 'Austen', '1775-12-16');
@@ -28,12 +21,9 @@ INSERT INTO author VALUES (2, 'Alexandre', 'Dumas', '1802-07-24');
 INSERT INTO author VALUES (3, 'Joanne', 'Rowling', '1965-07-31');
 INSERT INTO author VALUES (4, 'Stephen', 'King', '1947-09-21');
 
-INSERT INTO book VALUES (1, 1, 1, 'Sense and Sensibility', 1811);
-INSERT INTO book VALUES (2, 1, 1, 'Pride and Prejudice', 1813);
-INSERT INTO book VALUES (3, 2, 2, 'Le Capitaine Paul', 1838);
-INSERT INTO book VALUES (4, 2, 2, 'Le Capitaine Pamphile', 1839);
-INSERT INTO book VALUES (5, 1, 1, 'Northanger Abbey', 1818);
+INSERT INTO book VALUES (1, 1, 'Sense and Sensibility', 1811);
+INSERT INTO book VALUES (2, 1, 'Pride and Prejudice', 1813);
+INSERT INTO book VALUES (3, 2, 'Le Capitaine Paul', 1838);
+INSERT INTO book VALUES (4, 2, 'Le Capitaine Pamphile', 1839);
+INSERT INTO book VALUES (5, 1, 'Northanger Abbey', 1818);
 
-INSERT INTO langauge VALUES (1, 'English');
-INSERT INTO langauge VALUES (2, 'French');
-INSERT INTO langauge VALUES (3, 'Russian');
