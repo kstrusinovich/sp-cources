@@ -3,10 +3,13 @@ package by.cources.spring.task2.spring.repository;
 import by.cources.spring.task2.spring.model.Book;
 import java.util.List;
 
-public interface BookRepository {
+public interface BookRepository 
+{
+	
+	public List<Book> findAll();
 
-  List<Book> findAll();
+	public Book findById(Long id);
 
-  Book findById(Long id);
-  book findAuthor();
+	public List <Long> findBooksAfterYear(long year);  
+  
 }
