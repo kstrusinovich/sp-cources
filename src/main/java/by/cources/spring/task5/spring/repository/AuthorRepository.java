@@ -6,11 +6,13 @@ import java.util.Optional;
 
 public interface AuthorRepository {
 
-  List<Author> findWithBookOlderThan(Long value);
+	List<Author> findWithBookOlderThan(Long value);
 
-  Optional<Author> findById(Long id);
+	Optional<Author> findById(Long id);
 
-  List<Author> findAll();
+	List<Author> findAll();
 
-  Author save(Author author);
+	Author save(Author author);
+
+	List<Author> findByName(String firstName, String lastName);
 }

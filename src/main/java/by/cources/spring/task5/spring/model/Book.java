@@ -1,7 +1,5 @@
 package by.cources.spring.task5.spring.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 
 @Entity
@@ -14,13 +12,14 @@ public class Book {
   private Long id;
   @Column(name = "name")
   private String name;
-  @ManyToOne
+  //@ManyToOne
+  @ManyToOne(optional=false, cascade = CascadeType.ALL)
   @JoinColumn(name = "author_id")
   //@JsonIgnore
   private Author author;
 
   //@ManyToOne
-  @ManyToOne(optional=false, cascade = CascadeType.PERSIST)
+  @ManyToOne(optional=false, cascade = CascadeType.ALL)
   @JoinColumn(name = "language_id")
   //@JsonIgnore
   private Language language;

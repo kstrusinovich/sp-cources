@@ -13,38 +13,43 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 public class JpaAuthorRepository implements AuthorRepository {
 
-  @PersistenceContext
-  private EntityManager em;
+	@PersistenceContext
+	private EntityManager em;
 
-  @Override
-  @Transactional
-  public List<Author> findWithBookOlderThan(Long value) {
-    String hql = "select a from Author a join a.books b where b.publishedIn >= :value";
-    TypedQuery<Author> query = em.createQuery(hql, Author.class);
-    query.setParameter("value", value);
-    return query.getResultList();
-  }
+	@Override
+	public List<Author> findWithBookOlderThan(Long value) {
+		String hql = "select a from Author a join a.books b where b.publishedIn >= :value";
+		TypedQuery<Author> query = em.createQuery(hql, Author.class);
+		query.setParameter("value", value);
+		return query.getResultList();
+	}
 
-  @Override
-  @Transactional
-  public Optional<Author> findById(Long id) {
-    return Optional.ofNullable(em.find(Author.class, id));
-  }
+	@Override
+	public Optional<Author> findById(Long id) {
+		return Optional.ofNullable(em.find(Author.class, id));
+	}
 
-  @Override
-  @Transactional
-  public List<Author> findAll() {
-    return em.createQuery("select a from Author a", Author.class).getResultList();
-  }
+	@Override
+	public List<Author> findAll() {
+		return em.createQuery("select a from Author a", Author.class).getResultList();
+	}
 
-  @Override
-  @Transactional(propagation = Propagation.REQUIRED)
-  public Author save(Author author) {
-    if (author.getId() == null) {
-      em.persist(author);
-      return author;
-    } else {
-      return em.merge(author);
-    }
-  }
+	@Override
+	public Author save(Author author) {
+		if (author.getId() == null) {
+			em.persist(author);
+			return author;
+		} else {
+			return em.merge(author);
+		}
+	}
+
+	@Override
+	public List<Author> findByName(String firstName, String lastName) {
+		String hql = "select a from Author a where a.firstName= :firstName and a.lastName= :lastName";
+		TypedQuery<Author> query = em.createQuery(hql, Author.class);
+		query.setParameter("firstName", firstName);
+		query.setParameter("lastName", lastName);
+		return query.getResultList();
+	}
 }

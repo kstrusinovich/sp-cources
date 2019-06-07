@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -59,16 +60,22 @@ public class BookController {
 	public List<Book> all() {
 		return bookService.findBooksAll();
 	}
-	
+
 	@GetMapping(value = "/olderThan")
 	@ResponseBody
 	public List<Book> all(@RequestParam Long year) {
 		return bookService.findBooksWithBookOlderThan(year);
 	}
-	
+
+	/*
+	 * {"name": "Sense and Sensibility11","publishedIn": 1811}
+	 * 
+	 * http://localhost:8080/myapp/book/add/RU/1
+	 */
 	@PostMapping(value = "/add/{lang}/{authorId}")
 	@ResponseBody
-	public Book add(@RequestBody Book book, @PathVariable("lang") String lang, @PathVariable("authorId") Long authorId) {
+	public List<Book> add(@RequestBody Book book, @PathVariable("lang") String lang,
+			@PathVariable("authorId") Long authorId) {
 		Author author = bookService.findAuthorById(authorId).get();
 		book.setAuthor(author);
 		Language language = new Language();
@@ -76,6 +83,37 @@ public class BookController {
 		book.setLanguage(language);
 		System.out.println("book = " + book);
 		bookService.saveBook(book);
-		return book;
+		return bookService.findBooksAll();
+	}
+
+	/*
+	 * { "name":"Sense and Sensibility11", "publishedIn":1811, "author":{
+	 * "firstName":"Valery", "lastName":"Konchevich", "dateOfBirth":"1775-12-16" },
+	 * "language":{ "name":"FR" } }
+	 * 
+	 * http://localhost:8080/myapp/book/addFull
+	 */
+	@PostMapping(value = "/addFull")
+	@ResponseBody
+	public List<Book> add(@RequestBody Book book) {
+		List<Language> langs = bookService.findLangByName(book.getLanguage().getName());
+		if (!langs.isEmpty()) {
+			book.setLanguage(langs.get(0));
+		}
+		Author author = book.getAuthor();
+		List<Author> authors = bookService.findAuthorByName(author.getFirstName(), author.getLastName());
+		if (!authors.isEmpty()) {
+			book.setAuthor(authors.get(0));
+		}
+		bookService.saveBook(book);
+		return bookService.findBooksAll();
+	}
+
+	@DeleteMapping(value = "/delete/{id}")
+	@ResponseBody
+	public List<Book> delete(@PathVariable("id") Long id) {
+		//bookService.findBookById(id).ifPresent(book -> bookService.delBook(book));
+		bookService.findBookById(id).ifPresent(bookService::delBook);
+		return bookService.findBooksAll();
 	}
 }
