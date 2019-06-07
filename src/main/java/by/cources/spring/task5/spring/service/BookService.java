@@ -1,7 +1,7 @@
-package by.cources.spring.task4.spring.service;
+package by.cources.spring.task5.spring.service;
 
-import by.cources.spring.task4.spring.model.Author;
-import by.cources.spring.task4.spring.model.Book;
+import by.cources.spring.task5.spring.model.Author;
+import by.cources.spring.task5.spring.model.Book;
 import java.util.List;
 import javax.transaction.Transactional;
 
@@ -11,8 +11,6 @@ public interface BookService {
 
   @Transactional
   Author saveAuthor(Author author);
-
-  Book saveBook(Book book);
 
   List<Author> findAuthorsWithBookOlderThan(Long value);
 
