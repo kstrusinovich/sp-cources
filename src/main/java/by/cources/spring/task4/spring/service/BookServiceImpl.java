@@ -2,10 +2,14 @@ package by.cources.spring.task4.spring.service;
 
 import by.cources.spring.task4.spring.model.Author;
 import by.cources.spring.task4.spring.model.Book;
+import by.cources.spring.task4.spring.model.Language;
 import by.cources.spring.task4.spring.repository.AuthorRepository;
 import by.cources.spring.task4.spring.repository.BookRepository;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
+import by.cources.spring.task4.spring.repository.LanguageRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,10 +19,12 @@ public class BookServiceImpl implements BookService {
 
   private final BookRepository bookRepository;
   private final AuthorRepository authorRepository;
+  private final LanguageRepository languageRepository;
 
-  public BookServiceImpl(BookRepository bookRepository, AuthorRepository authorRepository) {
+  public BookServiceImpl(BookRepository bookRepository, AuthorRepository authorRepository, LanguageRepository languageRepository) {
     this.bookRepository = bookRepository;
     this.authorRepository = authorRepository;
+    this.languageRepository = languageRepository;
   }
 
   @Transactional
@@ -35,7 +41,9 @@ public class BookServiceImpl implements BookService {
 
   @Transactional(propagation = Propagation.REQUIRES_NEW)
   @Override
-  public Book saveBook(Book book) { return bookRepository.save(book); }
+  public Book saveBook(Book book) {
+    return bookRepository.save(book);
+  }
 
   @Override
   @Transactional
@@ -61,10 +69,11 @@ public class BookServiceImpl implements BookService {
     return authorRepository.findAll();
   }
 
-  //@Override
-  //public Book saveBook(Book book) {
-  //  return bookRepository.save(book);
-  //}
+  @Override
+  @Transactional
+  public Language findLanguageById(Long value) {
+    return languageRepository.findById(value);
+  }
 
   private <T> List<T> toList(Iterable<T> items) {
     List<T> list = new ArrayList<>();

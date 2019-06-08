@@ -1,5 +1,7 @@
 package by.cources.spring.task4.spring.model;
 
+import by.cources.spring.task4.spring.model.Language;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,13 +17,20 @@ public class Book {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
+
   @Column(name = "id")
   private Long id;
+
   @Column(name = "name")
   private String name;
+
   @ManyToOne
   @JoinColumn(name = "author_id")
   private Author author;
+
+  @ManyToOne
+  @JoinColumn(name = "language_id")
+  private Language language;
 
   @Column(name = "published_in")
   private Long publishedIn;
@@ -58,10 +67,20 @@ public class Book {
     this.author = author;
   }
 
+  public Language getLanguage() {
+    return language;
+  }
+
+  public void setLanguage(Language language) {
+    this.language = language;
+  }
+
   @Override
   public String toString() {
     return "Book{" +
         "id=" + id +
+        ", id_author=" + author.getId() +
+        ", id_language=" + language.getId() +
         ", name='" + name + '\'' +
         ", publishedIn=" + publishedIn +
         '}';
