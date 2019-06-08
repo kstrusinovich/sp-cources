@@ -8,9 +8,6 @@ import java.util.List;
 public class Language {
 
     @Id
-    //@GeneratedValue(strategy = GenerationType.TABLE, generator = "language_generator")
-    //@TableGenerator(name="language_generator", table="hibernate_sequence", pkColumnName = "sequence_name", pkColumnValue = "next_val")
-
     @Column(name = "id")
     private Long id;
 

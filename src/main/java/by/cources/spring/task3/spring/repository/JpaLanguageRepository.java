@@ -15,6 +15,6 @@ public class JpaLanguageRepository implements LanguageRepository{
 
     @Override
     public List<Language> findAll() {
-        return em.createQuery("select l from Language l", Language.class).getResultList();
+        return em.createQuery("select lang from Language lang", Language.class).getResultList();
     }
 }

@@ -18,13 +18,15 @@ public class Task3Main {
     System.out.println("---------------------");
     //query2(service);
     System.out.println("---------------------");
-    //query3(service);
+    query3(service);
     System.out.println("---------------------");
     //query4(service);
     System.out.println("---------------------");
     //query5(service);
     System.out.println("---------------------");
     query6(service);
+    System.out.println("---------------------");
+    query7(service);
   }
 
   private static void query1(BookService service) {
@@ -75,4 +77,11 @@ public class Task3Main {
     }
   }
 
+  private static void query7(BookService service) {
+    List<Author> authors = service.findAuthorsByLanguage("English");
+    System.out.println("++++++++++++++++++++++++++++++");
+    for (Author author : authors) {
+      System.out.println("Query7 :: " + author);
+    }
+  }
 }

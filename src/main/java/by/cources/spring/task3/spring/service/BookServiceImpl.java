@@ -16,7 +16,6 @@ public class BookServiceImpl implements BookService {
 
   private final BookRepository bookRepository;
   private final AuthorRepository authorRepository;
-  //private final LanguageRepository languageRepository;
 
   public BookServiceImpl(BookRepository bookRepository, AuthorRepository authorRepository) {
     this.bookRepository = bookRepository;
@@ -56,6 +55,10 @@ public class BookServiceImpl implements BookService {
   @Override
   @Transactional
   public List<Book> findBooksByLanguage(String language) { return bookRepository.findByLanguage(language);}
+
+  @Override
+  @Transactional
+  public List<Author> findAuthorsByLanguage(String language) { return authorRepository.findByLanguage(language);}
 
 
   private <T> List<T> toList(Iterable<T> items) {
