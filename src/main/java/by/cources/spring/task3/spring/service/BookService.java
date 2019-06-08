@@ -19,4 +19,6 @@ public interface BookService {
   List<Book> findBooksByLanguage(String language);
 
   List<Author> findAuthorsByLanguage(String language);
+
+  List<Author> findAuthorsByLanguageWithBookOlderThan(String language, Long value);
 }

@@ -13,4 +13,6 @@ public interface AuthorRepository {
   List<Author> findAll();
 
   List<Author> findByLanguage(String language);
+
+  List<Author> findByLanguageWithBookOlderThan(String language, Long value);
 }

@@ -34,8 +34,19 @@ public class JpaAuthorRepository implements AuthorRepository {
 
   @Override
   public List<Author> findByLanguage(String value) {
-    String hq1 = "SELECT DISTINCT a FROM Author a JOIN a.books b WHERE b.language IN (SELECT lang FROM Language lang WHERE lang.languageName= :value)";
+    String hq1 = "SELECT DISTINCT a FROM Author a JOIN a.books b WHERE b.language IN " +
+                                                "(SELECT lang FROM Language lang WHERE lang.languageName= :value)";
     TypedQuery<Author> query = em.createQuery(hq1, Author.class);
+    query.setParameter("value", value);
+    return query.getResultList();
+  }
+
+  @Override
+  public List<Author> findByLanguageWithBookOlderThan(String valueLang, Long value) {
+    String hql = "SELECT DISTINCT a FROM Author a JOIN a.books b WHERE b.publishedIn >= :value AND " +
+                                          "b.language IN (SELECT lang FROM Language lang WHERE lang.languageName= :valueLang)";
+    TypedQuery<Author> query = em.createQuery(hql, Author.class);
+    query.setParameter("valueLang", valueLang);
     query.setParameter("value", value);
     return query.getResultList();
   }

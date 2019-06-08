@@ -16,17 +16,19 @@ public class Task3Main {
     System.out.println("---------------------");
     query1(service);
     System.out.println("---------------------");
-    //query2(service);
+    query2(service);
     System.out.println("---------------------");
     query3(service);
     System.out.println("---------------------");
-    //query4(service);
+    query4(service);
     System.out.println("---------------------");
-    //query5(service);
+    query5(service);
     System.out.println("---------------------");
     query6(service);
     System.out.println("---------------------");
     query7(service);
+    System.out.println("---------------------");
+    query8(service);
   }
 
   private static void query1(BookService service) {
@@ -82,6 +84,14 @@ public class Task3Main {
     System.out.println("++++++++++++++++++++++++++++++");
     for (Author author : authors) {
       System.out.println("Query7 :: " + author);
+    }
+  }
+
+  private static void query8(BookService service) {
+    List<Author> authors = service.findAuthorsByLanguageWithBookOlderThan("French", 1818L);
+    System.out.println("++++++++++++++++++++++++++++++");
+    for (Author author : authors) {
+      System.out.println("Query8 :: " + author);
     }
   }
 }

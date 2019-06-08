@@ -54,12 +54,21 @@ public class BookServiceImpl implements BookService {
 
   @Override
   @Transactional
-  public List<Book> findBooksByLanguage(String language) { return bookRepository.findByLanguage(language);}
+  public List<Book> findBooksByLanguage(String language) {
+    return bookRepository.findByLanguage(language);
+  }
 
   @Override
   @Transactional
-  public List<Author> findAuthorsByLanguage(String language) { return authorRepository.findByLanguage(language);}
+  public List<Author> findAuthorsByLanguage(String language) {
+    return authorRepository.findByLanguage(language);
+  }
 
+  @Override
+  @Transactional
+  public List<Author> findAuthorsByLanguageWithBookOlderThan(String language, Long value) {
+    return authorRepository.findByLanguageWithBookOlderThan(language, value);
+  }
 
   private <T> List<T> toList(Iterable<T> items) {
     List<T> list = new ArrayList<>();
