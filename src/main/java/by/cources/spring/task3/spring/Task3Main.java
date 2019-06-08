@@ -3,7 +3,7 @@ package by.cources.spring.task3.spring;
 import by.cources.spring.task3.spring.model.Author;
 import by.cources.spring.task3.spring.model.Book;
 import by.cources.spring.task3.spring.service.BookService;
-import java.time.LocalDate;
+
 import java.util.List;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -16,14 +16,15 @@ public class Task3Main {
     System.out.println("---------------------");
     query1(service);
     System.out.println("---------------------");
-    query2(service);
+    //query2(service);
     System.out.println("---------------------");
-    query3(service);
+    //query3(service);
     System.out.println("---------------------");
-    query4(service);
+    //query4(service);
     System.out.println("---------------------");
-    query5(service);
+    //query5(service);
     System.out.println("---------------------");
+    query6(service);
   }
 
   private static void query1(BookService service) {
@@ -65,4 +66,13 @@ public class Task3Main {
       System.out.println("Query5: " + author);
     }
   }
+
+  private static void query6(BookService service) {
+    List<Book> books = service.findBooksByLanguage("French");
+    System.out.println("++++++++++++++++++++++++++++++");
+    for(Book book : books) {
+      System.out.println("Query6 :: " + book);
+    }
+  }
+
 }
