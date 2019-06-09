@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import by.cources.spring.util.TextUtil;
+
 @Entity
 @Table(name = "author")
 public class Author {
@@ -18,17 +20,14 @@ public class Author {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id")
   private Long id;
-
   @Column(name = "first_name")
   private String firstName;
-
   @Column(name = "last_name")
   private String lastName;
-
   @Column(name = "date_of_birth")
   private LocalDate dateOfBirth;
 
-//  @OneToMany(targetEntity = Book.class)
+  //  @OneToMany(targetEntity = Book.class)
 //  @JoinColumn(name = "author_id",referencedColumnName="id")
   @OneToMany(mappedBy="author")
   private List<Book> books;
@@ -75,11 +74,11 @@ public class Author {
 
   @Override
   public String toString() {
-    return "Author{" +
-        "id=" + id +
-        ", firstName='" + firstName + '\'' +
-        ", lastName='" + lastName + '\'' +
-        ", dateOfBirth=" + dateOfBirth +
-        '}';
+    return "Author { " +
+            "id=" + id +
+            ", " + firstName +
+            " " + lastName +
+            ", born " + TextUtil.dateToView(dateOfBirth) +
+            " }";
   }
 }
