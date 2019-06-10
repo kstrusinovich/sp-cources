@@ -1,3 +1,6 @@
+INSERT INTO language (id, name) values (1, 'russian');
+INSERT INTO language (id, name) values (2, 'english');
+INSERT INTO language (id, name) values (3, 'spain');
 INSERT INTO author(id, first_name, last_name, date_of_birth)VALUES (1, 'Jane', 'Austen', '1775-12-16');
 INSERT INTO author(id, first_name, last_name, date_of_birth)VALUES (2, 'Alexandre', 'Dumas', '1802-07-24');
 INSERT INTO author(id, first_name, last_name, date_of_birth)VALUES (3, 'Joanne', 'Rowling', '1965-07-31');

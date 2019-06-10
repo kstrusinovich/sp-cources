@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -45,5 +46,22 @@ public class AuthorController {
   public Book sample4(@RequestBody Book book) {
     book.setName("*" + book.getName());
     return book;
+  }
+
+  @ResponseBody
+  @PostMapping(value = "/save/{FirstName}/{LastName}")
+  public List<Author> sample5(@PathVariable("FirstName") String FirstName, @PathVariable("LastName") String LastName) {
+    Author author = new Author();
+    author.setDateOfBirth(LocalDate.now());
+    author.setFirstName(FirstName);
+    author.setLastName(LastName);
+    bookService.saveAuthor(author);
+    return bookService.findAuthorsAll();
+  }
+
+  @GetMapping(value = "/findautolder")
+  @ResponseBody
+  public List<Author> sample6(@RequestParam Long year){
+    return bookService.findAuthorsWithBookOlderThan(year);
   }
 }

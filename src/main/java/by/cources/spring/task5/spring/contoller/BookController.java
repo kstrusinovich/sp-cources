@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.DeleteMapping;
 
 @RestController
 @RequestMapping("/book")
@@ -33,4 +34,25 @@ public class BookController {
   public ResponseEntity<List<Book>> sample1(ModelMap model) {
     return new ResponseEntity<>(bookService.findBooksAll(), HttpStatus.OK);
   }
+
+  @PostMapping(value = "/savebook")
+  @ResponseBody
+  public List<Book> sample2(@RequestBody Book book) {
+
+    book.setName(book.getName());
+    book.setAuthor(book.getAuthor());
+    book.setPublishedIn(book.getPublishedIn());
+    book.setLanguage(book.getLanguage());
+
+    bookService.saveBook(book);
+    return bookService.findBooksAll();
+  }
+
+  @DeleteMapping(value = "/delete/{id}")
+  @ResponseBody
+  public List<Book> deleteBook(@PathVariable("id") Long id) {
+    bookService.deleteBook(id);
+    return bookService.findBooksAll();
+  }
+
 }

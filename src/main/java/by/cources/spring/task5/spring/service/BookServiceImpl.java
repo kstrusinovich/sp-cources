@@ -1,11 +1,15 @@
 package by.cources.spring.task5.spring.service;
 
+import by.cources.spring.task5.spring.model.Language;
+import by.cources.spring.task5.spring.repository.LanguageRepository;
 import by.cources.spring.task5.spring.model.Author;
 import by.cources.spring.task5.spring.model.Book;
 import by.cources.spring.task5.spring.repository.AuthorRepository;
 import by.cources.spring.task5.spring.repository.BookRepository;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,10 +19,12 @@ public class BookServiceImpl implements BookService {
 
   private final BookRepository bookRepository;
   private final AuthorRepository authorRepository;
+  private final LanguageRepository languageRepository;
 
-  public BookServiceImpl(BookRepository bookRepository, AuthorRepository authorRepository) {
+  public BookServiceImpl(BookRepository bookRepository, AuthorRepository authorRepository, LanguageRepository languageRepository) {
     this.bookRepository = bookRepository;
     this.authorRepository = authorRepository;
+    this.languageRepository = languageRepository;
   }
 
   @Transactional
@@ -58,8 +64,24 @@ public class BookServiceImpl implements BookService {
   }
 
   @Override
+  @Transactional
+  public List<Language> findLanguagesAll() {
+    return languageRepository.findAll();
+  }
+
+  @Override
   public Book saveBook(Book book) {
     return bookRepository.save(book);
+  }
+
+  @Override
+  public void deleteBook(Long id) {
+    bookRepository.deleteById(id);
+  }
+
+  @Override
+  public Optional<Book> findBookById(Long id) {
+    return Optional.empty();
   }
 
   private <T> List<T> toList(Iterable<T> items) {
