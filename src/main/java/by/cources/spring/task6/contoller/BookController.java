@@ -61,7 +61,7 @@ public class BookController {
   public String delete(@PathVariable("id") Long id) {
     //bookService.findBookById(id).ifPresent(book -> bookService.delBook(book));
     //bookService.findBookById(id).ifPresent(bookService::delBook);
-    return "redirect:list";
+    return "redirect:/list";
   }
 }
 
