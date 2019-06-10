@@ -1,6 +1,19 @@
 package by.cources.spring.task5.spring.model;
 
-import javax.persistence.*;
+import static javax.persistence.CascadeType.DETACH;
+import static javax.persistence.CascadeType.MERGE;
+import static javax.persistence.CascadeType.PERSIST;
+import static javax.persistence.CascadeType.REFRESH;
+import static javax.persistence.CascadeType.REMOVE;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "book")
@@ -13,13 +26,13 @@ public class Book {
   @Column(name = "name")
   private String name;
   //@ManyToOne
-  @ManyToOne(optional=false, cascade = CascadeType.ALL)
+  @ManyToOne(optional = false, cascade = {PERSIST, MERGE, REMOVE, DETACH, REFRESH})
   @JoinColumn(name = "author_id")
   //@JsonIgnore
   private Author author;
 
   //@ManyToOne
-  @ManyToOne(optional=false, cascade = CascadeType.ALL)
+  @ManyToOne(optional = false, cascade = {PERSIST, DETACH, MERGE, REFRESH})
   @JoinColumn(name = "language_id")
   //@JsonIgnore
   private Language language;
