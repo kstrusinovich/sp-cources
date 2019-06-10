@@ -1,8 +1,19 @@
 package by.cources.spring.task5.spring.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import javax.persistence.*;
+import static javax.persistence.CascadeType.DETACH;
+import static javax.persistence.CascadeType.MERGE;
+import static javax.persistence.CascadeType.PERSIST;
+import static javax.persistence.CascadeType.REFRESH;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "book")
@@ -18,9 +29,16 @@ public class Book {
   @JoinColumn(name = "author_id")
   @JsonIgnore
   private Author author;
-  @ManyToOne (cascade = CascadeType.ALL)
+  @ManyToOne(cascade = {
+      PERSIST,
+      MERGE,
+//      REMOVE,
+      REFRESH,
+      DETACH
+  })
   @JoinColumn(name = "language_id")
   private Language language;
+
   @Column(name = "published_in")
   private Long publishedIn;
 
@@ -55,6 +73,7 @@ public class Book {
   public void setAuthor(Author author) {
     this.author = author;
   }
+
   public Language getLanguage() {
     return language;
   }
@@ -66,9 +85,9 @@ public class Book {
   @Override
   public String toString() {
     return "Book{" +
-            "id=" + id +
-            ", name='" + name + '\'' +
-            ", publishedIn=" + publishedIn +
-            '}';
+        "id=" + id +
+        ", name='" + name + '\'' +
+        ", publishedIn=" + publishedIn +
+        '}';
   }
 }
