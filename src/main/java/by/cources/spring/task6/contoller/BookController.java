@@ -58,4 +58,24 @@ public class BookController {
     model.put("booksVariable", booksAll);
     return new ModelAndView("books", model);
   }
+
+  @RequestMapping(value = "/delete", method = RequestMethod.GET)
+  public ModelAndView formDel() {
+    Book result = new Book();
+    result.setId(2L);
+    return new ModelAndView("book-delete", "book", result);
+  }
+
+  @RequestMapping(value = "/delete", method = RequestMethod.POST)
+  public String delete(Book book, BindingResult result, ModelMap model) {
+    if (result.hasErrors()) {
+      for ( ObjectError error : result.getAllErrors()){
+        LOGGER.error(error.toString());
+      }
+      model.addAttribute("errorMessage", "something wrong");
+      return "books";
+    }
+    bookService.delete(book);
+    return "redirect:list";
+  }
 }
