@@ -12,12 +12,15 @@
 </pre>
 
 	<p><b>Iterated List:</b><p>
+	
+	<input value="NEW" onclick="document.location.href='/sp-cources/book/edit'" type="button">
 
 	<table border="0">
 		<tr>
 			<th>ID</th>
 			<th>NAME</th>
 			<th>PUBLISHED</th>
+			<th>AUTHOR</th>
 			<th></th>
 			<th></th>
 		</tr>
@@ -25,9 +28,10 @@
 			<tr>
 				<td>${book.id}</td>
 				<td>${book.name}</td>
-				<td>${book.publishedIn}</td>
-				<td><a href="/sp-cources/book/delete/${book.id}">DEL</a>&nbsp;&nbsp;</td>
-				<td><a href="/sp-cources/book/edit/${book.id}">EDIT</a>&nbsp;&nbsp;</td>
+				<td align=center>${book.publishedIn}</td>
+				<td>${book.author.firstName}&nbsp;&nbsp;${book.author.lastName}</td>
+				<td>&nbsp;&nbsp;<a href="/sp-cources/book/delete/${book.id}">DEL</a>&nbsp;&nbsp;</td>
+				<td>&nbsp;&nbsp;<a href="/sp-cources/book/edit/${book.id}">EDIT</a>&nbsp;&nbsp;</td>
 			</tr>
 		</c:forEach>
 	</table>
