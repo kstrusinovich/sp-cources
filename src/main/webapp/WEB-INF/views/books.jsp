@@ -8,13 +8,13 @@
 
 	<p><b>Just list:</b><p>
 <pre>
-	${books}
+	${booksVariable}
 </pre>
 
 	<p><b>Iterated List:</b><p>
 
 	<ol>
-		<c:forEach var="book" items="${books}">
+		<c:forEach var="book" items="${booksVariable}">
 			<li>${book.id}. ${book.name} (${book.publishedIn})</li>
 		</c:forEach>
 	</ol>
