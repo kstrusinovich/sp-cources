@@ -37,14 +37,14 @@ public class BookController {
   }
 
   @RequestMapping(value = "/edit", method = RequestMethod.POST)
-  public String submit(@ModelAttribute("edit") Book book, BindingResult result, ModelMap model) {
+  public String submit(@ModelAttribute("book") Book book, BindingResult result, ModelMap model) {
     if (result.hasErrors()) {
       for (ObjectError error : result.getAllErrors()) {
         LOGGER.error(error.toString());
       }
       model.addAttribute("errorMessage", "something wrong");
 //      return "error";
-      return "books";
+      return "book-form";
     }
     bookService.saveBook(book);
     return "redirect:list";
