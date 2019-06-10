@@ -2,14 +2,7 @@ package by.cources.spring.task4.spring.model;
 
 import by.cources.spring.task4.spring.model.Language;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "book")
@@ -24,10 +17,16 @@ public class Book {
   @Column(name = "name")
   private String name;
 
+  /*
+    in @ManyToOne()
+    FetchType.EAGER — загружать коллекцию дочерних объектов вместе с загрузкой родительских объектов;
+    FetchType.LAZY — загружать коллекцию дочерних объектов при первом обращении к ней (вызове метода get) — это так называемая отложенная загрузка.
+   */
   @ManyToOne
   @JoinColumn(name = "author_id")
   private Author author;
 
+//  @ManyToOne(optional=false, cascade = CascadeType.PERSIST)
   @ManyToOne
   @JoinColumn(name = "language_id")
   private Language language;

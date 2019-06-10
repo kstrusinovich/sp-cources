@@ -7,7 +7,6 @@ import by.cources.spring.task4.spring.repository.AuthorRepository;
 import by.cources.spring.task4.spring.repository.BookRepository;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import by.cources.spring.task4.spring.repository.LanguageRepository;
 import org.springframework.stereotype.Service;
@@ -43,6 +42,12 @@ public class BookServiceImpl implements BookService {
   @Override
   public Book saveBook(Book book) {
     return bookRepository.save(book);
+  }
+
+  @Transactional(propagation = Propagation.REQUIRES_NEW)
+  @Override
+  public Language saveLanguage(Language language) {
+    return languageRepository.save(language);
   }
 
   @Override

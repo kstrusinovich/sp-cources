@@ -2,13 +2,7 @@ package by.cources.spring.task4.spring.model;
 
 import java.time.LocalDate;
 import java.util.List;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "author")
@@ -16,6 +10,7 @@ public class Author {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
+
   @Column(name = "id")
   private Long id;
 
@@ -30,7 +25,7 @@ public class Author {
 
 //  @OneToMany(targetEntity = Book.class)
 //  @JoinColumn(name = "author_id",referencedColumnName="id")
-  @OneToMany(mappedBy="author")
+  @OneToMany(mappedBy = "author")
   private List<Book> books;
 
   public List<Book> getBooks() {

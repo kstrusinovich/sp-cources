@@ -1,7 +1,5 @@
 package by.cources.spring.task4.spring.model;
 
-import by.cources.spring.task4.spring.model.Book;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -10,6 +8,8 @@ import java.util.List;
 public class Language {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     @Column(name = "id")
     private Long id;
 
