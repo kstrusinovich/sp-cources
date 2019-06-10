@@ -45,9 +45,16 @@ public class BookController {
     bookService.saveBook(book);
     return "redirect:list";
   }
+  @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    public ModelAndView delete (@ModelAttribute("delete") Book book){
+    bookService.delete(book);
+    return new ModelAndView("book-formdelete","books",bookService.findBooksAll());
+  }
 
   @RequestMapping(value = "/list", method = RequestMethod.GET)
   public ModelAndView list() {
     return new ModelAndView("books", "books", bookService.findBooksAll());
   }
+
+
 }

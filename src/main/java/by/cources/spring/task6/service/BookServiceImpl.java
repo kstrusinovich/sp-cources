@@ -61,6 +61,10 @@ public class BookServiceImpl implements BookService {
   public Book saveBook(Book book) {
     return bookRepository.save(book);
   }
+  public void delete(Book book) {
+
+
+  }
 
   private <T> List<T> toList(Iterable<T> items) {
     List<T> list = new ArrayList<>();

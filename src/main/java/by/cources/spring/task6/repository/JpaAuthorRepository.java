@@ -19,7 +19,7 @@ public class JpaAuthorRepository implements AuthorRepository {
   @Override
   @Transactional
   public List<Author> findWithBookOlderThan(Long value) {
-    String hql = "select a from Author a join a.books b where b.publishedIn >= :value";
+    String hql = "select a from Author a join a.book b where b.publishedIn >= :value";
     TypedQuery<Author> query = em.createQuery(hql, Author.class);
     query.setParameter("value", value);
     return query.getResultList();
