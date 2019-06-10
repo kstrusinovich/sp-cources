@@ -1,8 +1,6 @@
 package by.cources.spring.task5.spring.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,8 +12,8 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "book")
-public class Book
-{
+public class Book {
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id")
@@ -26,7 +24,6 @@ public class Book
 
   @ManyToOne
   @JoinColumn(name = "author_id")
-  @JsonIgnore
   private Author author;
 
   @Column(name = "published_in")
@@ -34,9 +31,7 @@ public class Book
 
   @ManyToOne
   @JoinColumn(name = "language_id")
-  @JsonIgnore
   private Language language;
-
 
   public Long getPublishedIn() {
     return publishedIn;
@@ -81,11 +76,11 @@ public class Book
   @Override
   public String toString() {
     return "Book{" +
-            "id=" + id +
-            ", name='" + name + '\'' +
-            ", author=" + author +
-            ", publishedIn=" + publishedIn +
-            ", language=" + language +
-            '}';
+        "id=" + id +
+        ", name='" + name + '\'' +
+        ", author=" + author +
+        ", publishedIn=" + publishedIn +
+        ", language=" + language +
+        '}';
   }
 }

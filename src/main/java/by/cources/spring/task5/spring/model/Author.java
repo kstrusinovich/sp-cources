@@ -1,5 +1,7 @@
 package by.cources.spring.task5.spring.model;
 
+import by.cources.spring.util.TextUtil;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.time.LocalDate;
 import java.util.List;
 import javax.persistence.Column;
@@ -9,8 +11,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import by.cources.spring.util.TextUtil;
 
 @Entity
 @Table(name = "author")
@@ -29,7 +29,8 @@ public class Author {
 
   //  @OneToMany(targetEntity = Book.class)
 //  @JoinColumn(name = "author_id",referencedColumnName="id")
-  @OneToMany(mappedBy="author")
+  @OneToMany(mappedBy = "author")
+  @JsonIgnore
   private List<Book> books;
 
   public List<Book> getBooks() {
@@ -75,10 +76,10 @@ public class Author {
   @Override
   public String toString() {
     return "Author { " +
-            "id=" + id +
-            ", " + firstName +
-            " " + lastName +
-            ", born " + TextUtil.dateToView(dateOfBirth) +
-            " }";
+        "id=" + id +
+        ", " + firstName +
+        " " + lastName +
+        ", born " + TextUtil.dateToView(dateOfBirth) +
+        " }";
   }
 }
