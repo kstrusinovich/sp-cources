@@ -1,11 +1,34 @@
+/*
 plugins {
   id 'java'
 }
+*/
+
+// task 6
+apply plugin: 'com.bmuschko.tomcat'
+apply plugin: 'war'
+apply plugin: 'java'
+// apply plugin: 'idea'
+apply plugin: 'eclipse'
+apply plugin: 'application'
+
+buildscript {
+  repositories {
+    jcenter()
+  }
+
+  dependencies {
+    classpath 'com.bmuschko:gradle-tomcat-plugin:2.5'
+  }
+}
+
+
 
 group 'sp-cources'
 version '1.0-SNAPSHOT'
 
 sourceCompatibility = 1.8
+
 
 repositories {
   mavenCentral()
@@ -29,5 +52,22 @@ dependencies {
   compile 'com.fasterxml.jackson.core:jackson-databind:2.9.9'  
   compile 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.9'  
   
+  // 10.06.2019 task 6
+  def tomcatVersion = '9.0.1'  
+  tomcat "org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}",
+  		 "org.apache.tomcat.embed:tomcat-embed-logging-juli:9.0.0.M6",
+     	 "org.apache.tomcat.embed:tomcat-embed-jasper:${tomcatVersion}"
+  
+  compile 'jstl:jstl:1.2'
+  compile 'org.slf4j:jcl-over-slf4j:1.7.26'
+  compile 'ch.qos.logback:logback-classic:1.2.3'
+   
+  
+  
   testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+tomcat {
+  httpProtocol = 'org.apache.coyote.http11.Http11Nio2Protocol'
+  ajpProtocol  = 'org.apache.coyote.ajp.AjpNio2Protocol'
 }
