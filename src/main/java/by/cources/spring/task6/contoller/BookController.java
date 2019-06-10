@@ -77,4 +77,20 @@ public class BookController {
 		bookService.delBook(id);
 		return "redirect:/book/list";
 	}
+	
+	@RequestMapping(value = "/editAuthor/{id}", method = RequestMethod.GET)
+	public ModelAndView editAuthor(@PathVariable("id") Long id) {
+		ModelAndView model = new ModelAndView("book-form-author");
+		Optional<Book> book = bookService.findBookById(id);
+		if (book.isPresent()) {
+			model.addObject("book", book.get());
+			
+			model.addObject("authors", bookService.findAuthorsAll());
+			return model;
+		} else {
+			ModelAndView errorModel = new ModelAndView("error");
+			errorModel.addObject("errorMessage", "BOOK NOT FOUND");
+			return errorModel;
+		}
+	}
 }

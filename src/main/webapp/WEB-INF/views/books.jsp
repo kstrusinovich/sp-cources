@@ -30,8 +30,9 @@
 				<td>${book.name}</td>
 				<td align=center>${book.publishedIn}</td>
 				<td>${book.author.firstName}&nbsp;&nbsp;${book.author.lastName}</td>
-				<td>&nbsp;&nbsp;<a href="/sp-cources/book/delete/${book.id}">DEL</a>&nbsp;&nbsp;</td>
-				<td>&nbsp;&nbsp;<a href="/sp-cources/book/edit/${book.id}">EDIT</a>&nbsp;&nbsp;</td>
+				<td>&nbsp;&nbsp;<a href="/sp-cources/book/delete/${book.id}">DEL BOOK</a>&nbsp;&nbsp;</td>
+				<td>&nbsp;&nbsp;<a href="/sp-cources/book/edit/${book.id}">EDIT BOOK</a>&nbsp;&nbsp;</td>
+				<td>&nbsp;&nbsp;<a href="/sp-cources/book/editAuthor/${book.id}">EDIT AUTHOR</a>&nbsp;&nbsp;</td>
 			</tr>
 		</c:forEach>
 	</table>
