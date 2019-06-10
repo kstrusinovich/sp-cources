@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -31,6 +32,14 @@ public class BookController {
     result.setAuthor(new Author());
     return new ModelAndView("book-form", "book", result);
   }
+ //Lesya
+   @DeleteMapping (value = "/edit", method = RequestMethod.DELETE)
+   public ModelAndView form() {
+    Book result = new Book();
+     result.setAuthor(new Author());
+    return new ModelAndView("bookdel-form", "book", result);
+ }
+ //Lesya_
 
   @RequestMapping(value = "/edit", method = RequestMethod.POST)
   public String submit(@ModelAttribute("edit") Book book, BindingResult result, ModelMap model) {
