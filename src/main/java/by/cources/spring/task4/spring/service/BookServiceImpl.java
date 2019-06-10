@@ -71,6 +71,12 @@ public class BookServiceImpl implements BookService {
 
   @Override
   @Transactional
+  public List<Language> findLanguagesAll() {
+    return languageRepository.findAll();
+  }
+
+  @Override
+  @Transactional
   public Language findLanguageById(Long value) {
     return languageRepository.findById(value);
   }

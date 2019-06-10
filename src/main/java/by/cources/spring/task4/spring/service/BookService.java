@@ -25,6 +25,8 @@ public interface BookService {
 
   List<Author> findAuthorsAll();
 
+  List<Language> findLanguagesAll();
+
   Language findLanguageById(Long value);
 
   }

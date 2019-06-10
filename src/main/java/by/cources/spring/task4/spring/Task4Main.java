@@ -24,6 +24,8 @@ public class Task4Main {
     query1(service);
     System.out.println("---------------------");
     query5(service);
+    System.out.println("---------------------");
+    query6(service);
   }
 
   private static void save(BookService service) {
@@ -44,6 +46,8 @@ public class Task4Main {
     book.setPublishedIn(1922L);
     service.saveBook(book);
 
+    Book bookTwo = new Book();
+    book.setAuthor(author);
   }
 
   private static void query1(BookService service) {
@@ -57,6 +61,13 @@ public class Task4Main {
     List<Author> authors = service.findAuthorsAll();
     for (Author author : authors) {
       System.out.println("Query5: " + author);
+    }
+  }
+
+  private static void query6(BookService service) {
+    List<Language> languages = service.findLanguagesAll();
+    for (Language language : languages) {
+      System.out.println("Query6: " + languages);
     }
   }
 }
