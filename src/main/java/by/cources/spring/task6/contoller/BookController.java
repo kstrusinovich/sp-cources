@@ -3,6 +3,9 @@ package by.cources.spring.task6.contoller;
 import by.cources.spring.task6.model.Author;
 import by.cources.spring.task6.model.Book;
 import by.cources.spring.task6.service.BookService;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -28,6 +31,7 @@ public class BookController {
   @RequestMapping(value = "/edit", method = RequestMethod.GET)
   public ModelAndView form() {
     Book result = new Book();
+    result.setPublishedIn(2019L);
     result.setAuthor(new Author());
     return new ModelAndView("book-form", "book", result);
   }
@@ -48,6 +52,10 @@ public class BookController {
 
   @RequestMapping(value = "/list", method = RequestMethod.GET)
   public ModelAndView list() {
-    return new ModelAndView("books", "books", bookService.findBooksAll());
+    List<Book> booksAll = bookService.findBooksAll();
+//    return new ModelAndView("books", "booksVariable", booksAll);
+    Map<String, Object> model = new HashMap<>();
+    model.put("booksVariable", booksAll);
+    return new ModelAndView("books", model);
   }
 }
