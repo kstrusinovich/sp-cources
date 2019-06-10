@@ -12,9 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -58,4 +56,12 @@ public class BookController {
     model.put("booksVariable", booksAll);
     return new ModelAndView("books", model);
   }
+
+  @GetMapping(value = "/delete/{id}")
+  public String delete(@PathVariable("id") Long id) {
+    //bookService.findBookById(id).ifPresent(book -> bookService.delBook(book));
+    //bookService.findBookById(id).ifPresent(bookService::delBook);
+    return "redirect:list";
+  }
 }
+
