@@ -20,7 +20,7 @@ public class Task6Main implements WebApplicationInitializer {
     container.addListener(new ContextLoaderListener(ctx));
 
     ServletRegistration.Dynamic servlet = container.addServlet("dispatcher", new DispatcherServlet(ctx));
-
+System.out.println();
     servlet.setLoadOnStartup(1);
     servlet.addMapping("/");
   }
