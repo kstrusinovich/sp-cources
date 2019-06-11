@@ -10,20 +10,35 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import static javax.persistence.CascadeType.*;
+
 @Entity
 @Table(name = "book")
 public class Book {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
+
   @Column(name = "id")
   private Long id;
+
   @Column(name = "name")
   private String name;
-  @ManyToOne
+
+  /*@ManyToOne
+  @JoinColumn(name = "author_id")
+  @JsonIgnore
+  private Author author;*/
+
+  @ManyToOne(optional=false, cascade = {PERSIST, DETACH, MERGE, REFRESH})
   @JoinColumn(name = "author_id")
   @JsonIgnore
   private Author author;
+
+  @ManyToOne(optional=false, cascade = {PERSIST, DETACH, MERGE, REFRESH})
+  @JoinColumn(name = "language_id")
+  @JsonIgnore
+  private Language language;
 
   @Column(name = "published_in")
   private Long publishedIn;
@@ -58,6 +73,14 @@ public class Book {
 
   public void setAuthor(Author author) {
     this.author = author;
+  }
+
+  public Language getLanguage() {
+    return language;
+  }
+
+  public void setLanguage(Language language) {
+    this.language = language;
   }
 
   @Override

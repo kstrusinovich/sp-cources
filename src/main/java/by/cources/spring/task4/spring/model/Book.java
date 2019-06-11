@@ -1,9 +1,7 @@
 package by.cources.spring.task4.spring.model;
 
-import static javax.persistence.CascadeType.DETACH;
-import static javax.persistence.CascadeType.PERSIST;
-import static javax.persistence.CascadeType.MERGE;
-import static javax.persistence.CascadeType.REFRESH;
+import static javax.persistence.CascadeType.*;
+
 
 import javax.persistence.*;
 

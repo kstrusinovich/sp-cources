@@ -16,6 +16,7 @@ public class Author {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
+
   @Column(name = "id")
   private Long id;
 
@@ -28,8 +29,6 @@ public class Author {
   @Column(name = "date_of_birth")
   private LocalDate dateOfBirth;
 
-//  @OneToMany(targetEntity = Book.class)
-//  @JoinColumn(name = "author_id",referencedColumnName="id")
   @OneToMany(mappedBy="author")
   private List<Book> books;
 

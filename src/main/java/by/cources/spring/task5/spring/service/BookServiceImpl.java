@@ -2,8 +2,11 @@ package by.cources.spring.task5.spring.service;
 
 import by.cources.spring.task5.spring.model.Author;
 import by.cources.spring.task5.spring.model.Book;
+import by.cources.spring.task5.spring.model.Language;
 import by.cources.spring.task5.spring.repository.AuthorRepository;
 import by.cources.spring.task5.spring.repository.BookRepository;
+import by.cources.spring.task5.spring.repository.LanguageRepository;
+
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Service;
@@ -15,10 +18,12 @@ public class BookServiceImpl implements BookService {
 
   private final BookRepository bookRepository;
   private final AuthorRepository authorRepository;
+  private final LanguageRepository languageRepository;
 
-  public BookServiceImpl(BookRepository bookRepository, AuthorRepository authorRepository) {
+  public BookServiceImpl(BookRepository bookRepository, AuthorRepository authorRepository, LanguageRepository languageRepository) {
     this.bookRepository = bookRepository;
     this.authorRepository = authorRepository;
+    this.languageRepository = languageRepository;
   }
 
   @Transactional
@@ -31,6 +36,53 @@ public class BookServiceImpl implements BookService {
   @Override
   public Author saveAuthor(Author author) {
     return authorRepository.save(author);
+  }
+
+  @Transactional(propagation = Propagation.REQUIRES_NEW)
+  @Override
+  public Book saveBook(Book book) {
+    return bookRepository.save(book);
+  }
+
+  @Transactional(propagation = Propagation.REQUIRES_NEW)
+  @Override
+  public Book saveBookOnly(Book book) {
+
+    List<Language> languageList = languageRepository.findAll();
+    Long idLanguage = book.getLanguage().getId();
+    for(Language languageDB : languageList){
+      if(idLanguage == languageDB.getId()){
+        book.setLanguage(languageDB);
+      }
+    }
+    List<Author> authorList = authorRepository.findAll();
+    Long idAuthor = book.getAuthor().getId();
+    for(Author authorDB : authorList){
+      if(idAuthor == authorDB.getId()){
+        book.setAuthor(authorDB);
+      }
+    }
+    return bookRepository.save(book);
+  }
+
+  @Transactional(propagation = Propagation.REQUIRES_NEW)
+  @Override
+  public Book saveBookAndNewLang(Book book) {
+
+    List<Language> languageList = languageRepository.findAll();
+    String nameLanguage = book.getLanguage().getLanguageName();
+    for(Language languageDB : languageList){
+      if(nameLanguage.equals(languageDB.getLanguageName())){
+        book.setLanguage(languageDB);
+      }
+    }
+    return bookRepository.save(book);
+  }
+
+  @Transactional(propagation = Propagation.REQUIRES_NEW)
+  @Override
+  public Language saveLanguage(Language language) {
+    return languageRepository.save(language);
   }
 
   @Override
@@ -58,9 +110,21 @@ public class BookServiceImpl implements BookService {
   }
 
   @Override
+  @Transactional
+  public List<Language> findLanguagesAll() {
+    return languageRepository.findAll();
+  }
+
+  @Override
+  @Transactional
+  public Language findLanguageById(Long value) {
+    return languageRepository.findById(value);
+  }
+
+ /* @Override
   public Book saveBook(Book book) {
     return bookRepository.save(book);
-  }
+  }*/
 
   private <T> List<T> toList(Iterable<T> items) {
     List<T> list = new ArrayList<>();
