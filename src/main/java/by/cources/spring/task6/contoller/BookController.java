@@ -52,11 +52,13 @@ public class BookController {
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
 	public String submit(@ModelAttribute("edit") Book book, BindingResult result, ModelMap model) {
 		if (result.hasErrors()) {
+			String errorMessage = "";
 			for (ObjectError error : result.getAllErrors()) {
 				LOGGER.error(error.toString());
+				errorMessage += error.toString();
 			}
+			model.addAttribute("errorMessage", errorMessage);
 			model.addAttribute("book", book);
-			model.addAttribute("errorMessage", "something wrong");
 			return "book-form";
 		}
 		Author author = book.getAuthor();
