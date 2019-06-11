@@ -48,8 +48,8 @@ public class BookController {
   @RequestMapping(value = "/delete", method = RequestMethod.GET)
   public ModelAndView form2() {
    Book result = new Book();
-    result.setAuthor(new Author());
-    return new ModelAndView("book-formdelete", "book", result);
+    result.getId();
+    return new ModelAndView("book-formdelete", "book",result);
   }
   @RequestMapping(value = "/delete", method = RequestMethod.POST)
   public String delete (@ModelAttribute("delete") Book book, BindingResult result, ModelMap model) {
@@ -59,9 +59,9 @@ public class BookController {
       }
       model.addAttribute("errorMessage", "something wrong");
 //   return "error";
-      return "books";
+//      return "books";
     }
-    bookService.deleteById(bookService.book);
+    bookService.delete(book.getId());
     return "redirect:list";
   }
 

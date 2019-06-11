@@ -15,8 +15,10 @@ public class BookServiceImpl implements BookService {
 
   private final BookRepository bookRepository;
   private final AuthorRepository authorRepository;
+    private Long id;
+    private Book book;
 
-  public BookServiceImpl(BookRepository bookRepository, AuthorRepository authorRepository) {
+    public BookServiceImpl(BookRepository bookRepository, AuthorRepository authorRepository) {
     this.bookRepository = bookRepository;
     this.authorRepository = authorRepository;
   }
@@ -61,10 +63,16 @@ public class BookServiceImpl implements BookService {
   public Book saveBook(Book book) {
     return bookRepository.save(book);
   }
-  @Override
-  void deleteById(Long id);
 
-  private <T> List<T> toList(Iterable<T> items) {
+    @Override
+    public void delete(long id){
+
+        bookRepository.deleteById(id);
+    }
+
+
+
+    private <T> List<T> toList(Iterable<T> items) {
     List<T> list = new ArrayList<>();
     for (T t : items) {
       list.add(t);

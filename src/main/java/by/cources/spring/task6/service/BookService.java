@@ -22,8 +22,16 @@ public interface BookService {
 
   Book saveBook(Book book);
 
-  void deleteById(Book id);
+  void delete(long id);
+
+  //  void deleteById(Long id);
+
+  //  void deleteById();
+
+   // default void deleteById(Long id) {
+
+   // }
 
 
-  //void delete (Book book);
+    //void delete (Book book);
 }
