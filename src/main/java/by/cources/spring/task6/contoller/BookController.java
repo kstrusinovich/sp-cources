@@ -32,23 +32,37 @@ public class BookController {
     return new ModelAndView("book-form", "book", result);
   }
 
-  @RequestMapping(value = "/edit", method = RequestMethod.POST)
+ @RequestMapping(value = "/edit", method = RequestMethod.POST)
   public String submit(@ModelAttribute("edit") Book book, BindingResult result, ModelMap model) {
+    if (result.hasErrors()) {
+      for (ObjectError error : result.getAllErrors()) {
+       LOGGER.error(error.toString());
+    }
+      model.addAttribute("errorMessage", "something wrong");
+//   return "error";
+    return "books";
+  }
+   bookService.saveBook(book);
+  return "redirect:list";
+ }
+  @RequestMapping(value = "/delete", method = RequestMethod.GET)
+  public ModelAndView form2() {
+   Book result = new Book();
+    result.setAuthor(new Author());
+    return new ModelAndView("book-formdelete", "book", result);
+  }
+  @RequestMapping(value = "/delete", method = RequestMethod.POST)
+  public String delete (@ModelAttribute("delete") Book book, BindingResult result, ModelMap model) {
     if (result.hasErrors()) {
       for (ObjectError error : result.getAllErrors()) {
         LOGGER.error(error.toString());
       }
       model.addAttribute("errorMessage", "something wrong");
-//      return "error";
+//   return "error";
       return "books";
     }
-    bookService.saveBook(book);
+    bookService.deleteById(bookService.book);
     return "redirect:list";
-  }
-  @RequestMapping(value = "/delete", method = RequestMethod.POST)
-    public ModelAndView delete (@ModelAttribute("delete") Book book){
-    bookService.delete(book);
-    return new ModelAndView("book-formdelete","books",bookService.findBooksAll());
   }
 
   @RequestMapping(value = "/list", method = RequestMethod.GET)

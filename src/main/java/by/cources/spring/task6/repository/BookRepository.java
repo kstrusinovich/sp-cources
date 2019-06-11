@@ -15,6 +15,11 @@ public interface BookRepository extends CrudRepository<Book, Long> {
 
   List<Book> findByName(String name);
 
- void delete(Book book);
+// void delete(Book book);
 
+    @Override
+    void delete(Book entity);
+
+    @Override
+    void deleteById(Long id);
 }
