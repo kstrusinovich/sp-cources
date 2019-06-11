@@ -10,18 +10,21 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import org.springframework.format.annotation.DateTimeFormat;
+import javax.persistence.Transient;
+
 
 @Entity
 @Table(name = "book")
-public class Book {
-
+public class Book
+{
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id")
   private Long id;
+  
   @Column(name = "name")
   private String name;
+  
   @ManyToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "author_id")
   @JsonIgnore
@@ -29,7 +32,8 @@ public class Book {
 
   @Column(name = "published_in")
   private Long publishedIn;
-
+  
+  
   public Long getPublishedIn() {
     return publishedIn;
   }
@@ -62,7 +66,7 @@ public class Book {
     this.author = author;
   }
 
-  @Override
+@Override
   public String toString() {
     return "Book{" +
         "id=" + id +

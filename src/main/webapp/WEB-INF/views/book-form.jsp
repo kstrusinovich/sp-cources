@@ -2,34 +2,42 @@
 <html>
     <head>
     </head>
-    <body>
+    <body style="font-family: arial; line-height: 1.6;">
         <h2>${errorMessage}</h2>
-        <h3>Welcome, Enter The Book Details</h3>
-        <form:form method="POST" action="/sp-cources/book/edit" modelAttribute="book">
-             <table>
+        <h3>${mode} book</h3>
+        
+        <form:form method="POST" action="/sp-cources/book/edit/${mode}" modelAttribute="book">
+        
+        <td><form:input path="id" type="hidden" />
+        
+             <table cellpadding=5>
+               
+               
                 <tr>
-                    <td><form:label path="name">name</form:label></td>
-                    <td><form:input path="name"/></td>
+                    <td><form:label path="name" >Name:</form:label></td>
+                    <td><form:input path="name" style="font-size: 16px;font-family: arial; "/></td>
                 </tr>
                 <tr>
-                    <td><form:label path="publishedIn">publishedIn</form:label></td>
-                    <td><form:input path="publishedIn"/></td>
+                    <td><form:label path="publishedIn">Published in:</form:label></td>
+                    <td><form:input path="publishedIn" style="font-size: 16px;font-family: arial; "/></td>
                 </tr>
                 <tr>
-                    <td><form:label path="author.firstName">author.firstName</form:label></td>
-                    <td><form:input path="author.firstName"/></td>
+                    <td><form:label path="author.firstName">Author first name:</form:label></td>
+                    <td><form:input path="author.firstName" style="font-size: 16px;font-family: arial; "/></td>
                 </tr>
                 <tr>
-                    <td><form:label path="author.lastName">author.lastName</form:label></td>
-                    <td><form:input path="author.lastName"/></td>
+                    <td><form:label path="author.lastName">Author last name:</form:label></td>
+                    <td><form:input path="author.lastName" style="font-size: 16px;font-family: arial; "/></td>
                 </tr>
                 <tr>
+                <!-- 
                     <td><form:errors path="author.dateOfBirth" cssClass="error" /></td>
-                    <td><form:label path="author.dateOfBirth">author.dateOfBirth</form:label></td>
-                    <td><form:input path="author.dateOfBirth" type="date"/></td>
+                     -->
+                    <td><form:label path="author.dateOfBirth">Author date of birth:</form:label></td>
+                    <td><form:input path="author.dateOfBirth" type="date" style="font-size: 16px;font-family: arial; "/></td>
                 </tr>
                 <tr>
-                    <td><input type="submit" value="Submit"/></td>
+                    <td style="padding-top: 20px;"><input type="submit"  style="font-size: 20px;font-family: arial; " value="${mode}"/></td>
                 </tr>
             </table>
         </form:form>
