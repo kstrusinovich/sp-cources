@@ -47,4 +47,11 @@ public class JpaAuthorRepository implements AuthorRepository {
       return em.merge(author);
     }
   }
+
+@Override
+@Transactional(propagation = Propagation.REQUIRES_NEW)
+public void delete(Author author) {
+	  em.remove(author);
+	
+}
 }

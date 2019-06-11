@@ -29,7 +29,7 @@ public class Book
   @Column(name = "published_in")
   private Long publishedIn;
   
-  @ManyToOne(cascade = CascadeType.ALL)
+  @ManyToOne//(cascade = CascadeType.ALL)
   @JoinColumn(name = "language_id")
   private Language language;
   

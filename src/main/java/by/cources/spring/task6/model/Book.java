@@ -1,7 +1,7 @@
 package by.cources.spring.task6.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import javax.persistence.CascadeType;
+import static javax.persistence.CascadeType.*;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,7 +25,7 @@ public class Book
   @Column(name = "name")
   private String name;
   
-  @ManyToOne(cascade = CascadeType.ALL)
+  @ManyToOne // (cascade = {PERSIST, MERGE /*REFRESH, REMOVE, DETACH*/})
   @JoinColumn(name = "author_id")
   @JsonIgnore
   private Author author;

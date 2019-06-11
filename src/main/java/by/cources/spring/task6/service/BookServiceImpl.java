@@ -3,13 +3,11 @@ package by.cources.spring.task6.service;
 import by.cources.spring.task6.field.EditMode;
 import by.cources.spring.task6.model.Author;
 import by.cources.spring.task6.model.Book;
-import by.cources.spring.task6.repository.AuthorRepository;
 import by.cources.spring.task6.repository.BookRepository;
 import by.cources.spring.util.TextUtil;
 
 import java.util.List;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 
@@ -19,13 +17,11 @@ public class BookServiceImpl implements BookService
 {
 	private final BookRepository bookRepository;
   
-	private final AuthorRepository authorRepository;
-    
-  
-  public BookServiceImpl(BookRepository bookRepository, AuthorRepository authorRepository) 
+	  
+  public BookServiceImpl(BookRepository bookRepository) 
   {
     this.bookRepository = bookRepository;
-    this.authorRepository = authorRepository;
+    
   }
 
   @Transactional
@@ -35,17 +31,7 @@ public class BookServiceImpl implements BookService
     return TextUtil.toList(bookRepository.findAll());
   }
 
-  @Transactional(propagation = Propagation.REQUIRES_NEW)
-  @Override
-  public Author saveAuthor(Author author) {
-    return authorRepository.save(author);
-  }
-
-  @Override
-  @Transactional
-  public List<Author> findAuthorsWithBookOlderThan(Long value) {
-    return authorRepository.findWithBookOlderThan(value);
-  }
+ 
 
   @Override
   @Transactional
@@ -59,15 +45,11 @@ public class BookServiceImpl implements BookService
     return bookRepository.findByName(value);
   }
 
+  
   @Override
   @Transactional
-  public List<Author> findAuthorsAll() {
-    return authorRepository.findAll();
-  }
-
-  @Override
   public void saveBook(String mode, Book book, BindingResult result) throws Exception 
-  {
+  {	
 	  if (result.hasErrors())
 	  {
 		  // for (ObjectError error : result.getAllErrors())
@@ -87,7 +69,7 @@ public class BookServiceImpl implements BookService
 		  }
 		  
 	  } catch (Exception ex){
-		  throw new Exception(result.getAllErrors().toString());
+		  throw new Exception(ex.getMessage());
 	  }
 	 
   }
@@ -102,11 +84,7 @@ public class BookServiceImpl implements BookService
 		  book.setAuthor(new Author());
 		  
 	  }
-	  if (mode.equals(EditMode.UPDATE))
-	  {
-		  book = bookRepository.findById(id).get();
-	  }
-	  if (mode.equals(EditMode.DELETE))
+	  if (mode.equals(EditMode.UPDATE)|| mode.equals(EditMode.DELETE))
 	  {
 		  book = bookRepository.findById(id).get();
 	  }

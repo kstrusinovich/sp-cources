@@ -13,4 +13,6 @@ public interface AuthorRepository {
   List<Author> findAll();
 
   Author save(Author author);
+
+  void delete(Author author);
 }

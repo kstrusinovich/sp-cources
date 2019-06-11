@@ -1,8 +1,7 @@
 package by.cources.spring.task6.contoller;
 
-import by.cources.spring.task6.model.Book;
+import by.cources.spring.task6.model.Author;
 import by.cources.spring.task6.service.AuthorService;
-import by.cources.spring.task6.service.BookService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -15,45 +14,40 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/book")
-public class BookController
+@RequestMapping("/author")
+public class AuthorController
 {
-  public static final Logger LOGGER = LoggerFactory.getLogger(BookController.class);
-  
-  private final BookService bookService;
-  
+  public static final Logger LOGGER = LoggerFactory.getLogger(AuthorController.class);
+ 
   private final AuthorService authorService;
   
 
-  public BookController(BookService bookService, AuthorService authorService) {
-    this.bookService = bookService;
+  public AuthorController(AuthorService authorService) {
     this.authorService = authorService;
   }
 
   @RequestMapping(value = "/edit/{mode}/{id}", method = RequestMethod.GET)
   public ModelAndView formInsert(@PathVariable("mode") String mode, @PathVariable("id") Long id) 
   {    
-	  ModelAndView modelAndView = new ModelAndView("book-form");
+	  ModelAndView modelAndView = new ModelAndView("author-form");
 	  modelAndView.addObject("mode", mode);
-	  modelAndView.addObject("book", bookService.getForm(mode, id));
-	  modelAndView.addObject("authors", authorService.findAuthorsAll()); 
+	  modelAndView.addObject("author", authorService.getForm(mode, id));	  
 	  return modelAndView;
   }  
   
   @RequestMapping(value = "/edit/{mode}", method = RequestMethod.POST)
   public ModelAndView submit(@PathVariable("mode") String mode,
-		  @ModelAttribute("edit") Book book, BindingResult result, ModelMap model) 
+		  @ModelAttribute("edit") Author author, BindingResult result, ModelMap model) 
   {   	  
 	  ModelAndView modelAndView = new ModelAndView("redirect:/");
 	  try {
-		  bookService.saveBook(mode, book, result);
+		  authorService.saveAuthor(mode, author, result);
 	  } 
 	  catch (Exception ex)
 	  {
-		  modelAndView = new ModelAndView("book-form"); 
+		  modelAndView = new ModelAndView("author-form"); 
 		  modelAndView.addObject("errorMessage", ex.getMessage());
-		  modelAndView.addObject("book", book);
-		  modelAndView.addObject("authors", authorService.findAuthorsAll()); 
+		  modelAndView.addObject("author", author); 
 		  modelAndView.addObject("mode", mode);       
 	  }
 	  return modelAndView;
