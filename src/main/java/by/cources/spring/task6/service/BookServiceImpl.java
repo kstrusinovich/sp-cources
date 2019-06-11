@@ -63,8 +63,13 @@ public class BookServiceImpl implements BookService {
   }
 
   @Override
-  public Book delete(Book book){
-    return bookRepository.save(book);
+  public void delete(Book book){
+     bookRepository.delete(book);
+  }
+
+  @Override
+  public Book getBookById(Long id){
+    return bookRepository.getBookById(id);
   }
 
   private <T> List<T> toList(Iterable<T> items) {

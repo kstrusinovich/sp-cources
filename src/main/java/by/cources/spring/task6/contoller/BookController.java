@@ -13,6 +13,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -59,23 +60,17 @@ public class BookController {
     return new ModelAndView("books", model);
   }
 
-  @RequestMapping(value = "/delete", method = RequestMethod.GET)
-  public ModelAndView formDel() {
-    Book result = new Book();
-    result.setId(2L);
-    return new ModelAndView("book-delete", "book", result);
+  @RequestMapping(value = "/delete", method = RequestMethod.POST)
+  public ModelAndView delete(@ModelAttribute("book") Book book, BindingResult result, ModelMap model) {
+    ModelAndView modelAndView = new ModelAndView("redirect:/book/list");
+    bookService.delete(book);
+    return modelAndView;
   }
 
-  @RequestMapping(value = "/delete", method = RequestMethod.POST)
-  public String delete(Book book, BindingResult result, ModelMap model) {
-    if (result.hasErrors()) {
-      for ( ObjectError error : result.getAllErrors()){
-        LOGGER.error(error.toString());
-      }
-      model.addAttribute("errorMessage", "something wrong");
-      return "books";
-    }
-    bookService.delete(book);
-    return "redirect:list";
+  @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+  public ModelAndView deleteById(@PathVariable("id") Long id) {
+    ModelAndView modelAndView = new ModelAndView("book-delete");
+    modelAndView.addObject("book", bookService.getBookById(id));
+    return modelAndView;
   }
 }

@@ -22,5 +22,7 @@ public interface BookService {
 
   Book saveBook(Book book);
 
-  Book delete(Book book);
+  void delete(Book book);
+
+  Book getBookById(Long value);
 }
