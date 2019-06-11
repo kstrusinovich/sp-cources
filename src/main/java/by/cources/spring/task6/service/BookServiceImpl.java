@@ -70,9 +70,13 @@ public class BookServiceImpl implements BookService {
         bookRepository.deleteById(id);
     }
 
+  public Book edit(long id) {
+      Book book = new Book();
+    bookRepository.findById(id);
+    return  book;
+  }
 
-
-    private <T> List<T> toList(Iterable<T> items) {
+  private <T> List<T> toList(Iterable<T> items) {
     List<T> list = new ArrayList<>();
     for (T t : items) {
       list.add(t);

@@ -24,14 +24,7 @@ public interface BookService {
 
   void delete(long id);
 
-  //  void deleteById(Long id);
-
-  //  void deleteById();
-
-   // default void deleteById(Long id) {
-
-   // }
+  Book edit(long id);
 
 
-    //void delete (Book book);
 }
