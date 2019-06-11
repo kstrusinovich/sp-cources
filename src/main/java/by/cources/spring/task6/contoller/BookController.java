@@ -71,18 +71,18 @@ public class BookController {
         return new ModelAndView("book-formredit", "book", result);
     }
     @RequestMapping(value = "/redit", method = RequestMethod.POST)
-    public ModelAndView redit (@ModelAttribute("redit") Book book, BindingResult result, ModelMap model) {
+    public String redit (@ModelAttribute("redit") Book book, BindingResult result, ModelMap model) {
         if (result.hasErrors()) {
             for (ObjectError error : result.getAllErrors()) {
                 LOGGER.error(error.toString());
             }
             model.addAttribute("errorMessage", "something wrong");
 //   return "error";
-//      return "books";
+         return "books";
         }
-        bookService.edit(book.getId());
-        //return "redirect:list";
-        return new ModelAndView("book-form", "book", result);
+        bookService.saveBook(book);
+        return "redirect:list";
+        //return new ModelAndView("book-form", "book", result);
     }
 
   @RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -90,9 +90,9 @@ public class BookController {
     return new ModelAndView("books", "books", bookService.findBooksAll());
   }
 
-  @RequestMapping(value = "/list", method = RequestMethod.GET)
-   public ModelAndView list2() {
-        return new ModelAndView("books", "books", bookService.edit(id));
-    }
+  //@RequestMapping(value = "/list2", method = RequestMethod.GET)
+  // public ModelAndView list2() {
+  //      return new ModelAndView("books", "books", bookService.findByIdBook(id));
+  //  }
 
 }

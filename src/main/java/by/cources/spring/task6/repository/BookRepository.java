@@ -18,7 +18,10 @@ public interface BookRepository extends CrudRepository<Book, Long> {
   List<Book> findOlderThan(@Param("value") Long value);
 
   List<Book> findByName(String name);
-
+  @Query("select b from Book b where b.id = :value")
+  List<Book> findByIdBook(@Param("value") Long value);
+  //@Query("update Book set name = :value1,  published_in = :value2 where id = :value ")
+  //List<Book> updateBook(@Param("value") Long value,@Param(value = book.name));
   @Override
   void deleteById(Long aLong);
 

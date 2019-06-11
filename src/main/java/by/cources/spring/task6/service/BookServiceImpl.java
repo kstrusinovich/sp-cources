@@ -69,12 +69,9 @@ public class BookServiceImpl implements BookService {
 
         bookRepository.deleteById(id);
     }
-
-  public Book edit(long id) {
-      Book book = new Book();
-    bookRepository.findById(id);
-    return  book;
-  }
+  @Override
+  @Transactional
+  public List<Book>findByIdBook (Long value) { return bookRepository.findByIdBook(value); }
 
   private <T> List<T> toList(Iterable<T> items) {
     List<T> list = new ArrayList<>();
