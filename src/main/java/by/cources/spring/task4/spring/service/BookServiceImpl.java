@@ -46,6 +46,41 @@ public class BookServiceImpl implements BookService {
 
   @Transactional(propagation = Propagation.REQUIRES_NEW)
   @Override
+  public Book saveBookOnly(Book book) {
+
+    List<Language> languageList = languageRepository.findAll();
+    Long idLanguage = book.getLanguage().getId();
+    for(Language languageDB : languageList){
+      if(idLanguage == languageDB.getId()){
+        book.setLanguage(languageDB);
+      }
+    }
+    List<Author> authorList = authorRepository.findAll();
+    Long idAuthor = book.getAuthor().getId();
+    for(Author authorDB : authorList){
+      if(idAuthor == authorDB.getId()){
+        book.setAuthor(authorDB);
+      }
+    }
+    return bookRepository.save(book);
+  }
+
+  @Transactional(propagation = Propagation.REQUIRES_NEW)
+  @Override
+  public Book saveBookAndNewLang(Book book) {
+
+    List<Language> languageList = languageRepository.findAll();
+    String nameLanguage = book.getLanguage().getLanguageName();
+    for(Language languageDB : languageList){
+      if(nameLanguage.equals(languageDB.getLanguageName())){
+       book.setLanguage(languageDB);
+      }
+    }
+    return bookRepository.save(book);
+  }
+
+  @Transactional(propagation = Propagation.REQUIRES_NEW)
+  @Override
   public Language saveLanguage(Language language) {
     return languageRepository.save(language);
   }

@@ -1,6 +1,9 @@
 package by.cources.spring.task4.spring.model;
 
-import by.cources.spring.task4.spring.model.Language;
+import static javax.persistence.CascadeType.DETACH;
+import static javax.persistence.CascadeType.PERSIST;
+import static javax.persistence.CascadeType.MERGE;
+import static javax.persistence.CascadeType.REFRESH;
 
 import javax.persistence.*;
 
@@ -22,12 +25,12 @@ public class Book {
     FetchType.EAGER — загружать коллекцию дочерних объектов вместе с загрузкой родительских объектов;
     FetchType.LAZY — загружать коллекцию дочерних объектов при первом обращении к ней (вызове метода get) — это так называемая отложенная загрузка.
    */
-  @ManyToOne
+  @ManyToOne(optional=false, cascade = {PERSIST, DETACH, MERGE, REFRESH})
   @JoinColumn(name = "author_id")
   private Author author;
 
-//  @ManyToOne(optional=false, cascade = CascadeType.PERSIST)
-  @ManyToOne
+  @ManyToOne(optional=false, cascade = {PERSIST, DETACH, MERGE, REFRESH})
+ // @ManyToOne
   @JoinColumn(name = "language_id")
   private Language language;
 

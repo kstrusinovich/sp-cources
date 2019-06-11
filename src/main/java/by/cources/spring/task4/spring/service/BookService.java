@@ -18,6 +18,12 @@ public interface BookService {
   Book saveBook(Book book);
 
   @Transactional
+  Book saveBookOnly(Book book);
+
+  @Transactional
+  Book saveBookAndNewLang(Book book);
+
+  @Transactional
   Language saveLanguage(Language language);
 
   List<Author> findAuthorsWithBookOlderThan(Long value);

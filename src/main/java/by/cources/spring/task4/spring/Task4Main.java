@@ -15,7 +15,7 @@ public class Task4Main {
     ApplicationContext ctx = new AnnotationConfigApplicationContext(BookConfig.class);
     BookService service = ctx.getBean(BookService.class);
     System.out.println("---------------------");
-    saveBook(service);
+    saveBookSimple(service);
     saveBookAndNewLanguage(service);
     saveBookAndLanguage(service);
     System.out.println("---------------------");
@@ -26,51 +26,33 @@ public class Task4Main {
     query6(service);
   }
 
-  private static void saveBook(BookService service) {
+  private static void saveBookSimple(BookService service) {
     Author author = createAuthor();
-    author.setDateOfBirth(LocalDate.now());
-    service.saveAuthor(author);
-
-    Language language = service.findLanguageById(1l);
+    Language language = service.findLanguageById(2l);
 
     Book book = createBook(author, language);
-    service.saveBook(book);
+    service.saveBookOnly(book);
   }
 
   public static void saveBookAndNewLanguage(BookService service) {
     Author author = createAuthor();
-    service.saveAuthor(author);
-    System.out.println("saveBookAndNewLanguage :: Saved author with id = " + author.getId());
+    //service.saveAuthor(author);
 
-    boolean isNewLanguage = true;
     Language language = new Language();
-    String nameLanguage = "Chain";
+    String nameLanguage = "China";
     language.setLanguageName(nameLanguage);
-    System.out.println(language.getId());
-    List<Language> listLanguage = service.findLanguagesAll();
-    for(Language languageDB : listLanguage){
-      if(nameLanguage.equals(languageDB.getLanguageName())){
-        language.setId(languageDB.getId());
-        isNewLanguage = false;
-      }
-    }
-    if(isNewLanguage){
-      service.saveLanguage(language);
-    }
 
     Book book = createBook(author, language);
-    service.saveBook(book);
+    service.saveBookAndNewLang(book);
   }
 
   public static void saveBookAndLanguage(BookService service) {
     Author author = createAuthor();
-    service.saveAuthor(author);
-    System.out.println("saveBookAndLanguage :: Saved author with id = " + author.getId());
+    //service.saveAuthor(author);
 
     Language language = new Language();
     language.setLanguageName("English");
-    service.saveLanguage(language);
-    System.out.println("Saved language with id = " + language.getId());
+    //service.saveLanguage(language);
 
     Book book = createBook(author, language);
     service.saveBook(book);
