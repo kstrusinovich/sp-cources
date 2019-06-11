@@ -12,6 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import static javax.persistence.CascadeType.*;
+
 @Entity
 @Table(name = "book")
 public class Book {
@@ -22,10 +24,17 @@ public class Book {
   private Long id;
   @Column(name = "name")
   private String name;
-  @ManyToOne(cascade = CascadeType.ALL)
+  @ManyToOne(cascade = {
+          PERSIST,
+          MERGE,
+//      REMOVE,
+          REFRESH,
+          DETACH
+  })
   @JoinColumn(name = "author_id")
   @JsonIgnore
   private Author author;
+
 
   @Column(name = "published_in")
   private Long publishedIn;
