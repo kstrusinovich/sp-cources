@@ -20,59 +20,55 @@ import javax.persistence.Table;
 @Table(name = "book")
 public class Book {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "id")
-  private Long id;
-  @Column(name = "name")
-  private String name;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
+	private Long id;
+	@Column(name = "name")
+	private String name;
 
-  @ManyToOne(optional = false, cascade = {PERSIST, DETACH, MERGE, REFRESH})
-  @JoinColumn(name = "author_id")
-  @JsonIgnore
-  private Author author;
+	@ManyToOne(optional = false, cascade = { PERSIST, DETACH, MERGE, REFRESH })
+	@JoinColumn(name = "author_id")
+	@JsonIgnore
+	private Author author;
 
-  @Column(name = "published_in")
-  private Long publishedIn;
+	@Column(name = "published_in")
+	private Long publishedIn;
 
-  public Long getPublishedIn() {
-    return publishedIn;
-  }
+	public Long getPublishedIn() {
+		return publishedIn;
+	}
 
-  public void setPublishedIn(Long publishedIn) {
-    this.publishedIn = publishedIn;
-  }
+	public void setPublishedIn(Long publishedIn) {
+		this.publishedIn = publishedIn;
+	}
 
-  public String getName() {
-    return name;
-  }
+	public String getName() {
+		return name;
+	}
 
-  public void setName(String name) {
-    this.name = name;
-  }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-  public Long getId() {
-    return id;
-  }
+	public Long getId() {
+		return id;
+	}
 
-  public void setId(Long id) {
-    this.id = id;
-  }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-  public Author getAuthor() {
-    return author;
-  }
+	public Author getAuthor() {
+		return author;
+	}
 
-  public void setAuthor(Author author) {
-    this.author = author;
-  }
+	public void setAuthor(Author author) {
+		this.author = author;
+	}
 
-  @Override
-  public String toString() {
-    return "Book{" +
-        "id=" + id +
-        ", name='" + name + '\'' +
-        ", publishedIn=" + publishedIn +
-        '}';
-  }
+	@Override
+	public String toString() {
+		return "Book [id=" + id + ", name=" + name + ", publishedIn=" + publishedIn + "]";
+	}
 }

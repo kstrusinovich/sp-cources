@@ -12,6 +12,8 @@
 </pre>
 
 	<p><b>Iterated List:</b><p>
+
+	<h2>${errorMessage}</h2>
 	
 	<input value="NEW" onclick="document.location.href='/sp-cources/book/edit'" type="button">
 

@@ -55,9 +55,14 @@ public class BookController {
 			for (ObjectError error : result.getAllErrors()) {
 				LOGGER.error(error.toString());
 			}
+			model.addAttribute("book", book);
 			model.addAttribute("errorMessage", "something wrong");
-//      return "error";
-			return "books";
+			return "book-form";
+		}
+		Author author = book.getAuthor();
+		List<Author> authors = bookService.findAuthorByName(author.getFirstName(), author.getLastName());
+		if (!authors.isEmpty()) {
+			book.setAuthor(authors.get(0));
 		}
 		bookService.saveBook(book);
 		return "redirect:list";
@@ -77,14 +82,14 @@ public class BookController {
 		bookService.delBook(id);
 		return "redirect:/book/list";
 	}
-	
+
 	@RequestMapping(value = "/editAuthor/{id}", method = RequestMethod.GET)
 	public ModelAndView editAuthor(@PathVariable("id") Long id) {
 		ModelAndView model = new ModelAndView("book-form-author");
 		Optional<Book> book = bookService.findBookById(id);
 		if (book.isPresent()) {
 			model.addObject("book", book.get());
-			
+
 			model.addObject("authors", bookService.findAuthorsAll());
 			return model;
 		} else {
@@ -92,5 +97,23 @@ public class BookController {
 			errorModel.addObject("errorMessage", "BOOK NOT FOUND");
 			return errorModel;
 		}
+	}
+
+	@RequestMapping(value = "/editAuthor", method = RequestMethod.POST)
+	public String submitAuthor(@ModelAttribute("edit") Book book, BindingResult result, ModelMap model) {
+		if (result.hasErrors()) {
+			for (ObjectError error : result.getAllErrors()) {
+				LOGGER.error(error.toString());
+			}
+			model.addAttribute("book", book);
+			model.addAttribute("errorMessage", "something wrong");
+			return "book-form-author";
+		}
+		Optional<Author> author = bookService.findAuthorById(book.getAuthor().getId());
+		if (author.isPresent()) {
+			book.setAuthor(author.get());
+		}
+		bookService.saveBook(book);
+		return "redirect:list";
 	}
 }

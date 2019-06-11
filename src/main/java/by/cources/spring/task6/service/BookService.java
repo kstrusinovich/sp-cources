@@ -26,4 +26,8 @@ public interface BookService {
   void delBook(Long bookId);
 
   Optional<Book> findBookById(Long id);
+  
+  Optional<Author> findAuthorById(Long id);
+  
+  List<Author> findAuthorByName(String firstName, String lastName);
 }

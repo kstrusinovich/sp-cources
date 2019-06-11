@@ -82,4 +82,16 @@ public class BookServiceImpl implements BookService {
 	public Optional<Book> findBookById(Long id) {
 		return bookRepository.findById(id);
 	}
+	
+	@Override
+	@Transactional
+	public Optional<Author> findAuthorById(Long id) {
+		return authorRepository.findById(id);
+	}
+	
+	@Override
+	@Transactional
+	public List<Author> findAuthorByName(String firstName, String LastName) {
+		return authorRepository.findByName(firstName, LastName);
+	}
 }

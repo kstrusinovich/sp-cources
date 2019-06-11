@@ -4,7 +4,6 @@ import static javax.persistence.CascadeType.DETACH;
 import static javax.persistence.CascadeType.MERGE;
 import static javax.persistence.CascadeType.PERSIST;
 import static javax.persistence.CascadeType.REFRESH;
-import static javax.persistence.CascadeType.REMOVE;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -26,7 +25,7 @@ public class Book {
   @Column(name = "name")
   private String name;
   //@ManyToOne
-  @ManyToOne(optional = false, cascade = {PERSIST, MERGE, REMOVE, DETACH, REFRESH})
+  @ManyToOne(optional = false, cascade = {PERSIST, MERGE, DETACH, REFRESH})
   @JoinColumn(name = "author_id")
   //@JsonIgnore
   private Author author;
