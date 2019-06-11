@@ -1,7 +1,10 @@
-package by.cources.spring.task3.spring.model;
+package by.cources.spring.task5.spring.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -12,17 +15,17 @@ import javax.persistence.Table;
 public class Book {
 
   @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id")
   private Long id;
   @Column(name = "name")
   private String name;
   @ManyToOne
   @JoinColumn(name = "author_id")
+  @JsonIgnore
   private Author author;
-  @JoinColumn(name = "languages_id")
-  private languages languages;
-  @Column(name = "published_in")
 
+  @Column(name = "published_in")
   private Long publishedIn;
 
   public Long getPublishedIn() {
@@ -53,11 +56,9 @@ public class Book {
     return author;
   }
 
-  public void setAuthor(Author author) { this.author = author; }
-
-  public void setLanguages(by.cources.spring.task3.spring.model.languages languages) { this.languages = languages; }
-
-  public by.cources.spring.task3.spring.model.languages getLanguages() { return languages; }
+  public void setAuthor(Author author) {
+    this.author = author;
+  }
 
   @Override
   public String toString() {
