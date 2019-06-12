@@ -14,9 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.lang.ref.PhantomReference;
-import java.util.List;
-import java.util.Optional;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/book")
@@ -71,11 +70,13 @@ public class BookController {
     @RequestMapping(value = "/redit", method = RequestMethod.GET)
     public ModelAndView form3() {
         Book result = new Book();
-        result.getId();
-        Author author = result.getAuthor();
-        List<Author> authors = bookService.findAuthorByName(author.getFirstName(), author.getLastName());
-        result.setAuthor(authors.get(0));
-        return new ModelAndView("book-formredit", "book", result);
+        result.setPublishedIn(2019L);
+        result.setAuthor(new Author());
+        Map<String, Object> model = new HashMap<>();
+        model.put("book", result);
+        model.put("authors", bookService.findAuthorsAll());
+
+        return new ModelAndView("book-formredit", model);
     }
     @RequestMapping(value = "/redit", method = RequestMethod.POST)
     public String redit (@ModelAttribute("redit") Book book, BindingResult result, ModelMap model) {
@@ -84,15 +85,9 @@ public class BookController {
                 LOGGER.error(error.toString());
             }
             model.addAttribute("errorMessage", "something wrong");
-            Optional<Author> author = bookService.findAuthorById(book.getAuthor().getId());
-            model.addObject("authors", bookService.findAuthorsAll());
-            Author author = book.getAuthor();
-            List<Author> authors = bookService.findAuthorByName(author.getFirstName(), author.getLastName());
-            book.setAuthor(authors.get(0));
 //   return "error";
          return "books";
         }
-
         bookService.saveBook(book);
         return "redirect:list";
         //return new ModelAndView("book-form", "book", result);
