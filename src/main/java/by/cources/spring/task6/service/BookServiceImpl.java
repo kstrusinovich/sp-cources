@@ -71,6 +71,11 @@ public class BookServiceImpl implements BookService {
     }
   @Override
   @Transactional
+  public List<Author> findAuthorByName(String firstName, String LastName) {
+    return authorRepository.findByName(firstName, LastName);
+  }
+  @Override
+  @Transactional
   public List<Book>findByIdBook (Long value) { return bookRepository.findByIdBook(value); }
 
   private <T> List<T> toList(Iterable<T> items) {

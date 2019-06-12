@@ -1,4 +1,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
 </head>
@@ -19,14 +20,15 @@
              <td><form:label path="publishedIn">publishedIn</form:label></td>
              <td><form:input path="publishedIn"/></td>
         </tr>
-        <tr>
-             <td><form:label path="author.firstName">author.firstName</form:label></td>
-             <td><form:input path="author.firstName"/></td>
-        </tr>
-        <tr>
-              <td><form:label path="author.lastName">author.lastName</form:label></td>
-              <td><form:input path="author.lastName"/></td>
-        </tr>
+        <td><form:errors path="author.id" cssClass="error" /></td>
+        <td><form:label path="author.id">author</form:label></td>
+        <td>
+            <form:select path="author.id">
+                <c:forEach var="author" items="${authors}">
+                    <form:option value="${author.id}"><c:out value="${author.firstName} ${author.lastName}"/></form:option>
+                </c:forEach>
+            </form:select>
+        </td>
         <tr>
               <td><form:errors path="author.dateOfBirth" cssClass="error" /></td>
               <td><form:label path="author.dateOfBirth">author.dateOfBirth</form:label></td>

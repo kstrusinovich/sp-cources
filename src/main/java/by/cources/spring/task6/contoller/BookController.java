@@ -14,6 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.lang.ref.PhantomReference;
+import java.util.List;
+import java.util.Optional;
+
 @Controller
 @RequestMapping("/book")
 public class BookController {
@@ -68,6 +72,9 @@ public class BookController {
     public ModelAndView form3() {
         Book result = new Book();
         result.getId();
+        Author author = result.getAuthor();
+        List<Author> authors = bookService.findAuthorByName(author.getFirstName(), author.getLastName());
+        result.setAuthor(authors.get(0));
         return new ModelAndView("book-formredit", "book", result);
     }
     @RequestMapping(value = "/redit", method = RequestMethod.POST)
@@ -77,9 +84,15 @@ public class BookController {
                 LOGGER.error(error.toString());
             }
             model.addAttribute("errorMessage", "something wrong");
+            Optional<Author> author = bookService.findAuthorById(book.getAuthor().getId());
+            model.addObject("authors", bookService.findAuthorsAll());
+            Author author = book.getAuthor();
+            List<Author> authors = bookService.findAuthorByName(author.getFirstName(), author.getLastName());
+            book.setAuthor(authors.get(0));
 //   return "error";
          return "books";
         }
+
         bookService.saveBook(book);
         return "redirect:list";
         //return new ModelAndView("book-form", "book", result);

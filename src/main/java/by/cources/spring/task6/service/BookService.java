@@ -3,6 +3,7 @@ package by.cources.spring.task6.service;
 import by.cources.spring.task6.model.Author;
 import by.cources.spring.task6.model.Book;
 import java.util.List;
+import java.util.Optional;
 import javax.transaction.Transactional;
 
 public interface BookService {
@@ -26,5 +27,7 @@ public interface BookService {
 
   List<Book> findByIdBook(Long value);
 
+  List<Author> findAuthorByName(String firstName, String lastName);
 
+  Optional<Author> findAuthorById(Long id);
 }
