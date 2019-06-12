@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -36,13 +37,13 @@ public class BookController {
   }
 
  @RequestMapping(value = "/edit", method = RequestMethod.POST)
-  public String submit(@ModelAttribute("edit") Book book, BindingResult result, ModelMap model) {
+ public String submit(@Valid @ModelAttribute("book") Book book, BindingResult result, ModelMap model){
     if (result.hasErrors()) {
       for (ObjectError error : result.getAllErrors()) {
        LOGGER.error(error.toString());
     }
       model.addAttribute("errorMessage", "something wrong");
-//   return "error";
+    //return "error";
     return "books";
   }
    bookService.saveBook(book);
