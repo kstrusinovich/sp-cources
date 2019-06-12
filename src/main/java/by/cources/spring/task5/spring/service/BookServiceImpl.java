@@ -9,6 +9,8 @@ import by.cources.spring.task5.spring.repository.LanguageRepository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -121,10 +123,16 @@ public class BookServiceImpl implements BookService {
     return languageRepository.findById(value);
   }
 
- /* @Override
-  public Book saveBook(Book book) {
-    return bookRepository.save(book);
-  }*/
+  @Override
+  public Optional<Book> findBookById(Long value) {
+    return bookRepository.findById(value);
+  }
+
+  @Override
+  @Transactional
+  public void delBook(Book book) {
+    bookRepository.delete(book);
+  }
 
   private <T> List<T> toList(Iterable<T> items) {
     List<T> list = new ArrayList<>();

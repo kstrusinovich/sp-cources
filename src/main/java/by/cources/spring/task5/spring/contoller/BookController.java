@@ -9,15 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/book")
@@ -46,15 +38,25 @@ public class BookController {
         return  new ResponseEntity<>(bookService.findBooksAll(), HttpStatus.OK);
     }
 
+  //пример посылки в postman::POST::localhost:8080/myapp/book/saveBookAndNewLang?nameLanguage=China::body/raw/JSON::вставляем посылку-тело
   @PostMapping(value = "/saveBookAndNewLang")
     @ResponseBody
     public ResponseEntity<List<Language>> saveBookAndNewLang(@RequestBody Book book, @RequestParam String nameLanguage) {
         List<Author> authors = bookService.findAuthorsAll();
-        book.getLanguage().setLanguageName(nameLanguage);
-
         book.setAuthor(authors.get(0));
-        //book.setLanguage(languages.get(0));
+        Language language = new Language();
+        language.setLanguageName(nameLanguage);
+        book.setLanguage(language);
         bookService.saveBookAndNewLang(book);
         return  new ResponseEntity<>(bookService.findLanguagesAll(), HttpStatus.OK);
+    }
+
+  //пример посылки в postman::DELETE::localhost:8080/myapp/book/delete/3
+  @DeleteMapping(value = "/delete/{id}")
+    @ResponseBody
+    public List<Book> delete(@PathVariable("id") Long id) {
+        //bookService.findBookById(id).ifPresent(book -> bookService.delBook(book));
+        bookService.findBookById(id).ifPresent(bookService::delBook);
+        return bookService.findBooksAll();
     }
 }
