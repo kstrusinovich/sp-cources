@@ -34,12 +34,14 @@ public class AuthorController {
     return bookService.findBooksWithBookOlderThan(year);
   }
 
+  //пример посылки :: http://localhost:8080/myapp/author/sample3?name=Sense%20and%20Sensibility
   @GetMapping(value = "/sample3")
   @ResponseBody
   public List<Book> sample3(@RequestParam String name) {
     return bookService.findBooksWithBookName(name);
   }
 
+  //пример посылки в postman::POST::localhost:8080/myapp/author/sample4::body/raw/JSON::вставляем посылку-тело
   @PostMapping(value = "/sample4")
   @ResponseBody
   public Book sample4(@RequestBody Book book) {

@@ -2,6 +2,7 @@ package by.cources.spring.task5.spring.contoller;
 
 import by.cources.spring.task5.spring.model.Author;
 import by.cources.spring.task5.spring.model.Book;
+import by.cources.spring.task5.spring.model.Language;
 import by.cources.spring.task5.spring.service.BookService;
 import java.util.List;
 import org.springframework.http.HttpStatus;
@@ -33,4 +34,27 @@ public class BookController {
   public ResponseEntity<List<Book>> sample1(ModelMap model) {
     return new ResponseEntity<>(bookService.findBooksAll(), HttpStatus.OK);
   }
+
+  @PostMapping(value = "/saveBook")
+    @ResponseBody
+    public ResponseEntity<List<Book>> saveBookPost(@RequestBody Book book) {
+        List<Author> authors = bookService.findAuthorsAll();
+        List<Language> languages = bookService.findLanguagesAll();
+        book.setAuthor(authors.get(0));
+        book.setLanguage(languages.get(0));
+        bookService.saveBook(book);
+        return  new ResponseEntity<>(bookService.findBooksAll(), HttpStatus.OK);
+    }
+
+  @PostMapping(value = "/saveBookAndNewLang")
+    @ResponseBody
+    public ResponseEntity<List<Language>> saveBookAndNewLang(@RequestBody Book book, @RequestParam String nameLanguage) {
+        List<Author> authors = bookService.findAuthorsAll();
+        book.getLanguage().setLanguageName(nameLanguage);
+
+        book.setAuthor(authors.get(0));
+        //book.setLanguage(languages.get(0));
+        bookService.saveBookAndNewLang(book);
+        return  new ResponseEntity<>(bookService.findLanguagesAll(), HttpStatus.OK);
+    }
 }
