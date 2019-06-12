@@ -2,6 +2,9 @@ package by.cources.spring.task6.contoller;
 
 import by.cources.spring.task6.model.Author;
 import by.cources.spring.task6.service.AuthorService;
+
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -37,7 +40,7 @@ public class AuthorController
   
   @RequestMapping(value = "/edit/{mode}", method = RequestMethod.POST)
   public ModelAndView submit(@PathVariable("mode") String mode,
-		  @ModelAttribute("edit") Author author, BindingResult result, ModelMap model) 
+		 @Valid @ModelAttribute("edit") Author author, BindingResult result, ModelMap model) 
   {   	  
 	  ModelAndView modelAndView = new ModelAndView("redirect:/");
 	  try {

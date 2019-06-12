@@ -8,11 +8,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
 import org.springframework.format.annotation.DateTimeFormat;
-import static javax.persistence.CascadeType.*;
 
 
 @Entity
@@ -25,12 +25,15 @@ public class Author
   private Long id;
 
   @Column(name = "first_name")
+  @NotNull(message = "my custom message")
   private String firstName;
 
   @Column(name = "last_name")
+  @NotNull(message = "my custom message")
   private String lastName;
   
   @DateTimeFormat(pattern = "yyyy-MM-dd")
+  @NotNull(message = "my custom message")
   @Column(name = "date_of_birth")
   private LocalDate dateOfBirth;
   
