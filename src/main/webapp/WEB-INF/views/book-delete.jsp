@@ -9,7 +9,7 @@
 <h2>${errorMessage}</h2>
 <h3>Delete books</h3>
 
-<form:form method="POST" action="/book/delete modelAttribute="delete">
+<form:form method="POST" action="/book/delete" modelAttribute="delete">
 
         <ol>
             <c:forEach var="book" items="${booksVariable}">
