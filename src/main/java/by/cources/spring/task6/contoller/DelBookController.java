@@ -28,9 +28,9 @@ public class DelBookController {
 
    @DeleteMapping (value = "/delete", method = RequestMethod.DELETE)
    public ModelAndView form() {
-    Book result = new Book();
-     result.setAuthor(new Author());
-    return new ModelAndView("bookdel-form", "book", result);
+    Book resultdel = new Book();
+     resultdel.setAuthor(new Author());
+    return new ModelAndView("bookdel-form", "book", resultdel);
 
 
 //    @RequestMapping(value = "/edit", method = RequestMethod.GET)
@@ -40,16 +40,16 @@ public class DelBookController {
 //        return new ModelAndView("book-form", "book", result);
 
         @DeleteMapping(value = "/delete", method = RequestMethod.POST)
-        public String submit(@ModelAttribute("del") Book book, BindingResult result, ModelMap model) {
-            if (result.hasErrors()) {
-                for (ObjectError error : result.getAllErrors()) {
+        public String submit(@ModelAttribute("del") Book book, BindingResult resultdel, ModelMap model) {
+            if (resultdel.has) {
+                for (ObjectError error : resultdel.getAllErrors()) {
                     LOGGER.error(error.toString());
                 }
                 model.delAttribute("errorMessage", "something wrong");
 //      return "error";
                 return "books";
             }
-            bookService.saveBook(book);
+            bookService.deleteBook(book);
             return "redirect:list";
         }
 
