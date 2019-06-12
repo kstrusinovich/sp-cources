@@ -1,7 +1,9 @@
 package by.cources.spring.task6;
 
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.orm.jpa.support.OpenEntityManagerInViewInterceptor;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
@@ -32,18 +34,20 @@ public class BookWebConfig implements WebMvcConfigurer
 
   // 12.06.2019
   @Bean
-  public LocalValidatorFactoryBean getValidator() {
-    LocalValidatorFactoryBean bean = new LocalValidatorFactoryBean();
-    bean.setValidationMessageSource(resourceBundleMessageSource());
-    return bean;
-  }
-  
-  @Bean
-  public ResourceBundleMessageSource resourceBundleMessageSource() {
-    ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
-    messageSource.setBasename("messages");
+  public MessageSource messageSource() {
+    ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
+    messageSource.setBasename("classpath:messages");
+    messageSource.setDefaultEncoding("UTF-8");
     return messageSource;
   }
+
+  @Bean
+  public LocalValidatorFactoryBean getValidator() {
+    LocalValidatorFactoryBean bean = new LocalValidatorFactoryBean();
+    bean.setValidationMessageSource(messageSource());
+    return bean;
+  }
+
 
   @Bean
   public InternalResourceViewResolver jspViewResolver() {
