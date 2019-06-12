@@ -5,7 +5,7 @@
     <body>
         <h2>${errorMessage}</h2>
         <h3>Delete</h3>
-        <form:form method="POST" action="/sp-cources/book/delete" modelAttribute="book">
+        <form:form method="POST" action="/book/delete" modelAttribute="book">
              <table>
                 <hidden>
                    <tr>
