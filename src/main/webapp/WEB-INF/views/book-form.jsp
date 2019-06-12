@@ -1,6 +1,11 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <html>
     <head>
+      <style type="text/css">
+        .error {
+          color:red;
+        }
+      </style>
     </head>
     <body>
         <h2>${errorMessage}</h2>
@@ -10,7 +15,7 @@
                 <tr>
                     <td><form:label path="name">name</form:label></td>
                     <td><form:input path="name"/></td>
-                    <td></td>
+                    <td><form:errors path="name" cssClass="error" /></td>
                 </tr>
                 <tr>
                     <td><form:label path="publishedIn">publishedIn</form:label></td>
