@@ -41,6 +41,7 @@ public class Book {
 	private Author author;
 
 	@Column(name = "published_in")
+	@NotNull
 	protected Long publishedIn;
 
 	public Long getPublishedIn() {
