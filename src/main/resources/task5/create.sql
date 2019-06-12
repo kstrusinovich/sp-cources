@@ -2,4 +2,4 @@ CREATE TABLE author (id NUMBER(7) auto_increment NOT NULL PRIMARY KEY, first_nam
 
 CREATE TABLE language(id NUMBER(7) auto_increment NOT NULL PRIMARY KEY, language_name VARCHAR2(50) NOT NULL );
 
-create table book (id NUMBER(7) auto_increment NOT NULL PRIMARY KEY, author_id NUMBER(7) NOT NULL, name VARCHAR2(50) NOT NULL, published_in NUMBER(7) NOT NULL, CONSTRAINT fk_book_author FOREIGN KEY (author_id) REFERENCES author(id));
+create table book (id NUMBER(7) auto_increment NOT NULL PRIMARY KEY, author_id NUMBER(7) NOT NULL, language_id NUMBER(7) NOT NULL, name VARCHAR2(50) NOT NULL, published_in NUMBER(7) NOT NULL, CONSTRAINT fk_book_author FOREIGN KEY (author_id) REFERENCES author(id));
