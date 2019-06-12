@@ -48,10 +48,12 @@ public class JpaAuthorRepository implements AuthorRepository {
     }
   }
 
-@Override
-@Transactional(propagation = Propagation.REQUIRES_NEW)
-public void delete(Author author) {
-	  em.remove(author);
-	
-}
+  @Override
+  @Transactional(propagation = Propagation.REQUIRES_NEW)
+  public void delete(Author author) 
+  {
+	  // em.remove(author);
+	  em.createQuery("delete from Author where id = :id").setParameter("id", author.getId()).executeUpdate();
+  }
+  
 }

@@ -4,8 +4,6 @@ import by.cources.spring.task6.model.Book;
 import java.util.List;
 import javax.transaction.Transactional;
 
-import org.springframework.validation.BindingResult;
-
 public interface BookService {
 
   List<Book> findBooksAll();
@@ -15,7 +13,7 @@ public interface BookService {
   List<Book> findBooksWithBookName(String value);
 
   @Transactional
-  void saveBook(String mode, Book book, BindingResult result) throws Exception;
+  void saveBook(String mode, Book book ) throws Exception;
 
   Book getForm(String mode, Long id);
   

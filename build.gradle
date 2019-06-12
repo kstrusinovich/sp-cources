@@ -1,8 +1,19 @@
 apply plugin: 'com.bmuschko.tomcat'
 apply plugin: 'war'
 apply plugin: 'java'
-apply plugin: 'idea'
-apply plugin: 'application'
+apply plugin: 'eclipse'
+//apply plugin: 'application'
+
+// 12.06.2019 for Eclipse
+/*eclipseJdt.doLast {
+    File f = file('.settings/org.eclipse.core.resources.prefs')
+    f.write('eclipse.preferences.version=1\n')
+    f.append('encoding/<project>=UTF-8')
+}
+
+compileJava.options.encoding = "UTF-8"
+compileTestJava.options.encoding = "UTF-8"
+*/
 
 group 'sp-cources'
 version '1.0-SNAPSHOT'

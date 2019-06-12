@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 /**
- * Вспомогательные функции
+ * Р’СЃРїРѕРјРѕРіР°С‚РµР»СЊРЅС‹Рµ С„СѓРЅРєС†РёРё
  * 
  * @author Leonovich P.M.
  */
@@ -18,10 +18,10 @@ public class TextUtil
 	
 	
 	/**
-	 * Вывести список в консоль
+	 * Р’С‹РІРµСЃС‚Рё СЃРїРёСЃРѕРє РІ РєРѕРЅСЃРѕР»СЊ
 	 * 
-	 * @param list Список
-	 * @param isIdent Отступ
+	 * @param list РЎРїРёСЃРѕРє
+	 * @param isIdent РћС‚СЃС‚СѓРї
 	 */
 	public static void viewList(List <? extends Object> list, boolean isIdent) 
 	{	
@@ -34,7 +34,7 @@ public class TextUtil
 	}
 	
 	/**
-	 * Конвертация коллекции Iterable в список
+	 * РљРѕРЅРІРµСЂС‚Р°С†РёСЏ РєРѕР»Р»РµРєС†РёРё Iterable РІ СЃРїРёСЃРѕРє
 	 * 
 	 * @param result
 	 * @return
@@ -45,7 +45,7 @@ public class TextUtil
 	}
 	
 	/**
-	 * Преобразовать дату к формату отображения в консоли
+	 * РџСЂРµРѕР±СЂР°Р·РѕРІР°С‚СЊ РґР°С‚Сѓ Рє С„РѕСЂРјР°С‚Сѓ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РІ РєРѕРЅСЃРѕР»Рё
 	 * 
 	 * @param date
 	 * @return

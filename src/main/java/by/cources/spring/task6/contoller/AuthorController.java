@@ -41,7 +41,10 @@ public class AuthorController
   {   	  
 	  ModelAndView modelAndView = new ModelAndView("redirect:/");
 	  try {
-		  authorService.saveAuthor(mode, author, result);
+		  if (result.hasErrors())		  
+		      throw new Exception(result.getAllErrors().toString());	      
+		  
+		  authorService.saveAuthor(mode, author);
 	  } 
 	  catch (Exception ex)
 	  {

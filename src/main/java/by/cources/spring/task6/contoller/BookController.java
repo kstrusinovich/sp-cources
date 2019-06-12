@@ -46,7 +46,10 @@ public class BookController
   {   	  
 	  ModelAndView modelAndView = new ModelAndView("redirect:/");
 	  try {
-		  bookService.saveBook(mode, book, result);
+		  if (result.hasErrors())		  
+		      throw new Exception(result.getAllErrors().toString());
+		  
+		  bookService.saveBook(mode, book);
 	  } 
 	  catch (Exception ex)
 	  {

@@ -9,7 +9,6 @@ import by.cources.spring.util.TextUtil;
 import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.validation.BindingResult;
 
 
 @Service
@@ -48,17 +47,9 @@ public class BookServiceImpl implements BookService
   
   @Override
   @Transactional
-  public void saveBook(String mode, Book book, BindingResult result) throws Exception 
-  {	
-	  if (result.hasErrors())
-	  {
-		  // for (ObjectError error : result.getAllErrors())
-		  //   LOGGER.error(error.toString());	      
-	      throw new Exception(result.getAllErrors().toString());	      
-	  }
-	  
-	  try 
-	  {
+  public void saveBook(String mode, Book book) throws Exception 
+  {
+	 
 		  if (mode.equals(EditMode.INSERT) || mode.equals(EditMode.UPDATE))
 		  {
 			  bookRepository.save(book);
@@ -67,11 +58,7 @@ public class BookServiceImpl implements BookService
 		  {
 			  bookRepository.delete(book);
 		  }
-		  
-	  } catch (Exception ex){
-		  throw new Exception(ex.getMessage());
-	  }
-	 
+		  	
   }
 
   @Override

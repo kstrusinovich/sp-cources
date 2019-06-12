@@ -13,6 +13,7 @@ import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
 import by.cources.spring.util.TextUtil;
+import static javax.persistence.CascadeType.*;
 
 @Entity
 @Table(name = "author")
@@ -35,7 +36,7 @@ public class Author
 
 	// @OneToMany(targetEntity = Book.class)
 	// @JoinColumn(name = "author_id",referencedColumnName="id")
-	@OneToMany(mappedBy="author")
+	@OneToMany(mappedBy="author")//, cascade = {/*PERSIST, MERGE REFRESH, REMOVE, DETACH*/REFRESH })
 	private List<Book> books;
 
   
