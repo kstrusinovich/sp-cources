@@ -14,4 +14,10 @@ public interface BookRepository extends CrudRepository<Book, Long> {
   List<Book> findOlderThan(@Param("value") Long value);
 
   List<Book> findByName(String name);
+
+  @Query("select b from Book b where b.id = :value")
+  List<Book> findByIdBook(@Param("value") Long value);
+  @Override
+  void deleteById(Long aLong);
+
 }
