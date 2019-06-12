@@ -6,7 +6,7 @@
 <body>
 <h2>${errorMessage}</h2>
 <h3>Updates</h3>
-<form:form method="POST" action="/book/update" modelAttribute="book">
+<form:form method="POST" action="/sp-cources/book/update" modelAttribute="book">
     <table>
         <hidden>
             <tr>
@@ -25,18 +25,16 @@
             <td><form:input path="publishedIn"/></td>
             <td><form:errors path="publishedIn" cssClass="error" /></td>
         </tr>
-        <form:select path="author.id">
-            <c:forEach items="${authors}">
-                <form:option value="-" label="Select author"/>
-            </c:forEach>
-
-            <form:options items="${authors}"> ${author.firstName} ${author.lastName} </form:select>
-        </form:select>
-
         <tr>
-            <td><form:label path="author.dateOfBirth">author.dateOfBirth</form:label></td>
-            <td><form:input path="author.dateOfBirth" type="date"/></td>
-            <td><form:errors path="author.dateOfBirth" cssClass="error" /></td>
+            <td><form:label path="author">author.firstName</form:label></td>
+            <td>
+                  <form:select path="author.id">
+                        <c:forEach var="author" items="${authors}">
+                        <form:option value="${author.id}" label="${author.firstName} ${author.lastName}"/>
+                      </c:forEach>
+                  </form:select>
+                </td>
+            <td></td>
         </tr>
         <tr>
             <td></td>

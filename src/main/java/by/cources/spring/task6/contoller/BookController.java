@@ -35,7 +35,11 @@ public class BookController {
     Book result = new Book();
     result.setPublishedIn(2019L);
     result.setAuthor(new Author());
-    return new ModelAndView("book-form", "book", result);
+    Map<String, Object> model = new HashMap<>();
+    model.put("book", result);
+    model.put("authors", bookService.findAuthorsAll());
+
+    return new ModelAndView("book-form", model);
   }
 
   @RequestMapping(value = "/edit", method = RequestMethod.POST)
@@ -44,6 +48,7 @@ public class BookController {
       for (ObjectError error : result.getAllErrors()) {
         LOGGER.error(error.toString());
       }
+      model.put("authors", bookService.findAuthorsAll());
       model.addAttribute("errorMessage", "something wrong");
 //      return "error";
       return "book-form";
@@ -87,6 +92,10 @@ public class BookController {
     ModelAndView modelAndView = new ModelAndView("book-update");
     modelAndView.addObject("book", bookService.getBookById(id));
     modelAndView.addObject("authors", bookService.findAuthorsAll());
+    Book result = new Book();
+    Map<String, Object> model = new HashMap<>();
+    model.put("book", result);
+    model.put("authors", bookService.findAuthorsAll());
     return modelAndView;
   }
 
