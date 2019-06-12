@@ -1,11 +1,5 @@
 package by.cources.spring.task5.spring;
 
-import by.cources.spring.task5.spring.BookConfig;
-import by.cources.spring.task5.spring.service.BookService;
-import by.cources.spring.task5.spring.model.Author;
-import by.cources.spring.task5.spring.model.Book;
-import by.cources.spring.task5.spring.model.Language;
-import by.cources.spring.util.TextUtil;
 import io.undertow.Handlers;
 import io.undertow.Undertow;
 import io.undertow.servlet.Servlets;
@@ -15,14 +9,9 @@ import io.undertow.servlet.api.InstanceFactory;
 import io.undertow.servlet.api.ListenerInfo;
 import io.undertow.servlet.util.ImmediateInstanceFactory;
 import javax.servlet.ServletException;
-
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
-
-import java.util.List;
 
 public class Task5Main {
 
@@ -31,7 +20,6 @@ public class Task5Main {
   private static final String PKG_NAME = "myapp.war";
 
   public static void main(String[] args) throws ServletException {
-
     Task5Main task5Main = new Task5Main();
     DeploymentManager deploymentManager = task5Main.deploymentManager();
     deploymentManager.deploy();
@@ -41,7 +29,6 @@ public class Task5Main {
             .addPrefixPath(CONTEXT_PATH, deploymentManager.start()))
         .build()
         .start();
-
   }
 
   private DeploymentManager deploymentManager() {
