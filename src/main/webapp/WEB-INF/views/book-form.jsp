@@ -5,7 +5,7 @@
     <body>
         <h2>${errorMessage}</h2>
         <h3>Welcome, Enter The Book Details</h3>
-        <form:form method="POST" action="/sp-cources/book/edit" modelAttribute="book">
+        <form:form method="POST" action="/book/edit" modelAttribute="book">
              <table>
                 <tr>
                     <td><form:label path="name">name</form:label></td>
@@ -37,6 +37,7 @@
                 <td></td>
                     <td><input type="submit" value="Submit"/></td>
                 </tr>
+
             </table>
         </form:form>
     </body>

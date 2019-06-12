@@ -15,6 +15,7 @@ public class Author {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
+
   @Column(name = "id")
   private Long id;
 
@@ -23,6 +24,7 @@ public class Author {
 
   @Column(name = "last_name")
   private String lastName;
+
   @DateTimeFormat(pattern = "yyyy-MM-dd")
   @Column(name = "date_of_birth")
   private LocalDate dateOfBirth;

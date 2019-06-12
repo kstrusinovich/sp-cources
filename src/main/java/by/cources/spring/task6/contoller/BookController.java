@@ -58,4 +58,26 @@ public class BookController {
     model.put("booksVariable", booksAll);
     return new ModelAndView("books", model);
   }
+
+  @RequestMapping(value = "/list", method = RequestMethod.POST)
+  public String button(@ModelAttribute("book") Book book, BindingResult result, ModelMap model) {
+    if (result.hasErrors()) {
+      for (ObjectError error : result.getAllErrors()) {
+        LOGGER.error(error.toString());
+      }
+      model.addAttribute("errorMessage", "something wrong");
+//      return "error";
+      return "books";
+    }
+    //bookService.saveBook(book);
+    return "redirect:editBook";
+  }
+
+  @RequestMapping(value = "/editBook", method = RequestMethod.GET)
+  public ModelAndView formEdit() {
+    Book result = new Book();
+    result.setAuthor(new Author());
+    return new ModelAndView("bookEditForm", "book", result);
+  }
+
 }
