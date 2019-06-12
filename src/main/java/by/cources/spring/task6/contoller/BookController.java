@@ -37,7 +37,7 @@ public class BookController {
   }
 
   @RequestMapping(value = "/edit", method = RequestMethod.POST)
-  public String submit(@ModelAttribute("edit") Book book, BindingResult result, ModelMap model) {
+  public String submit(@ModelAttribute("book") Book book, BindingResult result, ModelMap model) {
     if (result.hasErrors()) {
       for (ObjectError error : result.getAllErrors()) {
         LOGGER.error(error.toString());
@@ -57,5 +57,14 @@ public class BookController {
     Map<String, Object> model = new HashMap<>();
     model.put("booksVariable", booksAll);
     return new ModelAndView("books", model);
+  }
+
+  @RequestMapping(value = "/delete", method = RequestMethod.GET)
+  public ModelAndView delete() {
+    List<Book> booksAll = bookService.findBooksAll();
+//    return new ModelAndView("books", "booksVariable", booksAll);
+    Map<String, Object> model = new HashMap<>();
+    model.put("booksVariable", booksAll);
+    return new ModelAndView("book-delete", model);
   }
 }

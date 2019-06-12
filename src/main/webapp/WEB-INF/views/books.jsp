@@ -16,6 +16,7 @@
 	<ol>
 		<c:forEach var="book" items="${booksVariable}">
 			<li>${book.id}. ${book.name} (${book.publishedIn})</li>
+
 		</c:forEach>
 	</ol>
 </body>
