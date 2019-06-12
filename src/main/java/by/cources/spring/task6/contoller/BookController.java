@@ -34,7 +34,11 @@ public class BookController {
     Book result = new Book();
     result.setPublishedIn(2019L);
     result.setAuthor(new Author());
-    return new ModelAndView("book-form", "book", result);
+    Map<String, Object> model = new HashMap<>();
+    model.put("book", result);
+    model.put("authors", bookService.findAuthorsAll());
+
+    return new ModelAndView("book-form", model);
   }
 
   @RequestMapping(value = "/edit", method = RequestMethod.POST)
