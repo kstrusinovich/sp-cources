@@ -52,7 +52,7 @@ public class BookController {
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
-	public String submit(@ModelAttribute("edit") @Valid Book book, BindingResult result, ModelMap model) {
+	public String submit(@ModelAttribute("book") @Valid Book book, BindingResult result, ModelMap model) {
 		/*
 		if (result.hasErrors()) {
 			String errorMessage = "";
