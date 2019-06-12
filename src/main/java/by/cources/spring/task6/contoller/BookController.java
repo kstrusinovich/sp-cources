@@ -47,6 +47,13 @@ public class BookController {
     return "redirect:list";
   }
 
+  @RequestMapping(value = "/delete", method = RequestMethod.GET)
+  public ModelAndView form1() {
+    Book result = new Book();
+    result.setAuthor(new Author());
+    return new ModelAndView("bookdel-form", "book", result);
+  }
+
   @RequestMapping(value = "/list", method = RequestMethod.GET)
   public ModelAndView list() {
     return new ModelAndView("books", "books", bookService.findBooksAll());
