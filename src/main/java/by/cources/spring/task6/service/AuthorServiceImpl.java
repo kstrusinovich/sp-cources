@@ -2,8 +2,9 @@ package by.cources.spring.task6.service;
 
 import by.cources.spring.task6.field.EditMode;
 import by.cources.spring.task6.model.Author;
-import by.cources.spring.task6.model.Book;
 import by.cources.spring.task6.repository.AuthorRepository;
+import by.cources.spring.task6.repository.BookRepository;
+
 import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,11 +14,12 @@ public class AuthorServiceImpl implements AuthorService {
 
 	private final AuthorRepository authorRepository;
 
-	private final BookService bookService;
+	private final BookRepository bookRepository;
 
-	public AuthorServiceImpl(AuthorRepository authorRepository, BookService bookService) {
+	public AuthorServiceImpl(AuthorRepository authorRepository, 
+			BookRepository bookRepository) {
 		this.authorRepository = authorRepository;
-		this.bookService = bookService;
+		this.bookRepository = bookRepository;
 	}
 
 	@Override
@@ -37,6 +39,10 @@ public class AuthorServiceImpl implements AuthorService {
 	public void saveAuthor(String mode, Author author) throws Exception 
 	{		
 		// System.out.println(">>"+author.getBooks().size());
+		if ( bookRepository.findByAuthorId(author.getId()).size()>0)
+		{
+			throw new Exception("Для данного автора существуют книги");
+		}
 		
 		if (mode.equals(EditMode.INSERT) || mode.equals(EditMode.UPDATE)) 
 		{

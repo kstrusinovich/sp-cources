@@ -48,8 +48,8 @@ public class BookServiceImpl implements BookService
   @Override
   @Transactional
   public void saveBook(String mode, Book book) throws Exception 
-  {
-	 
+  {	  
+	  
 		  if (mode.equals(EditMode.INSERT) || mode.equals(EditMode.UPDATE))
 		  {
 			  bookRepository.save(book);
