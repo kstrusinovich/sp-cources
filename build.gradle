@@ -37,22 +37,20 @@ dependencies {
 
   //task 5
   compile 'org.springframework:spring-webmvc:5.1.7.RELEASE'
-  compile 'io.undertow:undertow-core:2.0.21.Final'
-  compile 'io.undertow:undertow-servlet:2.0.21.Final'
+//  compile 'io.undertow:undertow-core:2.0.21.Final'
+//  compile 'io.undertow:undertow-servlet:2.0.21.Final'
   compile 'com.fasterxml.jackson.core:jackson-databind:2.9.9'
   compile 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.9'
 
   //task 6
-  def tomcatVersion = '9.0.1'
-  tomcat "org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}"
-  tomcat "org.apache.tomcat.embed:tomcat-embed-logging-juli:9.0.0.M6"
-  tomcat "org.apache.tomcat.embed:tomcat-embed-jasper:${tomcatVersion}"
 
-//  def tomcatVersion = '7.0.76'
-//  tomcat "org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}"
-//  tomcat "org.apache.tomcat.embed:tomcat-embed-logging-juli:${tomcatVersion}"
-//  tomcat "org.apache.tomcat.embed:tomcat-embed-jasper:${tomcatVersion}"
+  def tomcatVersion = '8.5.16'
+  tomcat "org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}",
+      "org.apache.tomcat.embed:tomcat-embed-logging-juli:8.5.2",
+      "org.apache.tomcat.embed:tomcat-embed-jasper:${tomcatVersion}"
 
+
+  compileOnly 'javax.servlet:javax.servlet-api:4.0.1'
   compile 'jstl:jstl:1.2'
   compile 'org.slf4j:jcl-over-slf4j:1.7.26'
   compile 'ch.qos.logback:logback-classic:1.2.3'
@@ -62,6 +60,5 @@ dependencies {
 
 tomcat {
   httpProtocol = 'org.apache.coyote.http11.Http11Nio2Protocol'
-  ajpProtocol = 'org.apache.coyote.ajp.AjpNio2Protocol'
+  ajpProtocol  = 'org.apache.coyote.ajp.AjpNio2Protocol'
 }
-
