@@ -32,14 +32,6 @@ public class BookController {
     result.setAuthor(new Author());
     return new ModelAndView("book-form", "book", result);
   }
- //Lesya
-   @DeleteMapping (value = "/edit", method = RequestMethod.DELETE)
-   public ModelAndView form() {
-    Book result = new Book();
-     result.setAuthor(new Author());
-    return new ModelAndView("bookdel-form", "book", result);
- }
- //Lesya_
 
   @RequestMapping(value = "/edit", method = RequestMethod.POST)
   public String submit(@ModelAttribute("edit") Book book, BindingResult result, ModelMap model) {
