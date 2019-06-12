@@ -4,7 +4,7 @@ import by.cources.spring.task6.model.Author;
 import by.cources.spring.task6.model.Book;
 import java.util.List;
 import javax.transaction.Transactional;
-
+import java.util.Optional;
 public interface BookService {
 
   List<Book> findBooksAll();
@@ -21,5 +21,10 @@ public interface BookService {
   List<Author> findAuthorsAll();
 
   Book saveBook(Book book);
+  Book updateBook(Book book);
   void deleteBook(Long id);
+
+  Optional<Book> findBookById(Long id);
+
+  Iterable<Book> saveAll(Long id);
 }

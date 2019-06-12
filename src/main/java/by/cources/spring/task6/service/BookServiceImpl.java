@@ -6,6 +6,8 @@ import by.cources.spring.task6.repository.AuthorRepository;
 import by.cources.spring.task6.repository.BookRepository;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -53,6 +55,12 @@ public class BookServiceImpl implements BookService {
 
   @Override
   @Transactional
+  public Optional<Book> findBookById(Long id) {
+    return bookRepository.findById(id);
+  }
+
+  @Override
+  @Transactional
   public List<Author> findAuthorsAll() {
     return authorRepository.findAll();
   }
@@ -60,6 +68,10 @@ public class BookServiceImpl implements BookService {
   @Override
   public Book saveBook(Book book) {
     return bookRepository.save(book);
+  }
+  /*@Override
+  public Iterable<Book> saveAll(Long id) {
+    return bookRepository.saveAll(id);*/
   }
   @Override
   public void deleteBook(Long id) {

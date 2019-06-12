@@ -14,6 +14,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/book")
@@ -33,6 +34,19 @@ public class BookController {
     result.setAuthor(new Author());
     return new ModelAndView("book-form", "book", result);
   }
+  @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+  public ModelAndView edit(@PathVariable("id") Long id) {
+    Optional<Book> book = bookService.findBookById(id);
+    if (book.isPresent()) {
+      return new ModelAndView("book-form", "book", book.get());
+    }
+
+    ModelAndView errorModel = new ModelAndView("error");
+    errorModel.addObject("errorMessage", "BOOK NOT FOUND");
+    return errorModel;
+
+  }
+
 
 
   @RequestMapping(value = "/edit", method = RequestMethod.POST)
@@ -48,6 +62,21 @@ public class BookController {
     bookService.saveBook(book);
     return "redirect:list";
   }
+  @RequestMapping(value = "/edit", method = RequestMethod.POST)
+  public String update(@ModelAttribute("book") Book book, BindingResult result, ModelMap model) {
+    if (result.hasErrors()) {
+      for (ObjectError error : result.getAllErrors()) {
+        LOGGER.error(error.toString());
+      }
+      model.addAttribute("errorMessage", "something wrong");
+//      return "error";
+      return "book-form";
+    }
+
+    bookService.updateBook(book);
+    return "redirect:list";
+  }
+
 
   @RequestMapping(value = "/list", method = RequestMethod.GET)
   public ModelAndView list() {
@@ -57,25 +86,19 @@ public class BookController {
     model.put("booksVariable", booksAll);
     return new ModelAndView("books", model);
   }
-  @RequestMapping(value = "/delete", method = RequestMethod.GET)
+ /* @RequestMapping(value = "/delete", method = RequestMethod.GET)
   public ModelAndView formDel() {
     Book result = new Book();
     return new ModelAndView("book-delete", "book", result);
-  }
+  }*/
 
-  @RequestMapping(value = "/delete", method = RequestMethod.POST)
-  public String delete(@ModelAttribute("book") Book book, BindingResult result, ModelMap model){
-    if (result.hasErrors()) {
-      for (ObjectError error : result.getAllErrors()) {
-        LOGGER.error(error.toString());
-      }
-      model.addAttribute("errorMessage", "something wrong");
-//      return "error";
-      return "book-delete";
-    }
-    bookService.deleteBook(book.getId());
+  @DeleteMapping(value = "/delete/{id}")
+  public String delete(@PathVariable("id") Long id){
+System.out.println("id="+id);
+    bookService.deleteBook(id);
     return "redirect:list";
   }
+
  /* @RequestMapping(value = "/update", method = RequestMethod.GET)
   public ModelAndView formUp() {
     Book result = new Book();

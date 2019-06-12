@@ -36,7 +36,9 @@
                 <tr>
                 <td></td>
                 <td></td>
-                    <td><input type="submit" value="Submit"/></td>
+                    <td><input type="submit" value="Save"/></td>
+                    <td></td>
+                    <td><input type="submit" value="Update"/></td>
                 </tr>
             </table>
         </form:form>
