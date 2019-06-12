@@ -6,11 +6,7 @@
 <body>
 <h2>${errorMessage}</h2>
 <h3>Edit BOOK</h3>
-                <ol>
-                        		<c:forEach var="author" items="${authors}">
-                        			<li>${author.id}. ${author.firstName} ${author.lastName}</li>
-                        		</c:forEach>
-                    </ol>
+
              <form:form method="POST" action="/sp-cources/book/redit" modelAttribute="book">
     <table>
         <tr>
@@ -28,7 +24,7 @@
           <tr>
                              <td><form:label path="author">authorName</form:label></td>
                              <td>
-                               <form:select path="author.id">
+                               <form:select path="author">
                                		<c:forEach var="author" items="${authors}">
                                      <form:option value="${author}" label="${author.firstName} ${author.lastName}"/>
                                    </c:forEach>

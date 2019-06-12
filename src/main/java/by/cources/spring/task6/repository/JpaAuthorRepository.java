@@ -47,13 +47,5 @@ public class JpaAuthorRepository implements AuthorRepository {
       return em.merge(author);
     }
   }
-  @Override
-  @Transactional
-  public List<Author> findByName(String firstName, String lastName) {
-    String hql = "select a from Author a where a.firstName= :firstName and a.lastName= :lastName";
-    TypedQuery<Author> query = em.createQuery(hql, Author.class);
-    query.setParameter("firstName", firstName);
-    query.setParameter("lastName", lastName);
-    return query.getResultList();
-  }
+
 }

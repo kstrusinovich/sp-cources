@@ -27,7 +27,5 @@ public interface BookService {
 
   List<Book> findByIdBook(Long value);
 
-  List<Author> findAuthorByName(String firstName, String lastName);
 
-  Optional<Author> findAuthorById(Long id);
 }

@@ -69,11 +69,7 @@ public class BookServiceImpl implements BookService {
 
         bookRepository.deleteById(id);
     }
-  @Override
-  @Transactional
-  public List<Author> findAuthorByName(String firstName, String LastName) {
-    return authorRepository.findByName(firstName, LastName);
-  }
+
   @Override
   @Transactional
   public List<Book>findByIdBook (Long value) { return bookRepository.findByIdBook(value); }
