@@ -45,7 +45,7 @@
 
 				<td>&nbsp;&nbsp;<a href="/sp-cources/book/edit/${book.id}">EDIT BOOK</a>&nbsp;&nbsp;</td>
 
-				<td>&nbsp;&nbsp;<a href="/sp-cources/book/editAuthor/${book.id}">EDIT AUTHOR</a>&nbsp;&nbsp;</td>
+				<td>&nbsp;&nbsp;<a href="/sp-cources/book/editA">CHANGE AUTHOR</a>&nbsp;&nbsp;</td>
 
 			</tr>
 		</c:forEach>

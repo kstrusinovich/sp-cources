@@ -15,7 +15,10 @@ import static javax.persistence.CascadeType.DETACH;
 import static javax.persistence.CascadeType.MERGE;
 import static javax.persistence.CascadeType.PERSIST;
 import static javax.persistence.CascadeType.REFRESH;
+
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 @Entity
 @Table(name = "book")
@@ -26,20 +29,22 @@ public class Book {
   @Column(name = "id")
   private Long id;
   @Column(name = "name")
+  @NotEmpty
   private String name;
 
-  @ManyToOne(cascade = {PERSIST,
+  @ManyToOne(optional = false,cascade = {PERSIST,
           MERGE,
 //      REMOVE,
           REFRESH,
           DETACH
-  }, fetch = FetchType.LAZY)
+  })
   @JoinColumn(name = "author_id")
   @JsonIgnore
   private Author author;
 
   @Column(name = "published_in")
   @NotNull(message = "my custom message")
+  @Min(1000)
   private Long publishedIn;
 
   public Long getPublishedIn() {

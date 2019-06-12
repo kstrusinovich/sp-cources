@@ -14,6 +14,11 @@
         <h3>Welcome, Enter The Book Details</h3>
         <form:form method="POST" action="/sp-cources/book/edit" modelAttribute="book">
              <table>
+                 <tr>
+                     <td><form:label path="id">id</form:label></td>
+                     <td><form:input path="id" readonly="true"/></td>
+                     <td></td>
+                 </tr>
                 <tr>
                     <td><form:label path="name">name</form:label></td>
                     <td><form:input path="name"/></td>
@@ -25,22 +30,20 @@
                     <td><form:errors path="publishedIn" cssClass="error" /></td>
                 </tr>
                  <tr>
-                     <td><form:label path="author">author</form:label></td>
-                     <td>
-                         <form:select path="author.id">
-                             <c:forEach var="author" items="${authors}">
-                                 <form:option value="${author}" label="${author.firstName} ${author.lastName}"/>
-                             </c:forEach>
-                         </form:select>
-                     </td>
+                     <td><form:label path="author.firstName">author.firstName</form:label></td>
+                     <td><form:input path="author.firstName"/></td>
                      <td></td>
                  </tr>
                  <tr>
-                    <td><form:label path="author.dateOfBirth">author.dateOfBirth</form:label></td>
-                    <td><form:input path="author.dateOfBirth" type="date"/></td>
-                    <td><form:errors path="author.dateOfBirth" cssClass="error" /></td>
-                </tr>
-                <tr>
+                     <td><form:label path="author.lastName">author.lastName</form:label></td>
+                     <td><form:input path="author.lastName"/></td>
+                     <td></td>
+                 </tr>
+                 <tr>
+                     <td><form:label path="author.dateOfBirth">author.dateOfBirth</form:label></td>
+                     <td><form:input path="author.dateOfBirth" type="date"/></td>
+                     <td><form:errors path="author.dateOfBirth" cssClass="error" /></td>
+                 </tr>
                 <td></td>
                 <td></td>
                     <td><input type="submit" value="Submit"/></td>

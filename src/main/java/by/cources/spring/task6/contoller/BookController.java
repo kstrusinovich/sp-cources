@@ -6,6 +6,7 @@ import by.cources.spring.task6.service.BookService;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -54,7 +55,8 @@ public class BookController {
 
 
   @RequestMapping(value = "/edit", method = RequestMethod.POST)
-  public String submit(@ModelAttribute("book") Book book, BindingResult result, ModelMap model) {
+  public String submit(@Valid @ModelAttribute("book") Book book, BindingResult result, ModelMap model) {
+      System.out.println("!!!!!!!!!!!!!!!!!"+book);
     if (result.hasErrors()) {
       for (ObjectError error : result.getAllErrors()) {
         LOGGER.error(error.toString());
@@ -63,6 +65,7 @@ public class BookController {
 //      return "error";
       return "book-form";
     }
+      System.out.println("!!!!!!!!!!!!!!!!!222"+book);
     bookService.saveBook(book);
     return "redirect:list";
   }
@@ -83,7 +86,7 @@ public class BookController {
     return new ModelAndView("book-delete", "book", result);
   }*/
 
-  @GetMapping(value = "/delete/{id}")
+  @DeleteMapping (value = "/delete/{id}")
   public String delete(@PathVariable("id") Long id) {
 System.out.println("id="+id);
     bookService.deleteBook(id);
@@ -91,19 +94,17 @@ System.out.println("id="+id);
   }
 
 
-  @RequestMapping(value = "/edita", method = RequestMethod.GET)
+  @RequestMapping(value = "/editA", method = RequestMethod.GET)
   public ModelAndView formAut() {
 
     List<Author> authorsAll = bookService.findAuthorsAll();
     List<Book> booksAll = bookService.findBooksAll();
     Map<String, Object> model = new HashMap<>();
 
-    model.put("authorVariable", authorsAll);
+    model.put("authors", authorsAll);
     model.put("bookVar",booksAll);
 
     return new ModelAndView("book-form-author", model);
-
-
   }
 
 }

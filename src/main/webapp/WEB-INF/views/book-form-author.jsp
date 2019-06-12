@@ -13,67 +13,27 @@
 </head>
 <body>
 <h2>${errorMessage}</h2>
-<h3>Welcome, Enter The Book Details</h3>
+<h3>Welcome, change author</h3>
 <form:form method="POST" action="/sp-cources/book/edita" modelAttribute="book">
+
+     <pre>
+             ${bookVar}
+     </pre>
+    <pre>
+            ${authors}
+    </pre>
     <table>
         <%--<tr>
-            <td></td>
-            <td><form:label path="name">name</form:label></td>
-            <td><form:input path="name" disabled="true"/></td>
-        </tr>--%>
-       <%--     <pre>
-                    ${bookVar}
-            </pre>
-            <pre>
-                    ${authorVariable}
-            </pre>
-            <ol>
-                <c:forEach var="book" items="${bookVar}">
-                    <li>${book.id}. ${book.name} (${book.publishedIn})</li>
-                </c:forEach>
-            </ol>--%>
-            <tr>
-                <td></td>
-                <td><form:label path="book.name">book.name</form:label></td>
-                <td><form:select path="book.name" ></td>
-            <ol>
-                <c:forEach var="book" items="${bookVar}">
-                    <form:option value="${book.name}">${{book.name}}</form:option>
-                </c:forEach>
-            </ol>
+            <td><form:label path="author">author</form:label></td>
+            <td>
+                <form:select path="author.id">
+                    <c:forEach var="author" items="${authors}">
+                        <form:option value="${author}" label="${author.firstName} ${author.lastName}"/>
+                    </c:forEach>
                 </form:select>
-            <tr>
-            <td><form:errors path="author.dateOfBirth" cssClass="error" /></td>
-            <td><form:label path="publishedIn">publishedIn</form:label></td>
-            <td><form:input path="publishedIn" disabled="true"/></td>
-        </tr>
-        <tr>
+            </td>
             <td></td>
-            <td><form:label path="author.firstName">author.firstName</form:label></td>
-            <td><form:input path="author.firstName" disabled="true"/></td>
-        </tr>
-        <tr>
-            <td><form:label path="author.lastName">author.lastName</form:label></td>
-            <td><form:select path="author.lastName" ></td>
-            <ol>
-                <c:forEach var="author.lastName" items="${authorVariable}">
-                    <form:option value="${author.lastName}">${{author.lastName}}</form:option>
-                </c:forEach>
-            </ol>
-            </form:select>
-            <td></td>
-        </tr>
-        <tr>
-            <td><form:errors path="author.dateOfBirth" cssClass="error" /></td>
-            <td><form:label path="author.dateOfBirth">author.dateOfBirth</form:label></td>
-            <td><form:input path="author.dateOfBirth" type="date" disabled="true"/></td>
-        </tr>
-
-        <tr>
-            <td></td>
-            <td></td>
-            <td><input type="submit" value="Submit"/></td>
-        </tr>
+        </tr>--%>
     </table>
 </form:form>
 </body>
