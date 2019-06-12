@@ -15,7 +15,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
+import javax.validation.Valid;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -31,8 +32,6 @@ public class Book {
 
 	@Column(name = "name")
 	@Size(min=2, max=30)
-	@NotNull
-	@NotEmpty
 	private String name;
 
 	@ManyToOne(optional = false, cascade = { PERSIST, DETACH, MERGE, REFRESH })
@@ -42,6 +41,7 @@ public class Book {
 
 	@Column(name = "published_in")
 	@NotNull
+	@Min(1800)
 	protected Long publishedIn;
 
 	public Long getPublishedIn() {

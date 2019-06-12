@@ -13,7 +13,7 @@ import org.springframework.web.servlet.DispatcherServlet;
 public class Task6Main implements WebApplicationInitializer {
 
   public void onStartup(ServletContext container) throws ServletException {
-
+    
     FilterRegistration.Dynamic encodingFilter = container.addFilter("encoding-filter", new CharacterEncodingFilter());
     encodingFilter.setInitParameter("encoding", "UTF-8");
     encodingFilter.setInitParameter("forceEncoding", "true");

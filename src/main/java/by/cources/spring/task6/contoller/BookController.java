@@ -52,24 +52,24 @@ public class BookController {
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
-	public String submit(@ModelAttribute("book") @Valid Book book, BindingResult result, ModelMap model) {
+	public String submit(@Valid @ModelAttribute("book") Book book, BindingResult result, ModelMap model) {
 		/*
+		 * if (result.hasErrors()) { String errorMessage = ""; for (ObjectError error :
+		 * result.getAllErrors()) { LOGGER.error(error.toString()); errorMessage +=
+		 * error.toString(); } model.addAttribute("errorMessage", errorMessage);
+		 * model.addAttribute("book", book); return "book-form"; }
+		 */
 		if (result.hasErrors()) {
-			String errorMessage = "";
 			for (ObjectError error : result.getAllErrors()) {
 				LOGGER.error(error.toString());
-				errorMessage += error.toString();
 			}
-			model.addAttribute("errorMessage", errorMessage);
-			model.addAttribute("book", book);
+			model.addAttribute("errorMessage", "something wrong");
 			return "book-form";
 		}
-		*/
-		if (result.hasErrors()) {
-			return "book-form";
-		}
-
-		Author author = book.getAuthor();
+		/*
+		 * if (result.hasErrors()) { return "book-form"; }
+		 */
+		@Valid Author author = book.getAuthor();
 		List<Author> authors = bookService.findAuthorByName(author.getFirstName(), author.getLastName());
 		if (!authors.isEmpty()) {
 			book.setAuthor(authors.get(0));
