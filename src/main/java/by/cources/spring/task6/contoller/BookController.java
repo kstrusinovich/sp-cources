@@ -9,7 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.annotation.DeleteMapping;
+//import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -39,7 +39,8 @@ public class BookController {
       for (ObjectError error : result.getAllErrors()) {
         LOGGER.error(error.toString());
       }
-      model.addAttribute("errorMessage", "something wrong");
+
+          model.addAttribute("errorMessage", "something wrong");
 //      return "error";
       return "books";
     }
@@ -47,8 +48,32 @@ public class BookController {
     return "redirect:list";
   }
 
-  @RequestMapping(value = "/list", method = RequestMethod.GET)
-  public ModelAndView list() {
-    return new ModelAndView("books", "books", bookService.findBooksAll());
+
+  @RequestMapping(value = "/delete", method = RequestMethod.GET)
+  public ModelAndView form1() {
+    Book result = new Book();
+    result.setAuthor(new Author());
+    return new ModelAndView("bookdel-form", "book", result);
   }
-}
+
+    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+       public String delete(@ModelAttribute("delete") Book book, BindingResult result, ModelMap model) {
+      if (result.hasErrors()) {
+        for (ObjectError error : result.getAllErrors()) {
+          LOGGER.error(error.toString());
+        }
+        model.addAttribute("errorMessage", "something wrong");
+//      return "error";
+        return "books";
+      }
+      bookService.saveBook(book);
+      return "redirect:list";
+    }
+
+
+        @RequestMapping(value = "/list", method = RequestMethod.GET)
+        public ModelAndView list () {
+          return new ModelAndView("books", "books", bookService.findBooksAll());
+        }
+
+    }
