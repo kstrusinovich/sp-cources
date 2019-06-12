@@ -21,10 +21,10 @@ public interface BookService {
   List<Author> findAuthorsAll();
 
   Book saveBook(Book book);
-  Book updateBook(Book book);
+
   void deleteBook(Long id);
 
   Optional<Book> findBookById(Long id);
 
-  Iterable<Book> saveAll(Long id);
+
 }

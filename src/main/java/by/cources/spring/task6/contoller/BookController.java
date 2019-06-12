@@ -32,7 +32,11 @@ public class BookController {
     Book result = new Book();
     result.setPublishedIn(2019L);
     result.setAuthor(new Author());
-    return new ModelAndView("book-form", "book", result);
+    Map<String, Object> model = new HashMap<>();
+    model.put("book", result);
+    model.put("authors", bookService.findAuthorsAll());
+
+    return new ModelAndView("book-form", model);
   }
   @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
   public ModelAndView edit(@PathVariable("id") Long id) {
@@ -62,20 +66,7 @@ public class BookController {
     bookService.saveBook(book);
     return "redirect:list";
   }
-  @RequestMapping(value = "/edit", method = RequestMethod.POST)
-  public String update(@ModelAttribute("book") Book book, BindingResult result, ModelMap model) {
-    if (result.hasErrors()) {
-      for (ObjectError error : result.getAllErrors()) {
-        LOGGER.error(error.toString());
-      }
-      model.addAttribute("errorMessage", "something wrong");
-//      return "error";
-      return "book-form";
-    }
 
-    bookService.updateBook(book);
-    return "redirect:list";
-  }
 
 
   @RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -92,24 +83,14 @@ public class BookController {
     return new ModelAndView("book-delete", "book", result);
   }*/
 
-  @DeleteMapping(value = "/delete/{id}")
-  public String delete(@PathVariable("id") Long id){
+  @GetMapping(value = "/delete/{id}")
+  public String delete(@PathVariable("id") Long id) {
 System.out.println("id="+id);
     bookService.deleteBook(id);
     return "redirect:list";
   }
 
- /* @RequestMapping(value = "/update", method = RequestMethod.GET)
-  public ModelAndView formUp() {
-    Book result = new Book();
-    result.setPublishedIn(2019L);
-    result.setAuthor(new Author());
-    List<Author> authorsAll = bookService.findAuthorsAll();
-    Map<String, Object> model = new HashMap<>();
-    model.put("authorVariable", authorsAll);
-    //return new ModelAndView("book-form-author", "book", result);
-    return new ModelAndView("book-form-author", model);
-  }*/
+
   @RequestMapping(value = "/edita", method = RequestMethod.GET)
   public ModelAndView formAut() {
 

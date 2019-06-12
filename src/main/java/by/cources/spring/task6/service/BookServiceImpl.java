@@ -69,10 +69,7 @@ public class BookServiceImpl implements BookService {
   public Book saveBook(Book book) {
     return bookRepository.save(book);
   }
-  /*@Override
-  public Iterable<Book> saveAll(Long id) {
-    return bookRepository.saveAll(id);*/
-  }
+
   @Override
   public void deleteBook(Long id) {
     bookRepository.deleteById(id);

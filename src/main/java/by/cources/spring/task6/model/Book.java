@@ -15,7 +15,8 @@ import static javax.persistence.CascadeType.DETACH;
 import static javax.persistence.CascadeType.MERGE;
 import static javax.persistence.CascadeType.PERSIST;
 import static javax.persistence.CascadeType.REFRESH;
-
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 @Entity
 @Table(name = "book")
 public class Book {
@@ -38,6 +39,7 @@ public class Book {
   private Author author;
 
   @Column(name = "published_in")
+  @NotNull(message = "my custom message")
   private Long publishedIn;
 
   public Long getPublishedIn() {
