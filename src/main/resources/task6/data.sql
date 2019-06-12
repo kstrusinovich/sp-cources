@@ -7,5 +7,5 @@ INSERT INTO book(id, author_id, name, published_in, language_id)VALUES (2, 1, 'P
 INSERT INTO book(id, author_id, name, published_in, language_id)VALUES (3, 2, 'Le Capitaine Paul', 1838, 1);
 INSERT INTO book(id, author_id, name, published_in, language_id)VALUES (4, 2, 'Le Capitaine Pamphile', 1839,1);
 INSERT INTO book(id, author_id, name, published_in, language_id)VALUES (5, 1, 'Northanger Abbey', 1818, 2);
-INSERT INTO language (id, name)VALUES (1, 'RUS');
-INSERT INTO language (id, name)VALUES (2, 'USA');
+--INSERT INTO language (id, name)VALUES (1, 'RUS');
+--INSERT INTO language (id, name)VALUES (2, 'USA');
