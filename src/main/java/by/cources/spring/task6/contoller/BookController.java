@@ -18,6 +18,8 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
+
 @Controller
 @RequestMapping("/book")
 public class BookController {
@@ -50,7 +52,8 @@ public class BookController {
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
-	public String submit(@ModelAttribute("edit") Book book, BindingResult result, ModelMap model) {
+	public String submit(@ModelAttribute("edit") @Valid Book book, BindingResult result, ModelMap model) {
+		/*
 		if (result.hasErrors()) {
 			String errorMessage = "";
 			for (ObjectError error : result.getAllErrors()) {
@@ -61,6 +64,11 @@ public class BookController {
 			model.addAttribute("book", book);
 			return "book-form";
 		}
+		*/
+		if (result.hasErrors()) {
+			return "book-form";
+		}
+
 		Author author = book.getAuthor();
 		List<Author> authors = bookService.findAuthorByName(author.getFirstName(), author.getLastName());
 		if (!authors.isEmpty()) {

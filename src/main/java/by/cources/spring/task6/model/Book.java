@@ -16,6 +16,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 @Entity
 @Table(name = "book")
 public class Book {
@@ -24,7 +28,11 @@ public class Book {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Long id;
+
 	@Column(name = "name")
+	@Size(min=2, max=30)
+	@NotNull
+	@NotEmpty
 	private String name;
 
 	@ManyToOne(optional = false, cascade = { PERSIST, DETACH, MERGE, REFRESH })
@@ -33,7 +41,7 @@ public class Book {
 	private Author author;
 
 	@Column(name = "published_in")
-	private Long publishedIn;
+	protected Long publishedIn;
 
 	public Long getPublishedIn() {
 		return publishedIn;
