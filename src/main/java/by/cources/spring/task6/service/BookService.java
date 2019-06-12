@@ -10,6 +10,9 @@ public interface BookService {
   List<Book> findBooksAll();
 
   @Transactional
+  void deleteById(Long id);
+
+  @Transactional
   Author saveAuthor(Author author);
 
   List<Author> findAuthorsWithBookOlderThan(Long value);
@@ -21,4 +24,5 @@ public interface BookService {
   List<Author> findAuthorsAll();
 
   Book saveBook(Book book);
+  Book deleteBook(Book book);
 }

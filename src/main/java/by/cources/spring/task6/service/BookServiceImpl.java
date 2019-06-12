@@ -6,6 +6,8 @@ import by.cources.spring.task6.repository.AuthorRepository;
 import by.cources.spring.task6.repository.BookRepository;
 import java.util.ArrayList;
 import java.util.List;
+
+import by.cources.spring.task6.repository.DelBookRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -61,6 +63,10 @@ public class BookServiceImpl implements BookService {
   public Book saveBook(Book book) {
     return bookRepository.save(book);
   }
+
+  @Override
+  public Book deleteBook(Book book){return DelBookRepository.save(book);}
+
 
   private <T> List<T> toList(Iterable<T> items) {
     List<T> list = new ArrayList<>();
