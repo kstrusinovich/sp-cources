@@ -7,6 +7,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -19,10 +22,12 @@ public class Author {
   private Long id;
 
   @Column(name = "first_name")
+  @Size(min = 1, message = "required")
   private String firstName;
 
   @Column(name = "last_name")
   private String lastName;
+  @NotBlank
   @DateTimeFormat(pattern = "yyyy-MM-dd")
   @Column(name = "date_of_birth")
   private LocalDate dateOfBirth;

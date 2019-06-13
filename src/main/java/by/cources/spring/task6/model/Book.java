@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -37,6 +38,7 @@ public class Book {
   })
   @JoinColumn(name = "author_id")
   @JsonIgnore
+  @Valid
   private Author author;
 
   @Column(name = "published_in")
