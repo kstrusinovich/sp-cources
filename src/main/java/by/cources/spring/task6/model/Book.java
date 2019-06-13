@@ -22,6 +22,7 @@ public class Book {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id")
   private Long id;
+
   @Column(name = "name")
   @Size(min = 1, message = "required")
   private String name;
