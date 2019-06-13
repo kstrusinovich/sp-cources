@@ -7,6 +7,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -15,7 +23,6 @@ public class Author {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-
   @Column(name = "id")
   private Long id;
 
@@ -26,18 +33,6 @@ public class Author {
   @Column(name = "last_name")
   @NotBlank
   private String lastName;
-
-  /*@OneToMany(mappedBy="author")
-  private List<Book> books;
-
-  public List<Book> getBooks() {
-    return books;
-  }
-
-  public void setBooks(List<Book> books) {
-    this.books = books;
-  }*/
-
   @DateTimeFormat(pattern = "yyyy-MM-dd")
   @Column(name = "date_of_birth")
   private LocalDate dateOfBirth;
