@@ -86,11 +86,11 @@ public class BookController {
     return new ModelAndView("book-delete", "book", result);
   }*/
 
-  @DeleteMapping (value = "/delete/{id}")
+  @GetMapping(value = "/delete/{id}")
   public String delete(@PathVariable("id") Long id) {
 System.out.println("id="+id);
     bookService.deleteBook(id);
-    return "redirect:list";
+    return "redirect:/book/list";
   }
 
 
