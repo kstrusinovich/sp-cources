@@ -6,6 +6,7 @@ import by.cources.spring.task6.repository.AuthorRepository;
 import by.cources.spring.task6.repository.BookRepository;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -66,6 +67,11 @@ public class BookServiceImpl implements BookService {
   @Transactional
   public void delBook(Long value) {
     bookRepository.findById(value).ifPresent(bookRepository::delete);
+  }
+
+  @Override
+  public Optional<Book> findBookById(Long id) {
+    return bookRepository.findById(id);
   }
 
   private <T> List<T> toList(Iterable<T> items) {
