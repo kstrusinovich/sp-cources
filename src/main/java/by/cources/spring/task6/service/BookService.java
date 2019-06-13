@@ -3,7 +3,6 @@ package by.cources.spring.task6.service;
 import by.cources.spring.task6.model.Author;
 import by.cources.spring.task6.model.Book;
 import java.util.List;
-import java.util.Optional;
 import javax.transaction.Transactional;
 
 public interface BookService {
@@ -23,5 +22,7 @@ public interface BookService {
 
   Book saveBook(Book book);
 
-  Optional<Book> findBookById(Long id);
+  void deleteBook(Book book);
+
+  Book getBookById(Long id);
 }
