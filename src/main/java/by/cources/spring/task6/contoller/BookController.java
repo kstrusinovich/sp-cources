@@ -31,7 +31,7 @@ public class BookController {
   }
 
   @RequestMapping(value = "/add", method = RequestMethod.GET)
-  public ModelAndView add() { {
+  public ModelAndView add() {
     Book result = new Book();
     result.setAuthor(new Author());
     return new ModelAndView("book-form", "book", result);

@@ -31,8 +31,7 @@ public class Task6Main implements WebApplicationInitializer {
     ServletRegistration.Dynamic servlet = container.addServlet("dispatcher", new DispatcherServlet(ctx));
 
     servlet.setLoadOnStartup(1);
-    servlet.addMapping("/");
+    servlet.addMapping("/");}
     public static class SecurityWebApplicationInitializer extends AbstractSecurityWebApplicationInitializer {
     }
-  }
 }
