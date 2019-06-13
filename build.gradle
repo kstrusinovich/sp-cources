@@ -1,6 +1,8 @@
-apply plugin: 'com.bmuschko.tomcat'
+apply plugin: "org.gretty"
 apply plugin: 'war'
 apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'eclipse'
 
 group 'sp-cources'
 version '1.0-SNAPSHOT'
@@ -9,15 +11,18 @@ sourceCompatibility = 1.8
 
 buildscript {
   repositories {
-    jcenter()
+    maven {
+      url "https://plugins.gradle.org/m2/"
+    }
   }
-
   dependencies {
-    classpath 'com.bmuschko:gradle-tomcat-plugin:2.5'
+    classpath "gradle.plugin.org.gretty:gretty:2.3.1"
   }
 }
 
 repositories {
+  jcenter()
+  google()
   mavenCentral()
 }
 
@@ -42,23 +47,21 @@ dependencies {
   compile 'com.fasterxml.jackson.core:jackson-databind:2.9.9'
   compile 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.9'
 
-  //task 6
-
-  def tomcatVersion = '8.5.16'
-  tomcat "org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}",
-      "org.apache.tomcat.embed:tomcat-embed-logging-juli:8.5.2",
-      "org.apache.tomcat.embed:tomcat-embed-jasper:${tomcatVersion}"
-
-
   compileOnly 'javax.servlet:javax.servlet-api:4.0.1'
   compile 'jstl:jstl:1.2'
   compile 'org.slf4j:jcl-over-slf4j:1.7.26'
   compile 'ch.qos.logback:logback-classic:1.2.3'
 
+  //validations
+  compile 'org.hibernate:hibernate-validator:6.0.10.Final'
+
+  //task 7
+  compile 'org.springframework.security:spring-security-web:5.1.5.RELEASE'
+  compile 'org.springframework.security:spring-security-config:5.1.5.RELEASE'
+
   testCompile group: 'junit', name: 'junit', version: '4.12'
 }
 
-tomcat {
-  httpProtocol = 'org.apache.coyote.http11.Http11Nio2Protocol'
-  ajpProtocol  = 'org.apache.coyote.ajp.AjpNio2Protocol'
+gretty {
+  servletContainer = 'tomcat8'
 }
