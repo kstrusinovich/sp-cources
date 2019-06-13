@@ -3,6 +3,7 @@
 
 <html>
 <body>
+	<a href="/sp-cources/logout">Logout</a>
 
 	<h2>All books</h2>
 
