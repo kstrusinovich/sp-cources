@@ -13,14 +13,17 @@
                      <td><form:errors path="name" cssClass="error" /></td>
                 </tr>
                 <tr>
+                    <td><form:errors path="publishedIn" cssClass="error" /></td>
                     <td><form:label path="publishedIn">publishedIn</form:label></td>
                     <td><form:input path="publishedIn"/></td>
                 </tr>
                 <tr>
+                    <td><form:errors path="author.firstName" cssClass="error" /></td>
                     <td><form:label path="author.firstName">author.firstName</form:label></td>
                     <td><form:input path="author.firstName"/></td>
                 </tr>
                 <tr>
+                    <td><form:errors path="author.lastName" cssClass="error" /></td>
                     <td><form:label path="author.lastName">author.lastName</form:label></td>
                     <td><form:input path="author.lastName"/></td>
                 </tr>

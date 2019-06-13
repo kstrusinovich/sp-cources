@@ -44,7 +44,7 @@ public class BookController {
       }
       model.addAttribute("errorMessage", "something wrong");
       //return "error";
-      return "books";
+      return "book-form";
     }
     bookService.saveBook(book);
     return "redirect:list";
@@ -84,7 +84,7 @@ public class BookController {
   }
 
   @RequestMapping(value = "/redit", method = RequestMethod.POST)
-  public String redit(@ModelAttribute("book") Book book, BindingResult result, ModelMap model) {
+  public String redit(@Valid @ModelAttribute("book") Book book, BindingResult result, ModelMap model) {
     if (result.hasErrors()) {
       for (ObjectError error : result.getAllErrors()) {
         LOGGER.error(error.toString());
