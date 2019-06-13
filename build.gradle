@@ -73,6 +73,10 @@ dependencies
 	// Проверка вводимых данных
   	compile 'org.hibernate:hibernate-validator:6.0.16.Final'
 
+	// 13.06.2019
+	// Spring Security
+  	compile 'org.springframework.security:spring-security-web:5.1.5.RELEASE'
+  	compile 'org.springframework.security:spring-security-config:5.1.5.RELEASE'
 
 
 	//
