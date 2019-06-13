@@ -5,6 +5,7 @@
 
 <html>
 <body>
+<a href="/sp-cources/logout">Logout</a>
 
 	<h2>All books</h2>
 
@@ -12,8 +13,6 @@
 <pre>
 	${booksVariable}
 </pre>
-
-	<p><b>Iterated List:</b><p>
 
 	<table border="0">
 
