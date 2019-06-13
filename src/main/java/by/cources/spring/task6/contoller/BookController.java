@@ -31,11 +31,21 @@ public class BookController {
     this.bookService = bookService;
   }
 
-  @RequestMapping(value = "/edit", method = RequestMethod.GET)
-  public ModelAndView form() {
+  @RequestMapping(value = "/add", method = RequestMethod.GET)
+  public ModelAndView add() {
     Book result = new Book();
     result.setPublishedIn(2019L);
     result.setAuthor(new Author());
+    Map<String, Object> model = new HashMap<>();
+    model.put("book", result);
+    model.put("authors", bookService.findAuthorsAll());
+
+    return new ModelAndView("book-form", model);
+  }
+
+  @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+  public ModelAndView edit(@PathVariable Long id) {
+    Book result = bookService.findBookById(id).orElseGet(Book::new);
     Map<String, Object> model = new HashMap<>();
     model.put("book", result);
     model.put("authors", bookService.findAuthorsAll());
