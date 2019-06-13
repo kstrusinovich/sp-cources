@@ -62,6 +62,12 @@ public class BookServiceImpl implements BookService {
     return bookRepository.save(book);
   }
 
+  @Override
+  @Transactional
+  public void delBook(Long value) {
+    bookRepository.findById(value).ifPresent(bookRepository::delete);
+  }
+
   private <T> List<T> toList(Iterable<T> items) {
     List<T> list = new ArrayList<>();
     for (T t : items) {

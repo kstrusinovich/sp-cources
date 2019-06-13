@@ -1,12 +1,9 @@
 package by.cources.spring.task6.model;
 
 import java.time.LocalDate;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import java.util.List;
+import javax.persistence.*;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -24,6 +21,17 @@ public class Author {
 
   @Column(name = "last_name")
   private String lastName;
+
+  /*@OneToMany(mappedBy="author")
+  private List<Book> books;
+
+  public List<Book> getBooks() {
+    return books;
+  }
+
+  public void setBooks(List<Book> books) {
+    this.books = books;
+  }*/
 
   @DateTimeFormat(pattern = "yyyy-MM-dd")
   @Column(name = "date_of_birth")

@@ -12,6 +12,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import static javax.persistence.CascadeType.DETACH;
+import static javax.persistence.CascadeType.MERGE;
+import static javax.persistence.CascadeType.PERSIST;
+import static javax.persistence.CascadeType.REFRESH;
+
 @Entity
 @Table(name = "book")
 public class Book {
@@ -25,7 +30,10 @@ public class Book {
   @Column(name = "name")
   private String name;
 
-  @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+  //@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+  //@JoinColumn(name = "author_id")
+  //@JsonIgnore
+  @ManyToOne(optional = false, cascade = { PERSIST, DETACH, MERGE, REFRESH })
   @JoinColumn(name = "author_id")
   @JsonIgnore
   private Author author;

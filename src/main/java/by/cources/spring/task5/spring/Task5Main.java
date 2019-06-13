@@ -1,6 +1,6 @@
 package by.cources.spring.task5.spring;
 
-import io.undertow.Handlers;
+/*import io.undertow.Handlers;
 import io.undertow.Undertow;
 import io.undertow.servlet.Servlets;
 import io.undertow.servlet.api.DeploymentInfo;
@@ -11,11 +11,11 @@ import io.undertow.servlet.util.ImmediateInstanceFactory;
 import javax.servlet.ServletException;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
-import org.springframework.web.servlet.DispatcherServlet;
+import org.springframework.web.servlet.DispatcherServlet;*/
 
 public class Task5Main {
 
-  private static final String MAPPING_URL = "/*";
+  /*private static final String MAPPING_URL = "/*";
   private static final String CONTEXT_PATH = "/myapp";
   private static final String PKG_NAME = "myapp.war";
 
@@ -53,6 +53,6 @@ public class Task5Main {
   private ListenerInfo getListener(AnnotationConfigWebApplicationContext context) {
     ContextLoaderListener listener = new ContextLoaderListener(context);
     return new ListenerInfo(ContextLoaderListener.class, new ImmediateInstanceFactory<>(listener));
-  }
+  }*/
 }
 
