@@ -7,14 +7,13 @@ import javax.transaction.Transactional;
 public interface BookService {
 
   List<Book> findBooksAll();
- 
+
   List<Book> findBooksWithBookOlderThan(Long value);
 
   List<Book> findBooksWithBookName(String value);
 
   @Transactional
-  void saveBook(String mode, Book book ) throws Exception;
+  void saveBook(String mode, Book book) throws Exception;
 
-  Book getForm(String mode, Long id);
-  
+  Book findById(Long id);
 }

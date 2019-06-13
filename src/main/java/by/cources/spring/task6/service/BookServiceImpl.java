@@ -1,36 +1,27 @@
 package by.cources.spring.task6.service;
 
 import by.cources.spring.task6.field.EditMode;
-import by.cources.spring.task6.model.Author;
 import by.cources.spring.task6.model.Book;
 import by.cources.spring.task6.repository.BookRepository;
 import by.cources.spring.util.TextUtil;
-
 import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
 @Service
-public class BookServiceImpl implements BookService 
-{
-	private final BookRepository bookRepository;
-  
-	  
-  public BookServiceImpl(BookRepository bookRepository) 
-  {
+public class BookServiceImpl implements BookService {
+
+  private final BookRepository bookRepository;
+
+  public BookServiceImpl(BookRepository bookRepository) {
     this.bookRepository = bookRepository;
-    
   }
 
   @Transactional
   @Override
-  public List<Book> findBooksAll() 
-  {
+  public List<Book> findBooksAll() {
     return TextUtil.toList(bookRepository.findAll());
   }
-
- 
 
   @Override
   @Transactional
@@ -44,39 +35,20 @@ public class BookServiceImpl implements BookService
     return bookRepository.findByName(value);
   }
 
-  
   @Override
   @Transactional
-  public void saveBook(String mode, Book book) throws Exception 
-  {	  
-	  
-		  if (mode.equals(EditMode.INSERT) || mode.equals(EditMode.UPDATE))
-		  {
-			  bookRepository.save(book);
-		  }
-		  if (mode.equals(EditMode.DELETE))
-		  {
-			  bookRepository.delete(book);
-		  }
-		  	
+  public void saveBook(String mode, Book book) throws Exception {
+
+    if (mode.equals(EditMode.INSERT) || mode.equals(EditMode.UPDATE)) {
+      bookRepository.save(book);
+    }
+    if (mode.equals(EditMode.DELETE)) {
+      bookRepository.delete(book);
+    }
   }
 
   @Override
-  public Book getForm(String mode, Long id)
-  {	
-	  Book book = null;
-	  if (mode.equals(EditMode.INSERT))
-	  {
-		  book = new Book();
-		  book.setAuthor(new Author());
-		  
-	  }
-	  if (mode.equals(EditMode.UPDATE)|| mode.equals(EditMode.DELETE))
-	  {
-		  book = bookRepository.findById(id).get();
-	  }
-	  	  
-	  return book;
+  public Book findById(Long id) {
+    return bookRepository.findById(id).get();
   }
-
 }

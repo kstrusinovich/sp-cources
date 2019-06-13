@@ -22,10 +22,12 @@
                 <tr>
                     <td><form:label path="firstName">First name:</form:label></td>
                     <td><form:input path="firstName" style="font-size: 16px;font-family: arial; "/></td>
+                    <td><form:errors path="firstName" cssClass="error" /></td>
                 </tr>
                 <tr>
                     <td><form:label path="lastName">Last name:</form:label></td>
                     <td><form:input path="lastName" style="font-size: 16px;font-family: arial; "/></td>
+                    <td><form:errors path="lastName" cssClass="error" /></td>
                 </tr>
                  
                 <tr>
