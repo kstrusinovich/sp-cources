@@ -1,5 +1,8 @@
 <%@ page isELIgnored="false" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+         pageEncoding="utf-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 
 <html>
 <head>
@@ -13,9 +16,14 @@ style="margin-bottom: 20px; border-bottom: 2px #888888 solid; background: #ddddd
 Index page
 </td>
 <td align=right>
-User 
+
+
+<security:authorize access="isAuthenticated()">
+    <b><security:authentication property="principal.username" /></b> 
+</security:authorize>
+
 &nbsp;&nbsp;&nbsp;
-<a href="">Exit</a>
+<a href="/sp-cources/logout">Logout</a>
 &nbsp;&nbsp;&nbsp;
 </td>
 </tr></table>
@@ -26,7 +34,7 @@ User
  
  <a href="/sp-cources/book/edit/insert/-1">Insert book</a><br><br>
 		<c:forEach var="book" items="${books}" varStatus="loop">
-			${loop.index+1}. <b>�${book.name}�</b> by ${book.author.firstName} ${book.author.lastName}, publ. in ${book.publishedIn}
+			${loop.index+1}. <b>«${book.name}»</b> by ${book.author.firstName} ${book.author.lastName}, publ. in ${book.publishedIn}
 			&nbsp; &nbsp; [ <a href="/sp-cources/book/edit/update/${book.id}">Update</a>
 			&nbsp; <a href="/sp-cources/book/edit/delete/${book.id}">Delete</a> ]
 			<br>
@@ -55,7 +63,7 @@ User
 			&nbsp; <a href="/sp-cources/user/edit/delete/${user.id}">Delete</a> ]
 			<br>
 		</c:forEach>
-		
+		<br>* Редактировать данные может только пользователь с ролью ADMIN.
 	
  </td>
  </tr></table>

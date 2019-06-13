@@ -3,6 +3,8 @@ package by.cources.spring.task6;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration;
+
+import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
@@ -24,4 +26,9 @@ public class Task6Main implements WebApplicationInitializer {
     servlet.setLoadOnStartup(1);
     servlet.addMapping("/");
   }
+  
+  public static class SecurityWebApplicationInitializer extends AbstractSecurityWebApplicationInitializer {
+
+  }
+  
 }
