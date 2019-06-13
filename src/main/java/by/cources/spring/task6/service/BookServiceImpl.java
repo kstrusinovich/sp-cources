@@ -59,13 +59,26 @@ public class BookServiceImpl implements BookService {
   }
 
   @Override
+  @Transactional
   public Book saveBook(Book book) {
     return bookRepository.save(book);
   }
 
   @Override
-  public Optional<Book> findBookById(Long id) {
-    return bookRepository.findById(id);
+  @Transactional
+  public void delete(Book book){
+    bookRepository.delete(book);
+  }
+
+  @Override
+  @Transactional
+  public Book update(Book book){
+    return bookRepository.save(book);
+  }
+
+  @Override
+  public Book getBookById(Long id){
+    return bookRepository.getBookById(id);
   }
 
   private <T> List<T> toList(Iterable<T> items) {
