@@ -5,7 +5,7 @@
 <body>
 
 	<h2>All books</h2>
-
+	<a href="/sp-cources/logout">Logout</a>
 	<p><b>Just list:</b><p>
 <pre>
 	${booksVariable}
