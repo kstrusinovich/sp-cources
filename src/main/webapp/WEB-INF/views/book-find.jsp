@@ -4,8 +4,8 @@
     </head>
     <body>
         <h2>${errorMessage}</h2>
-        <h3>Welcome, Enter id for delete The Book</h3>
-        <form:form method="POST" action="/sp-cources/book/delete" modelAttribute="book">
+        <h3>Welcome, Enter id to seach for Book</h3>
+        <form:form method="POST" action="/sp-cources/book/find/${book.id}" modelAttribute="book">
              <table>
                 <tr>
                     <td><form:label path="id">id</form:label></td>
@@ -13,7 +13,7 @@
                     <td></td>
                 </tr>
                 <td></td>
-                    <td><input type="submit" value="Delete"/></td>
+                    <td><input type="submit" value="Find"/></td>
                 </tr>
             </table>
         </form:form>

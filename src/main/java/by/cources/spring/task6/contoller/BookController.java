@@ -80,11 +80,24 @@ public class BookController {
     model.put("booksVariable", booksAll);
     return new ModelAndView("books", model);
   }
- /* @RequestMapping(value = "/delete", method = RequestMethod.GET)
-  public ModelAndView formDel() {
+  @RequestMapping(value = "/find", method = RequestMethod.GET)
+  public ModelAndView formFind() {
     Book result = new Book();
-    return new ModelAndView("book-delete", "book", result);
-  }*/
+    return new ModelAndView("book-find", "book", result);
+  }
+  @RequestMapping(value = "/find/{id}", method = RequestMethod.POST)
+  public String find(@PathVariable("id") Long id, BindingResult result, ModelMap model){
+    if (result.hasErrors()) {
+      for (ObjectError error : result.getAllErrors()) {
+        LOGGER.error(error.toString());
+      }
+      model.addAttribute("errorMessage", "something wrong");
+//      return "error";
+      return "book-find";
+    }
+    bookService.findBookById(id);
+    return "redirect:book/edit/{"+id+"}";
+  }
 
   @GetMapping(value = "/delete/{id}")
   public String delete(@PathVariable("id") Long id) {
