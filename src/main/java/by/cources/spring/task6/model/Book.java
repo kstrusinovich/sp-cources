@@ -1,7 +1,11 @@
 package by.cources.spring.task6.model;
 
+import static javax.persistence.CascadeType.DETACH;
+import static javax.persistence.CascadeType.MERGE;
+import static javax.persistence.CascadeType.PERSIST;
+import static javax.persistence.CascadeType.REFRESH;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,10 +16,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
-import org.springframework.format.annotation.DateTimeFormat;
-
-import static javax.persistence.CascadeType.*;
 
 @Entity
 @Table(name = "book")
@@ -29,16 +29,15 @@ public class Book {
   @Size(min = 1, message = "required")
   private String name;
   @ManyToOne(cascade = {
-          PERSIST,
-          MERGE,
+      PERSIST,
+      MERGE,
 //      REMOVE,
-          REFRESH,
-          DETACH
+      REFRESH,
+      DETACH
   })
   @JoinColumn(name = "author_id")
   @JsonIgnore
   private Author author;
-
 
   @Column(name = "published_in")
   @NotNull(message = "my custom message")

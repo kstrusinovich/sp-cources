@@ -74,6 +74,11 @@ public class BookServiceImpl implements BookService {
   @Transactional
   public List<Book>findByIdBook (Long value) { return bookRepository.findByIdBook(value); }
 
+  @Override
+  public Author findByIdAuthor(Long id) {
+    return authorRepository.findById(id).get();
+  }
+
   private <T> List<T> toList(Iterable<T> items) {
     List<T> list = new ArrayList<>();
     for (T t : items) {

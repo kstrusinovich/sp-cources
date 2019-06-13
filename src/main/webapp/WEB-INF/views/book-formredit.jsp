@@ -22,11 +22,11 @@
              <td><form:input path="publishedIn"/></td>
         </tr>
           <tr>
-                             <td><form:label path="author">authorName</form:label></td>
+                             <td><form:label path="author.id">authorName</form:label></td>
                              <td>
-                               <form:select path="author">
+                               <form:select path="author.id">
                                		<c:forEach var="author" items="${authors}">
-                                     <form:option value="${author}" label="${author.firstName} ${author.lastName}"/>
+                                     <form:option value="${author.id}" label="${author.firstName} ${author.lastName}"/>
                                    </c:forEach>
                                </form:select>
                              </td>
