@@ -7,6 +7,10 @@
     <head>
     </head>
     <body style="font-family: arial; line-height: 1.6;">
+    
+    <a href="/sp-cources"><< Index page</a>
+    
+    
         <h2 style="color: red;">${errorMessage}</h2>
         <h3>${mode} author</h3>
         

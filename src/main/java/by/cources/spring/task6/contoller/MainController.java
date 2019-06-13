@@ -9,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import by.cources.spring.task6.service.AuthorService;
 import by.cources.spring.task6.service.BookService;
+import by.cources.spring.task6.service.UserService;
 
 @Controller
 @RequestMapping("/")
@@ -20,10 +21,15 @@ public class MainController
   
   private final AuthorService authorService;
   
-
-  public MainController(BookService bookService, AuthorService authorService) {
+  private final UserService userService;
+  
+  
+  public MainController(BookService bookService, AuthorService authorService,
+		  UserService userService)
+  {
     this.bookService = bookService;
     this.authorService = authorService;
+    this.userService = userService;
   }
   
   @RequestMapping(value = "", method = RequestMethod.GET)
@@ -31,7 +37,8 @@ public class MainController
   {	 
 		ModelAndView modelAndView = new ModelAndView("index");
 		modelAndView.addObject("books", bookService.findBooksAll());
-	  	modelAndView.addObject("authors", authorService.findAuthorsAll());   
+	  	modelAndView.addObject("authors", authorService.findAuthorsAll());
+	  	modelAndView.addObject("users", userService.findUsersAll());  
 	    return modelAndView;	  
   
   }
