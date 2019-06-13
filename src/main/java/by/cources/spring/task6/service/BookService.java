@@ -10,9 +10,6 @@ public interface BookService {
 
   List<Book> findBooksAll();
 
-//  @Transactional
-//  void deleteById(Long id);
-
   @Transactional
   Author saveAuthor(Author author);
 
@@ -25,14 +22,6 @@ public interface BookService {
   List<Author> findAuthorsAll();
 
   Book saveBook(Book book);
-//  Book deleteBook(Book book);
 
-  @Transactional
-//  void deleteById(Long id);
-  void delete(long id);
-  List<Book> findByIdBook(Long value);
-
-//  List<Author> findAuthorByName(String firstName, String lastName);
-
-//  Optional<Author> findAuthorById(Long id);
+  Optional<Book> findBookById(Long id);
 }

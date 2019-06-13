@@ -1,10 +1,11 @@
 package by.cources.spring.task6;
 
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.support.ResourceBundleMessageSource;
-import org.springframework.core.env.Environment;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.orm.jpa.support.OpenEntityManagerInViewInterceptor;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -15,14 +16,11 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @EnableWebMvc
 public class BookWebConfig implements WebMvcConfigurer {
 
-  private final Environment environment;
   private final BookJpaConfig jpaConfig;
 
-  public BookWebConfig(Environment environment, BookJpaConfig jpaConfig) {
-    this.environment = environment;
+  public BookWebConfig(BookJpaConfig jpaConfig) {
     this.jpaConfig = jpaConfig;
   }
-
 
   @Override
   public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
@@ -30,10 +28,18 @@ public class BookWebConfig implements WebMvcConfigurer {
   }
 
   @Bean
-  public ResourceBundleMessageSource resourceBundleMessageSource() {
-    ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
-    messageSource.setBasename("messages");
+  public MessageSource messageSource() {
+    ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
+    messageSource.setBasename("classpath:messages");
+    messageSource.setDefaultEncoding("UTF-8");
     return messageSource;
+  }
+
+  @Bean
+  public LocalValidatorFactoryBean getValidator() {
+    LocalValidatorFactoryBean bean = new LocalValidatorFactoryBean();
+    bean.setValidationMessageSource(messageSource());
+    return bean;
   }
 
   @Bean
