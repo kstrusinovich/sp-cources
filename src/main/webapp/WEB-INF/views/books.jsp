@@ -3,7 +3,8 @@
 
 <html>
 <body>
-<a href="/sp-cources/logout">Logout</a>
+<h3> <a href="/sp-cources/logout"> Logout</a>   <a href="/sp-cources/"> Main</a></h3>
+<hr>
 	<h2>All books</h2>
 
 	<p><b>Just list:</b><p>

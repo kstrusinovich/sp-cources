@@ -47,8 +47,11 @@ public class BookSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/login").permitAll()
                 .antMatchers("/book/edit/**").hasRole("ADMIN")
+                .antMatchers("/book/delete/**").hasRole("ADMIN")
+                .antMatchers("/book/add/**").hasRole("ADMIN")
                 .antMatchers("/book/**").hasRole("USER")
                 .antMatchers("/**").hasAnyRole("ADMIN", "USER")
+                .antMatchers("/index").permitAll()
                 .and().formLogin().loginProcessingUrl("/book/list")
                 .and().logout().logoutSuccessUrl("/login").permitAll()
                 .and().csrf().disable();

@@ -114,6 +114,11 @@ public class BookController {
   public ModelAndView list() {
     return new ModelAndView("books", "books", bookService.findBooksAll());
   }
+  @RequestMapping(value = "/find", method = RequestMethod.GET)
+  public ModelAndView find() {Book result = new Book();
+    result.setAuthor(new Author());
+    return new ModelAndView("book-find", "book", result);
+  }
 
   //@RequestMapping(value = "/list2", method = RequestMethod.GET)
   // public ModelAndView list2() {
