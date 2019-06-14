@@ -1,3 +1,6 @@
+INSERT INTO user(id, name, login, password,authorities)VALUES (1, 'Jane', 'user', '1775-12-16',"USER");
+INSERT INTO user(id, name, login, password,authorities)VALUES (2, 'Maria', 'admin', '123',"ADMIN");
+INSERT INTO user(id, name, login, password,authorities)VALUES (3, 'Alex', 'user', '456',"USER");
 INSERT INTO author(id, first_name, last_name, date_of_birth)VALUES (1, 'Jane', 'Austen', '1775-12-16');
 INSERT INTO author(id, first_name, last_name, date_of_birth)VALUES (2, 'Alexandre', 'Dumas', '1802-07-24');
 INSERT INTO author(id, first_name, last_name, date_of_birth)VALUES (3, 'Joanne', 'Rowling', '1965-07-31');

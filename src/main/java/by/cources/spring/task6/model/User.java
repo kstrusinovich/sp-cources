@@ -20,21 +20,24 @@ public class User {
   @Column(name = "name")
   @NotEmpty
   private String name;
+  @Column(name = "login")
+  @NotEmpty
+  private String login;
 
   @Column(name = "password")
   @NotNull
   @Min(100000)
-  private Long password;
+  private String password;
   @Column(name = "authorities")
   @NotEmpty
   private String authorities;
 
 
-  public Long getPassword() {
+  public String getPassword() {
     return password;
   }
 
-  public void setPassword(Long password) {
+  public void setPassword(String password) {
     this.password = password;
   }
 
@@ -44,6 +47,13 @@ public class User {
 
   public void setName(String name) {
     this.name = name;
+  }
+  public String getLogin() {
+    return login;
+  }
+
+  public void setLogin(String login) {
+    this.login = login;
   }
 
   public Long getId() {

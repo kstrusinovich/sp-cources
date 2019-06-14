@@ -85,19 +85,21 @@ public class BookController {
     Book result = new Book();
     return new ModelAndView("book-find", "book", result);
   }
-  @RequestMapping(value = "/find", method = RequestMethod.POST)
-  public ModelAndView find(@PathVariable("id") Long id) {
-    Optional<Book> book = bookService.findBookById(id);
-    if (book.isPresent()) {
-      return new ModelAndView("book-form", "book", book.get());
+  @RequestMapping(value = "/find/{id}", method= {RequestMethod.POST,RequestMethod.GET})
+  public ModelAndView find(@ModelAttribute("book") Book book, BindingResult result, ModelMap model) {
+    if (result.hasErrors()) {
+      for (ObjectError error : result.getAllErrors()) {
+        LOGGER.error(error.toString());
+      }
+      ModelAndView errorModel = new ModelAndView("error");
+      errorModel.addObject("errorMessage", "BOOK NOT FOUND");
+      return errorModel;
     }
-
-    ModelAndView errorModel = new ModelAndView("error");
-    errorModel.addObject("errorMessage", "BOOK NOT FOUND");
-    return errorModel;
-
+    bookService.findBookById(book.getId());
+    // return "redirect:book/edit/{"+book.getId()+"}";
+    return new ModelAndView("book-form", "book", book);
   }
-  /*@RequestMapping(value = "/find", method = RequestMethod.POST)
+ /* @RequestMapping(value = "/find", method = RequestMethod.POST)
   public String find(@ModelAttribute("book") Book book, BindingResult result, ModelMap model){
         if (result.hasErrors()) {
       for (ObjectError error : result.getAllErrors()) {
@@ -107,9 +109,9 @@ public class BookController {
 //      return "error";
       return "book-find";
     }
-    bookService.findBookById(book.getId());
+    Optional<Book> book =bookService.findBookById(book.getId());
    // return "redirect:book/edit/{"+book.getId()+"}";
-    return "redirect:list";
+    return new ModelAndView("book-form", "book", book.get());
   }*/
 
   @GetMapping(value = "/delete/{id}")
