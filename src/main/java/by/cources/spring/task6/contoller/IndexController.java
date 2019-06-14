@@ -12,8 +12,10 @@ import org.springframework.web.servlet.ModelAndView;
 public class IndexController {
 
 	@GetMapping("/")
-	public String index() {
-		return "index";
+	public ModelAndView index(Principal user) {
+		ModelAndView model = new ModelAndView("index");
+		model.addObject("welcome", "Hi " + user.getName() + "!");
+		return model;
 	}
 
 	// for 403 access denied page
@@ -21,7 +23,7 @@ public class IndexController {
 	public ModelAndView accesssDenied(Principal user) {
 		ModelAndView model = new ModelAndView();
 		if (user != null) {
-			model.addObject("msg", "Hi " + user.getName() + ", you do not have permission to access this page!");
+			model.addObject("msg", "Hi " + user + ", you do not have permission to access this page!");
 		} else {
 			model.addObject("msg", "You do not have permission to access this page!");
 		}
