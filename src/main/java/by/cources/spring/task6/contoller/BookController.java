@@ -52,6 +52,11 @@ public class BookController {
 //    return new ModelAndView("book-form", model);
 //  }
 
+  @RequestMapping(value = "/index", method = RequestMethod.GET)
+  public ModelAndView home() {
+    return new ModelAndView("index");
+  }
+
   @RequestMapping(value = "/edit", method = RequestMethod.GET)
   public ModelAndView form() {
     Book result = new Book();
