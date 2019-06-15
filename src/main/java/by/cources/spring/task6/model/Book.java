@@ -14,6 +14,10 @@ import javax.persistence.Table;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import static javax.persistence.CascadeType.DETACH;
+import static javax.persistence.CascadeType.MERGE;
+import static javax.persistence.CascadeType.PERSIST;
+import static javax.persistence.CascadeType.REFRESH;
 
 @Entity
 @Table(name = "book")
@@ -28,7 +32,12 @@ public class Book {
   @Size(min = 1, message = "required")
   private String name;
 
-  @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+  @ManyToOne(optional = false,cascade = {PERSIST,
+          MERGE,
+//      REMOVE,
+          REFRESH,
+          DETACH
+  })
   @JoinColumn(name = "author_id")
   @JsonIgnore
   @Valid

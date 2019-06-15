@@ -18,7 +18,7 @@
 			<li>${author.id}. ${author.firstName} ${author.lastName}</li>
 		</c:forEach>
 	</ol>
-        <form:form method="POST" action="/sp-cources/book/edit" modelAttribute="book">
+        <form:form method="POST" action="/sp-cources/book/add" modelAttribute="book">
              <table>
                 <tr>
                     <td><form:label path="name">name</form:label></td>
