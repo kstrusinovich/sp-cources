@@ -24,4 +24,8 @@ public interface BookService {
   Book saveBook(Book book);
 
   Optional<Book> findBookById(Long id);
+
+  Book getBookById(Long id);
+
+  void deleteBook(Book book);
 }

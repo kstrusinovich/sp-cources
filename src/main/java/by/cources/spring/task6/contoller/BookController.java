@@ -13,10 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -73,5 +70,31 @@ public class BookController {
     Map<String, Object> model = new HashMap<>();
     model.put("booksVariable", booksAll);
     return new ModelAndView("books", model);
+  }
+
+  @RequestMapping(value = "/delete", method = RequestMethod.GET)
+  public ModelAndView delete(@RequestAttribute("id") Long id) {
+    ModelAndView modelAndView = new ModelAndView("book-delete");
+    modelAndView.addObject("book", bookService.getBookById(id));
+    List<Book> booksAll = bookService.findBooksAll();
+//    return new ModelAndView("books", "booksVariable", booksAll);
+    Map<String, Object> model = new HashMap<>();
+    model.put("booksVariable", booksAll);
+    return new ModelAndView("book-delete", model);
+  }
+
+  @RequestMapping(value = "/delete", method = RequestMethod.POST)
+  public ModelAndView submitDelete(@ModelAttribute("book-delete") Book book, BindingResult result, ModelMap model) {
+    ModelAndView  modelAndView = new ModelAndView("redirect:book/list");
+    if (result.hasErrors()) {
+      for (ObjectError error : result.getAllErrors()) {
+        LOGGER.error(error.toString());
+      }
+      model.addAttribute("errorMessage", "something wrong");
+//      return "error";
+      return modelAndView;
+    }
+    bookService.deleteBook(book);
+    return modelAndView;
   }
 }
