@@ -49,11 +49,11 @@ public class BookServiceImpl implements BookService {
     return bookRepository.findOlderThan(value);
   }
 
-  @Override
-  @Transactional
-  public List<Book> findBooksWithBookName(String value) {
-    return bookRepository.findByName(value);
-  }
+ // @Override
+ // @Transactional
+ // public List<Book> findBooksWithBookName(String value) {
+ //   return bookRepository.findByName(value);
+ // }
 
   @Override
   @Transactional
@@ -67,10 +67,10 @@ public class BookServiceImpl implements BookService {
   }
 
     @Override
-    public Optional<Book> findBookById(Long id) {
-        return bookRepository.findById(id);
-    }
+    public Optional<Book> findBookById(Long id) { return bookRepository.findById(id); }
 
+    @Override
+   public List<Book> findByNameBook( String value) { return bookRepository.findByName(value); }
     @Override
     public void delete(long id){
 

@@ -29,13 +29,14 @@ public class BookController {
   public BookController(BookService bookService) {
     this.bookService = bookService;
   }
-
+// add book
   @RequestMapping(value = "/add", method = RequestMethod.GET)
   public ModelAndView add() {
     Book result = new Book();
     result.setAuthor(new Author());
     return new ModelAndView("book-form", "book", result);
   }
+  // edit book
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
     public ModelAndView edit(@PathVariable Long id) {
       Book result = bookService.findBookById(id).orElseGet(Book::new);
@@ -58,7 +59,7 @@ public class BookController {
     bookService.saveBook(book);
     return "redirect:list";
   }
-
+  // delete book
   @RequestMapping(value = "/delete", method = RequestMethod.GET)
   public ModelAndView form2() {
     Book result = new Book();
@@ -79,7 +80,7 @@ public class BookController {
     bookService.delete(book.getId());
     return "redirect:list";
   }
-
+ // редактировать книги
   @RequestMapping(value = "/redit", method = RequestMethod.GET)
   public ModelAndView form3() {
     Book result = new Book();
@@ -109,19 +110,26 @@ public class BookController {
     return "redirect:list";
     //return new ModelAndView("book-form", "book", result);
   }
-
+ // Список книг
   @RequestMapping(value = "/list", method = RequestMethod.GET)
   public ModelAndView list() {
     return new ModelAndView("books", "books", bookService.findBooksAll());
   }
+
+
+  // Find book
   @RequestMapping(value = "/find", method = RequestMethod.GET)
   public ModelAndView find() {Book result = new Book();
+      result.getName();
     result.setAuthor(new Author());
     return new ModelAndView("book-find", "book", result);
   }
+  @RequestMapping(value = "/find", method = RequestMethod.POST)
+  public ModelAndView find2() {
+       Book result = new Book();
+       result.getName();
+       bookService.findByNameBook(result.getName());
+       return new ModelAndView("bookname", "name", result);
+  }
 
-  //@RequestMapping(value = "/list2", method = RequestMethod.GET)
-  // public ModelAndView list2() {
-  //      return new ModelAndView("books", "books", bookService.findByIdBook(id));
-  //  }
 }

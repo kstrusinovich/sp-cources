@@ -30,7 +30,7 @@ public class BookSecurityConfig extends WebSecurityConfigurerAdapter {
     private void inMemoryAuthentication(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
                 .passwordEncoder(passwordEncoder())
-                .withUser("user").password(passwordEncoder().encode("123456")).roles("USER")
+                .withUser("user").password(passwordEncoder().encode("123456")).roles("USER","GUEST")
                 .and()
                 .withUser("admin").password(passwordEncoder().encode("123456")).roles("USER", "ADMIN");
     }
@@ -38,7 +38,7 @@ public class BookSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.jdbcAuthentication().dataSource(jpaConfig.dataSource())
                 .withDefaultSchema()
                 .passwordEncoder(passwordEncoder())
-                .withUser("user").password(passwordEncoder().encode("123456")).roles("USER")
+                .withUser("user").password(passwordEncoder().encode("123456")).roles("USER","GUEST")
                 .and()
                 .withUser("admin").password(passwordEncoder().encode("123456")).roles("USER", "ADMIN");
     }
@@ -49,6 +49,7 @@ public class BookSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/book/edit/**").hasRole("ADMIN")
                 .antMatchers("/book/delete/**").hasRole("ADMIN")
                 .antMatchers("/book/add/**").hasRole("ADMIN")
+                .antMatchers("/book/find/**").hasRole("GUEST")
                 .antMatchers("/book/**").hasRole("USER")
                 .antMatchers("/**").hasAnyRole("ADMIN", "USER")
                 .antMatchers("/index").permitAll()

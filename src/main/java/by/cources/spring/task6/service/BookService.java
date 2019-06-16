@@ -17,7 +17,7 @@ public interface BookService {
 
   List<Book> findBooksWithBookOlderThan(Long value);
 
-  List<Book> findBooksWithBookName(String value);
+ // List<Book> findBooksWithBookName(String value);
 
   List<Author> findAuthorsAll();
 
@@ -30,4 +30,6 @@ public interface BookService {
   Author findByIdAuthor(Long id);
 
   Optional<Book> findBookById(Long id);
+
+  List<Book> findByNameBook(String value);
 }
