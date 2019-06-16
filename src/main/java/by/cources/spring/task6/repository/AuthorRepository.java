@@ -8,7 +8,9 @@ public interface AuthorRepository {
 
   List<Author> findWithBookOlderThan(Long value);
 
-  Optional<Author> findById(Long id);
+  //Optional<Author> findById(Long id);
+
+  Author findById(Long id);
 
   List<Author> findAll();
 

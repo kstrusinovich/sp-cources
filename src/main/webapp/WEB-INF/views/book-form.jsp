@@ -11,14 +11,9 @@
     </head>
     <body>
         <h2>${errorMessage}</h2>
-        <h3>Welcome, Enter The Book Details</h3>
+        <h3>Welcome, The Book Details</h3>
 
-	<ol>
-		<c:forEach var="author" items="${authors}">
-			<li>${author.id}. ${author.firstName} ${author.lastName}</li>
-		</c:forEach>
-	</ol>
-        <form:form method="POST" action="/sp-cources/book/edit" modelAttribute="book">
+        <form:form method="POST"  modelAttribute="book">
              <table>
                 <tr>
                     <td><form:label path="name">name</form:label></td>
@@ -47,11 +42,8 @@
                     <td><form:errors path="author.dateOfBirth" cssClass="error" /></td>
                 </tr>
                 <tr>
-                <td></td>
-                <td></td>
-                    <td><input type="submit" value="Submit"/></td>
-                </tr>
             </table>
-        </form:form>
+       </form:form>
+       <input type="button" onclick="window.location.href = '/sp-cources/book/list'" value="list book"/>
     </body>
 </html>

@@ -74,6 +74,14 @@ public class BookServiceImpl implements BookService {
     return bookRepository.findById(id);
   }
 
+  @Override
+  /*public Optional<Author> findAuthorById(Long id) {
+    return authorRepository.findById(id);
+  }*/
+  public Author findAuthorById(Long id) {
+    return authorRepository.findById(id);
+  }
+
   private <T> List<T> toList(Iterable<T> items) {
     List<T> list = new ArrayList<>();
     for (T t : items) {

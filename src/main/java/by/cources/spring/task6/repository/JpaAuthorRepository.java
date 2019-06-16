@@ -27,8 +27,11 @@ public class JpaAuthorRepository implements AuthorRepository {
 
   @Override
   @Transactional
-  public Optional<Author> findById(Long id) {
+  /*public Optional<Author> findById(Long id) {
     return Optional.ofNullable(em.find(Author.class, id));
+  }*/
+  public Author findById(Long id) {
+    return em.find(Author.class, id);
   }
 
   @Override

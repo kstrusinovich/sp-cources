@@ -11,8 +11,9 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
 
-  protected ResponseEntity<Object> handleExceptionInternal(Exception ex, @Nullable Object body, HttpHeaders headers,
-      HttpStatus status, WebRequest request) {
+  protected ResponseEntity<Object> handleExceptionInternal(Exception ex,
+                                                           @Nullable Object body, HttpHeaders headers,
+                                                           HttpStatus status, WebRequest request) {
     ex.printStackTrace();
     return new ResponseEntity<>(body, headers, status);
   }

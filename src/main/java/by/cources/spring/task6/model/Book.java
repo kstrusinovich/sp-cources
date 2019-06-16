@@ -44,7 +44,7 @@ public class Book {
   private Author author;
 
   @Column(name = "published_in")
-  @NotNull(message = "my custom message")
+  @NotNull(message = "? not null ?")
   private Long publishedIn;
 
   public Long getPublishedIn() {

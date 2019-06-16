@@ -15,18 +15,21 @@ public class Task6Main implements WebApplicationInitializer {
 
   public void onStartup(ServletContext container) throws ServletException {
 
+    //регистрация фильтров (для установки кодировки)
     FilterRegistration.Dynamic encodingFilter = container.addFilter("encoding-filter", new CharacterEncodingFilter());
     encodingFilter.setInitParameter("encoding", "UTF-8");
     encodingFilter.setInitParameter("forceEncoding", "true");
     encodingFilter.addMappingForUrlPatterns(null, true, "/*");
 
+    //создание контекста Spring для сервлета-диспетчера Spring
     AnnotationConfigWebApplicationContext ctx = new AnnotationConfigWebApplicationContext();
     ctx.register(BookConfig.class);
     ctx.setServletContext(container);
 
-    // Manage the lifecycle of the root application context
+    // листнер для управления жизненным циклом контекста Spring
     container.addListener(new ContextLoaderListener(ctx));
 
+    //регистрация сервлета-диспетчера Spring MVC
     ServletRegistration.Dynamic servlet = container.addServlet("dispatcher", new DispatcherServlet(ctx));
 
     servlet.setLoadOnStartup(1);

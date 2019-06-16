@@ -26,4 +26,8 @@ public interface BookService {
   public void delBook(Long value);
 
   Optional<Book> findBookById(Long id);
+
+ // Optional<Author> findAuthorById(Long id);
+  Author findAuthorById(Long id);
+
 }

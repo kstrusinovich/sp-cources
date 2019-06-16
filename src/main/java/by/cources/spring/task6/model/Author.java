@@ -23,16 +23,18 @@ public class Author {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
+
   @Column(name = "id")
   private Long id;
 
   @Column(name = "first_name")
-  @Size(min = 1, message = "required")
+  @Size(min = 1, message = "? name ?")
   private String firstName;
 
   @Column(name = "last_name")
   @NotBlank
   private String lastName;
+
   @DateTimeFormat(pattern = "yyyy-MM-dd")
   @Column(name = "date_of_birth")
   private LocalDate dateOfBirth;

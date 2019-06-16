@@ -9,9 +9,9 @@ package by.cources.spring.task5.spring;
 //import io.undertow.servlet.api.ListenerInfo;
 //import io.undertow.servlet.util.ImmediateInstanceFactory;
 //import javax.servlet.ServletException;
-import org.springframework.web.context.ContextLoaderListener;
-import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
-import org.springframework.web.servlet.DispatcherServlet;*/
+//import org.springframework.web.context.ContextLoaderListener;
+//import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
+//import org.springframework.web.servlet.DispatcherServlet;
 
 public class Task5Main {
 
