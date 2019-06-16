@@ -4,6 +4,7 @@ import by.cources.spring.task6.model.Author;
 import by.cources.spring.task6.model.Book;
 import by.cources.spring.task6.service.BookService;
 
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -79,7 +80,7 @@ public class BookController {
 	}
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public ModelAndView list() {
+	public ModelAndView list(Principal user) {
 		List<Book> booksAll = bookService.findBooksAll();
 //    return new ModelAndView("books", "booksVariable", booksAll);
 		Map<String, Object> model = new HashMap<>();
@@ -125,5 +126,14 @@ public class BookController {
 		}
 		bookService.saveBook(book);
 		return "redirect:list";
+	}
+	
+	@RequestMapping(value = "/find/{bookName}", method = RequestMethod.GET)
+	public ModelAndView find(@PathVariable("bookName") String bookName) {
+		List<Book> booksAll = bookService.findBooksAll();
+		Map<String, Object> model = new HashMap<>();
+		model.put("booksVariable", booksAll);
+		//model.put("welcome", "Hi " + user.getName() + "!");
+		return new ModelAndView("books", model);
 	}
 }

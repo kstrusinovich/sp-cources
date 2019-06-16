@@ -1,8 +1,18 @@
 <%@ page isELIgnored="false" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <html>
+<script type="text/javascript">
+function findGo() {
+	var ref = "/sp-cources/book/find/" + (document.getElementById('findName').value == "" ? "all" : document.getElementById('findName').value);
+	//alert(ref);
+	document.location.href=ref;
+}
+</script>
+
 <body>
+	<a href="/sp-cources/logout">Logout</a>
 
 	<h2>All books</h2>
 
@@ -15,8 +25,11 @@
 
 	<h2>${errorMessage}</h2>
 	
+	Name:<input id="findName"/>
+	<input value="FIND" onclick="findGo();" type="button">
+	<br><br>
 	<input value="NEW" onclick="document.location.href='/sp-cources/book/edit'" type="button">
-
+			
 	<table border="0">
 		<tr>
 			<th>ID</th>

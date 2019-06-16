@@ -17,7 +17,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -37,7 +36,8 @@ public class Book {
 	@ManyToOne(optional = false, cascade = { PERSIST, DETACH, MERGE, REFRESH })
 	@JoinColumn(name = "author_id")
 	@JsonIgnore
-	private Author author;
+    @Valid
+    private Author author;
 
 	@Column(name = "published_in")
 	@NotNull

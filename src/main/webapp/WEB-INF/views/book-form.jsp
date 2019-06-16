@@ -31,12 +31,12 @@
                 <tr>
                     <td><form:label path="author.firstName">author.firstName</form:label></td>
                     <td><form:input path="author.firstName"/></td>
-                    <td></td>
+                    <td><form:errors path="author.firstName" cssClass="error" /></td>
                 </tr>
                 <tr>
                     <td><form:label path="author.lastName">author.lastName</form:label></td>
                     <td><form:input path="author.lastName"/></td>
-                    <td></td>
+                    <td><form:errors path="author.lastName" cssClass="error" /></td>
                 </tr>
                 <tr>
                     <td><form:label path="author.dateOfBirth">author.dateOfBirth</form:label></td>
