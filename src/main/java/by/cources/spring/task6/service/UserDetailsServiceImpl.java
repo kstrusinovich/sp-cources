@@ -16,29 +16,33 @@ import by.cources.spring.task6.repository.UserRepository;
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
+	/*
+	@Autowired
+	private UserRepository userRepository;
+	*/
+	
 	private final UserRepository userRepository;
 
 	public UserDetailsServiceImpl(UserRepository userRepository) {
 		this.userRepository = userRepository;
 	}
-
+	
 	@Override
 	public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
 
 		// с помощью нашего сервиса UserService получаем User
 		User user = userRepository.findByUserName(login);
-		// User user = userRepository.findByid(1L);
-		System.out.println("********** " + user);
-		/*
+		//User user = userRepository.findByid(1L);
+		//System.out.println("********** " + user);
 		if (user == null) {
 			throw new UsernameNotFoundException("User not found.");
 		}
-		*/
+		/*
 		user = new User();
 		user.setLogin(login);
 		user.setPassword("$2a$10$oSi2sdkYQrNqkytI.sYeMeSSv3ka7PgFSh6pafilpgbu/pB6bYzg.");
 		user.setRoles("ROLE_USER,ROLE_ADMIN");
-
+		 */
 		// указываем роли для этого пользователя
 		Set<GrantedAuthority> roles = new HashSet();
 		for (String role : user.getRoles().split(","))

@@ -10,12 +10,14 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import by.cources.spring.task6.service.UserDetailsServiceImpl;
+
 @Configuration
 @EnableWebSecurity(debug = true)
 public class BookSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	private final BookJpaConfig jpaConfig;
-
+	
 	private final UserDetailsService userDetailsService;
 
 	public BookSecurityConfig(BookJpaConfig jpaConfig, UserDetailsService userDetailsService) {
@@ -23,11 +25,22 @@ public class BookSecurityConfig extends WebSecurityConfigurerAdapter {
 		this.userDetailsService = userDetailsService;
 	}
 
+	/*
+	public BookSecurityConfig(BookJpaConfig jpaConfig) {
+		this.jpaConfig = jpaConfig;
+	}
+*/
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
-
+	
+	/*
+	@Bean
+    public UserDetailsService userDetailsService() {
+        return new UserDetailsServiceImpl();
+    }
+*/
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		// jdbcAuthentication(auth);
@@ -49,6 +62,7 @@ public class BookSecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 
 	private void customAuthentication(AuthenticationManagerBuilder auth) throws Exception {
+		//auth.userDetailsService(userDetailsService()).passwordEncoder(passwordEncoder());
 		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
 	}
 
