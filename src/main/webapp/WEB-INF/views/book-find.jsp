@@ -5,7 +5,7 @@
     <body>
         <h2>${errorMessage}</h2>
         <h3>Welcome, Enter id to seach for Book</h3>
-        <form:form method="POST" action="/sp-cources/book/find" modelAttribute="book">
+        <form:form method="POST" action="/sp-cources/book/find/${book.id}" modelAttribute="book">
              <table>
                 <tr>
                     <td><form:label path="id">id</form:label></td>

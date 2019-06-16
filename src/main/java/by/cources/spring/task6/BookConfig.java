@@ -11,7 +11,7 @@ import org.springframework.context.annotation.PropertySource;
 @Import({
         BookJpaConfig.class,
         BookWebConfig.class,
-        BookSecurityConfig.class
+        BookSecurityConfigExp.class
 })
 public class BookConfig {
 
