@@ -11,16 +11,12 @@
     <title>Hello</title>
 </head>
 <body>
-<center><h1>Welcome Petya!!!!!!!!!!!</h1></center>
+<center><h1>Приветствую!!!</h1></center>
 
-<hr type="disc">
+<h3><li> <A href="/sp-cources/book/add">Добавить</a> </li></h3>
+<h3><li> <A href="/sp-cources/book/delete"> Удалить</A> </li></h3>
+<h3><li> <A href="/sp-cources/book/find">Найти</A></li></h3>
+<h3><li> <A href="/sp-cources/book/list">Список книг</A></li></h3>
 
-<hr>
-<li> <A href="/sp-cources/book/add">Добавить</a> </li>
-<li> <A href="/sp-cources/book/delete"> Удалить</A> </li>
-<li> <A href="/sp-cources/book/edit/1">Редактировать</A></li>
-<li> <A href="/sp-cources/book/find">Найти</A></li>
-<li> <A href="/sp-cources/book/list">Список книг</A></li>
-</ul>
 </body>
 </html>

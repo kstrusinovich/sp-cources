@@ -8,6 +8,8 @@
           color:red;
         }
       </style>
+        <h3> <a href="/sp-cources/logout"> Logout</a>  </h3>
+
     </head>
     <body>
         <h2>${errorMessage}</h2>
@@ -60,7 +62,7 @@
                 <tr>
                 <td></td>
                 <td></td>
-                    <td><input type="submit" value="Submit"/></td>
+                    <td><input type="submit" value="Добавить"/></td>
                 </tr>
             </table>
         </form:form>
