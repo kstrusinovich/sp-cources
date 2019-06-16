@@ -6,10 +6,9 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
-import by.cources.spring.task6.service.UserDetailsServiceImpl;
 
 @Configuration
 @EnableWebSecurity(debug = true)
@@ -17,10 +16,9 @@ public class BookSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	private final BookJpaConfig jpaConfig;
 
-	private final UserDetailsServiceImpl userDetailsService;
-	
+	private final UserDetailsService userDetailsService;
 
-	public BookSecurityConfig(BookJpaConfig jpaConfig, UserDetailsServiceImpl userDetailsService) {
+	public BookSecurityConfig(BookJpaConfig jpaConfig, UserDetailsService userDetailsService) {
 		this.jpaConfig = jpaConfig;
 		this.userDetailsService = userDetailsService;
 	}

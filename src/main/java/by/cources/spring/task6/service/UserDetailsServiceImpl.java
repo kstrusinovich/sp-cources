@@ -29,16 +29,15 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		User user = userRepository.findByUserName(login);
 		// User user = userRepository.findByid(1L);
 		System.out.println("********** " + user);
+		/*
 		if (user == null) {
 			throw new UsernameNotFoundException("User not found.");
 		}
-
-		/*
-		 * user = new User();
-		 *  user.setLogin(login); 
-		 *  user.setPassword("$2a$10$oSi2sdkYQrNqkytI.sYeMeSSv3ka7PgFSh6pafilpgbu/pB6bYzg.");
-		 * user.setRoles("ROLE_USER,ROLE_ADMIN");
-		 */
+		*/
+		user = new User();
+		user.setLogin(login);
+		user.setPassword("$2a$10$oSi2sdkYQrNqkytI.sYeMeSSv3ka7PgFSh6pafilpgbu/pB6bYzg.");
+		user.setRoles("ROLE_USER,ROLE_ADMIN");
 
 		// указываем роли для этого пользователя
 		Set<GrantedAuthority> roles = new HashSet();
