@@ -6,6 +6,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -14,9 +15,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class BookSecurityConfig extends WebSecurityConfigurerAdapter {
 
   private final BookJpaConfig jpaConfig;
+  private final UserDetailsService userDetailsService;
 
-  public BookSecurityConfig(BookJpaConfig jpaConfig) {
+  public BookSecurityConfig(BookJpaConfig jpaConfig, UserDetailsService userDetailsService) {
     this.jpaConfig = jpaConfig;
+    this.userDetailsService = userDetailsService;
   }
 
   @Bean
@@ -26,8 +29,9 @@ public class BookSecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Override
   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-    jdbcAuthentication(auth);
+//    jdbcAuthentication(auth);
 //    inMemoryAuthentication(auth);
+    userCustomAuthentication(auth);
   }
 
   private void inMemoryAuthentication(AuthenticationManagerBuilder auth) throws Exception {
@@ -47,13 +51,20 @@ public class BookSecurityConfig extends WebSecurityConfigurerAdapter {
         .withUser("admin").password(passwordEncoder().encode("123456")).roles("USER", "ADMIN");
   }
 
+  private void userCustomAuthentication(AuthenticationManagerBuilder auth)  throws Exception {
+    auth.userDetailsService(userDetailsService)
+            .passwordEncoder(passwordEncoder());
+  }
+
+
   @Override
   protected void configure(HttpSecurity http) throws Exception {
     http.authorizeRequests()
         .antMatchers("/login").permitAll()
-        .antMatchers("/book/edit/**").hasRole("ADMIN")
-        .antMatchers("/book/**").hasRole("USER")
-        .antMatchers("/**").hasAnyRole("ADMIN", "USER")
+        .antMatchers("/book/editBook/**").hasRole("ADMIN")
+        .antMatchers("/book/delete/**").hasRole("ADMIN")
+        .antMatchers("/book/find/**").hasRole("USER")
+        .antMatchers("/book/list").hasAnyRole("ADMIN", "USER")
         .and().formLogin().loginProcessingUrl("/book/list")
         .and().logout().logoutSuccessUrl("/login").permitAll()
         .and().csrf().disable();

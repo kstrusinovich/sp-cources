@@ -26,7 +26,7 @@ public class Task6Main implements WebApplicationInitializer {
     ctx.register(BookConfig.class);
     ctx.setServletContext(container);
 
-    // листнер для управления жизненным циклом контекста Spring
+    //листнер для управления жизненным циклом контекста Spring
     container.addListener(new ContextLoaderListener(ctx));
 
     //регистрация сервлета-диспетчера Spring MVC

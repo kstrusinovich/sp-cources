@@ -3,6 +3,8 @@ package by.cources.spring.task6.contoller;
 import by.cources.spring.task6.model.Author;
 import by.cources.spring.task6.model.Book;
 import by.cources.spring.task6.service.BookService;
+
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,7 +36,7 @@ public class BookController {
 
   //загрузка формы со списком книг
   @RequestMapping(value = "/list", method = RequestMethod.GET)
-  public ModelAndView list() {
+  public ModelAndView list(Principal user) {
     System.out.println(" public ModelAndView list() :: ");
     List<Book> booksAll = bookService.findBooksAll();
 //    return new ModelAndView("books", "booksVariable", booksAll);

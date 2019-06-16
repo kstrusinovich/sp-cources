@@ -7,3 +7,6 @@ INSERT INTO book(id, author_id, name, published_in)VALUES (2, 1, 'Pride and Prej
 INSERT INTO book(id, author_id, name, published_in)VALUES (3, 2, 'Le Capitaine Paul', 1838);
 INSERT INTO book(id, author_id, name, published_in)VALUES (4, 2, 'Le Capitaine Pamphile', 1839);
 INSERT INTO book(id, author_id, name, published_in)VALUES (5, 1, 'Northanger Abbey', 1818);
+
+INSERT INTO users(id, login, password, roles)VALUES (1, 'admin', '1', 'adminRoles');
+INSERT INTO users(id, login, password, roles)VALUES (2, 'user', '2', 'userRoles');
