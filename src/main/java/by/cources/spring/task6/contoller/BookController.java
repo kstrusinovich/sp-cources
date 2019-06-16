@@ -56,7 +56,6 @@ public class BookController {
 
   @RequestMapping(value = "/edit", method = RequestMethod.POST)
   public String submit(@Valid @ModelAttribute("book") Book book, BindingResult result, ModelMap model) {
-      System.out.println("!!!!!!!!!!!!!!!!!"+book);
     if (result.hasErrors()) {
       for (ObjectError error : result.getAllErrors()) {
         LOGGER.error(error.toString());
@@ -65,7 +64,6 @@ public class BookController {
 //      return "error";
       return "book-form";
     }
-      System.out.println("!!!!!!!!!!!!!!!!!222"+book);
     bookService.saveBook(book);
     return "redirect:list";
   }
@@ -86,16 +84,16 @@ public class BookController {
     return new ModelAndView("book-find", "book", result);
   }
   @RequestMapping(value = "/find", method = RequestMethod.POST)
-  public ModelAndView find(@PathVariable("id") Long id) {
-    Optional<Book> book = bookService.findBookById(id);
-    if (book.isPresent()) {
-      return new ModelAndView("book-form", "book", book.get());
+  public ModelAndView find(@ModelAttribute("book") Book book, BindingResult result, ModelMap model) {
+    Optional<Book> book1 = bookService.findBookById(book.getId());
+    if (book1.isPresent()) {
+      return new ModelAndView("book-form", "book", book1.get());
+    } else {
+      ModelAndView errorModel = new ModelAndView("error");
+      errorModel.addObject("errorMessage", "BOOK NOT FOUND");
+      return errorModel;
+
     }
-
-    ModelAndView errorModel = new ModelAndView("error");
-    errorModel.addObject("errorMessage", "BOOK NOT FOUND");
-    return errorModel;
-
   }
   /*@RequestMapping(value = "/find", method = RequestMethod.POST)
   public String find(@ModelAttribute("book") Book book, BindingResult result, ModelMap model){
