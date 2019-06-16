@@ -130,10 +130,9 @@ public class BookController {
 	
 	@RequestMapping(value = "/find/{bookName}", method = RequestMethod.GET)
 	public ModelAndView find(@PathVariable("bookName") String bookName) {
-		List<Book> booksAll = bookService.findBooksAll();
+		List<Book> booksList = bookName.equals("all") ? bookService.findBooksAll() : bookService.findBooksWithBookName(bookName);
 		Map<String, Object> model = new HashMap<>();
-		model.put("booksVariable", booksAll);
-		//model.put("welcome", "Hi " + user.getName() + "!");
+		model.put("booksVariable", booksList);
 		return new ModelAndView("books", model);
 	}
 }

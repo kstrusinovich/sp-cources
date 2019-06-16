@@ -13,6 +13,8 @@ function findGo() {
 
 <body>
 	<a href="/sp-cources/logout">Logout</a>
+	&nbsp;&nbsp;&nbsp;&nbsp;
+	<a href="/sp-cources/book/list">All books</a>
 
 	<h2>All books</h2>
 
