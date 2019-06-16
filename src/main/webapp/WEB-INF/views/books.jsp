@@ -9,7 +9,6 @@
 
 	<h2>All books</h2>
 
-	<p><b>WELCOME,</span></b><p>
 <pre>
 	${booksVariable}
 </pre>
