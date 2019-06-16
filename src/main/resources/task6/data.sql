@@ -12,5 +12,5 @@ INSERT INTO book(id, author_id, name, published_in)VALUES (4, 2, 'Le Capitaine P
 INSERT INTO book(id, author_id, name, published_in)VALUES (5, 1, 'Northanger Abbey', 1818);
 
 --
-INSERT INTO user(id, name, role) VALUES (1, 'admin', 'ADMIN');
-INSERT INTO user(id, name, role) VALUES (2, 'user', 'USER');
+INSERT INTO user(id, username, password, role) VALUES (1, 'admin', '1', 'ADMIN');
+INSERT INTO user(id, username, password, role) VALUES (2, 'user', '$2a$10$jyl66SJw1H0W5Uj7xBoiaOux.Y5I.t172fKzOQRod3VVgHs1DvRQ.', 'USER');

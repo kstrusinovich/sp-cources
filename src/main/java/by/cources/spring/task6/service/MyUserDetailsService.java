@@ -1,0 +1,36 @@
+package by.cources.spring.task6.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+
+import by.cources.spring.task6.model.MyUserPrincipal;
+import by.cources.spring.task6.model.User;
+import by.cources.spring.task6.repository.UserRepository;
+
+
+@Service
+public class MyUserDetailsService implements UserDetailsService 
+{ 
+    @Autowired
+    private UserRepository userRepository;
+ 
+    
+    @Override
+    public UserDetails loadUserByUsername(String username)
+    {
+    	System.out.println("username: " + username);
+    	
+        User user = userRepository.findByUsername(username);
+        
+        System.out.println("user: "+ user);
+        
+        if (user == null) throw new UsernameNotFoundException(username);
+        
+        
+        return new MyUserPrincipal(user);
+    }
+}

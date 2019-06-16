@@ -19,8 +19,8 @@ Index page
 
 
 <security:authorize access="isAuthenticated()">
-    <b><security:authentication property="principal.username" /></b> 
-</security:authorize>
+    <b><security:authentication property="principal.username" /></b>
+    </security:authorize>
 
 &nbsp;&nbsp;&nbsp;
 <a href="/sp-cources/logout">Logout</a>
@@ -55,15 +55,15 @@ Index page
 	
 	<br>&nbsp;<br>
 	<h2>Users</h2>
-	<a href="/sp-cources/user/edit/insert/-1">Insert user</a><br><br>
+	<a href="/sp-cources/user/insert">Insert user</a><br><br>
 	
 		<c:forEach var="user" items="${users}" varStatus="loop">
-			${loop.index+1}. <b>${user.name}</b>, role: ${user.role}
-			&nbsp; &nbsp; [ <a href="/sp-cources/user/edit/update/${user.id}">Update</a>
-			&nbsp; <a href="/sp-cources/user/edit/delete/${user.id}">Delete</a> ]
+			${loop.index+1}. <b>${user.username}</b>, role: ${user.role}
+			&nbsp; &nbsp; [ <a href="/sp-cources/user/update/${user.id}">Update</a>
+			&nbsp; <a href="/sp-cources/user/delete/${user.id}">Delete</a> ]
 			<br>
 		</c:forEach>
-		<br>* Редактировать данные может только пользователь с ролью ADMIN.
+		<br><font style="font-size: 12px;">* Редактировать данные может только пользователь с ролью ADMIN.</font>
 	
  </td>
  </tr></table>
