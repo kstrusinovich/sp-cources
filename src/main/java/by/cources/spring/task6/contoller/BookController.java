@@ -4,6 +4,7 @@ import by.cources.spring.task6.model.Author;
 import by.cources.spring.task6.model.Book;
 import by.cources.spring.task6.service.BookService;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.validation.Valid;
 import org.slf4j.Logger;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -29,22 +31,24 @@ public class BookController {
   public BookController(BookService bookService) {
     this.bookService = bookService;
   }
-// add book
+
+  // add book
   @RequestMapping(value = "/add", method = RequestMethod.GET)
   public ModelAndView add() {
     Book result = new Book();
     result.setAuthor(new Author());
     return new ModelAndView("book-form", "book", result);
   }
+
   // edit book
-    @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
-    public ModelAndView edit(@PathVariable Long id) {
-      Book result = bookService.findBookById(id).orElseGet(Book::new);
-      Map<String, Object> model = new HashMap<>();
-      model.put("book", result);
-      model.put("authors", bookService.findAuthorsAll());
-      return new ModelAndView("book-form", model);
-    }
+  @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+  public ModelAndView edit(@PathVariable Long id) {
+    Book result = bookService.findBookById(id).orElseGet(Book::new);
+    Map<String, Object> model = new HashMap<>();
+    model.put("book", result);
+    model.put("authors", bookService.findAuthorsAll());
+    return new ModelAndView("book-form", model);
+  }
 
   @RequestMapping(value = "/edit", method = RequestMethod.POST)
   public String submit(@Valid @ModelAttribute("book") Book book, BindingResult result, ModelMap model) {
@@ -59,6 +63,7 @@ public class BookController {
     bookService.saveBook(book);
     return "redirect:list";
   }
+
   // delete book
   @RequestMapping(value = "/delete", method = RequestMethod.GET)
   public ModelAndView form2() {
@@ -80,7 +85,8 @@ public class BookController {
     bookService.delete(book.getId());
     return "redirect:list";
   }
- // редактировать книги
+
+  // редактировать книги
   @RequestMapping(value = "/redit", method = RequestMethod.GET)
   public ModelAndView form3() {
     Book result = new Book();
@@ -110,26 +116,25 @@ public class BookController {
     return "redirect:list";
     //return new ModelAndView("book-form", "book", result);
   }
- // Список книг
+
+  // Список книг
   @RequestMapping(value = "/list", method = RequestMethod.GET)
   public ModelAndView list() {
     return new ModelAndView("books", "books", bookService.findBooksAll());
   }
 
-
   // Find book
   @RequestMapping(value = "/find", method = RequestMethod.GET)
-  public ModelAndView find() {Book result = new Book();
-      result.getName();
+  public ModelAndView find() {
+    Book result = new Book();
     result.setAuthor(new Author());
     return new ModelAndView("book-find", "book", result);
   }
-  @RequestMapping(value = "/find", method = RequestMethod.POST)
-  public ModelAndView find2() {
-       Book result = new Book();
-       result.getName();
-       bookService.findByNameBook(result.getName());
-       return new ModelAndView("bookname", "name", result);
-  }
 
+  @RequestMapping(value = "/find", method = RequestMethod.POST)
+  public ModelAndView find2(@RequestParam("query") String query) {
+    LOGGER.info("Query for book find is '{}'", query);
+    List<Book> books = bookService.findByNameBook(query);
+    return new ModelAndView("bookname", "books", books);
+  }
 }

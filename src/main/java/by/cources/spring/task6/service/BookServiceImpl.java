@@ -7,7 +7,6 @@ import by.cources.spring.task6.repository.BookRepository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,10 +16,10 @@ public class BookServiceImpl implements BookService {
 
   private final BookRepository bookRepository;
   private final AuthorRepository authorRepository;
-    private Long id;
-    private Book book;
+  private Long id;
+  private Book book;
 
-    public BookServiceImpl(BookRepository bookRepository, AuthorRepository authorRepository) {
+  public BookServiceImpl(BookRepository bookRepository, AuthorRepository authorRepository) {
     this.bookRepository = bookRepository;
     this.authorRepository = authorRepository;
   }
@@ -49,11 +48,11 @@ public class BookServiceImpl implements BookService {
     return bookRepository.findOlderThan(value);
   }
 
- // @Override
- // @Transactional
- // public List<Book> findBooksWithBookName(String value) {
- //   return bookRepository.findByName(value);
- // }
+  // @Override
+  // @Transactional
+  // public List<Book> findBooksWithBookName(String value) {
+  //   return bookRepository.findByName(value);
+  // }
 
   @Override
   @Transactional
@@ -66,20 +65,27 @@ public class BookServiceImpl implements BookService {
     return bookRepository.save(book);
   }
 
-    @Override
-    public Optional<Book> findBookById(Long id) { return bookRepository.findById(id); }
+  @Override
+  public Optional<Book> findBookById(Long id) {
+    return bookRepository.findById(id);
+  }
 
-    @Override
-   public List<Book> findByNameBook( String value) { return bookRepository.findByName(value); }
-    @Override
-    public void delete(long id){
+  @Override
+  public List<Book> findByNameBook(String value) {
+    return bookRepository.findByName('%' + value + '%');
+  }
 
-        bookRepository.deleteById(id);
-    }
+  @Override
+  public void delete(long id) {
+
+    bookRepository.deleteById(id);
+  }
 
   @Override
   @Transactional
-  public List<Book>findByIdBook (Long value) { return bookRepository.findByIdBook(value); }
+  public List<Book> findByIdBook(Long value) {
+    return bookRepository.findByIdBook(value);
+  }
 
   @Override
   public Author findByIdAuthor(Long id) {
