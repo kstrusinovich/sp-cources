@@ -50,13 +50,13 @@ public class BookSecurityConfig extends WebSecurityConfigurerAdapter {
   @Override
   protected void configure(HttpSecurity http) throws Exception {
     http.authorizeRequests()
-        .antMatchers("/login").permitAll()
-        .antMatchers("/book/edit/**").hasRole("ADMIN")
-        .antMatchers("/book/**").hasRole("USER")
-        .antMatchers("/book/delete").hasRole("ADMIN")
-        .antMatchers("/**").hasAnyRole("ADMIN", "USER")
-        .and().formLogin().defaultSuccessUrl("/book/list")
-        .and().logout().logoutSuccessUrl("/login").permitAll()
-        .and().csrf().disable();
+            .antMatchers("/login").permitAll()
+            //.antMatchers("/book/edit/**").hasRole("ADMIN")
+            .antMatchers("/book/list").hasRole("USER")
+            //.antMatchers("/book/delete").hasRole("ADMIN")
+            .antMatchers("/**").hasRole("ADMIN")
+            .and().formLogin().defaultSuccessUrl("/book/list")
+            .and().logout().logoutSuccessUrl("/login").permitAll()
+            .and().csrf().disable();
   }
 }

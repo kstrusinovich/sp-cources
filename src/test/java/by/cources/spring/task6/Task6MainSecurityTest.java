@@ -111,18 +111,22 @@ public class Task6MainSecurityTest {
   }
 
   @Test
-  public void delete1() throws Exception {
+  public void deleteAdmin() throws Exception {
             mvc
             .perform(post("/book/delete")
              .param("ids", "1","2","3")
-                    .with(user("admin").roles("ADMIN")))
+                    .with(user("user").roles("ADMIN")))
                     .andExpect(status().is3xxRedirection())
-                    .andExpect(redirectedUrl("/book/list"))
-            .andExpect(authenticated().withUsername("admin"));
+            .andExpect(authenticated().withUsername("user"));
   }
 
   @Test
-  public void submitDelete() throws Exception {
-
+  public void deleteUser() throws Exception {
+    mvc
+            .perform(post("/book/delete")
+                    .param("ids", "1","2","3")
+                    .with(user("user").roles("USER")))
+            .andExpect(status().isForbidden())
+            .andExpect(authenticated().withUsername("user"));
   }
 }
