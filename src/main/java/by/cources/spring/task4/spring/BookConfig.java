@@ -65,7 +65,7 @@ public class BookConfig {
 //    jpaProperties.put("javax.persistence.schema-generation.drop-source", "script");
 //    jpaProperties.put("javax.persistence.schema-generation.drop-script-source", "drop.sql");
     jpaProperties.put("javax.persistence.schema-generation.drop-source", "script");
-    jpaProperties.put("javax.persistence.sql-load-script-source", "/task4/data.sql");
+    //jpaProperties.put("javax.persistence.sql-load-script-source", "/task4/data.sql");
     factory.setJpaProperties(jpaProperties);
     return factory;
   }

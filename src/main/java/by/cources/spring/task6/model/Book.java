@@ -28,7 +28,7 @@ public class Book {
   @Size(min = 1, message = "required")
   private String name;
 
-  @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+  @ManyToOne(/*cascade = CascadeType.ALL, fetch = FetchType.LAZY*/)
   @JoinColumn(name = "author_id")
   @JsonIgnore
   @Valid

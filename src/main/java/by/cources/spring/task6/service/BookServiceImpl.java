@@ -68,6 +68,26 @@ public class BookServiceImpl implements BookService {
     return bookRepository.findById(id);
   }
 
+  @Override
+  public void delete(Book book) {
+    bookRepository.delete(book);
+  }
+
+  @Override
+  public Book getBookById(Long id) {
+    return bookRepository.getBookById(id);
+  }
+
+    @Override
+    public Book update(Book book) {
+        return bookRepository.save(book);
+    }
+
+  @Override
+  public List<Book> findByName(String name) {
+    return bookRepository.findByName(name);
+  }
+
   private <T> List<T> toList(Iterable<T> items) {
     List<T> list = new ArrayList<>();
     for (T t : items) {
