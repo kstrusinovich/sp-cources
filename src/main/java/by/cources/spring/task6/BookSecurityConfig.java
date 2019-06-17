@@ -69,7 +69,7 @@ public class BookSecurityConfig extends WebSecurityConfigurerAdapter {
         .antMatchers("/book/delete/**").hasRole("ADMIN")
         .antMatchers("/book/find/**").hasRole("USER")
         .antMatchers("/book/list").hasAnyRole("ADMIN", "USER")
-        .and().formLogin().loginProcessingUrl("/book/list")
+        .and().formLogin().defaultSuccessUrl("/book/list")
         .and().logout().logoutSuccessUrl("/login").permitAll()
         .and().csrf().disable();
   }
