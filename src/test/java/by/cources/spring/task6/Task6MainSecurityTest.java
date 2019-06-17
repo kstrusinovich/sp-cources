@@ -106,7 +106,24 @@ public class Task6MainSecurityTest {
             .user("username", "user")
             .password("password", "123456"))
         .andExpect(status().is3xxRedirection())
-        .andExpect(redirectedUrl("/book/list"))
+        .andExpect(redirectedUrl("/"))
         .andExpect(authenticated().withUsername("user"));
+  }
+
+  @Test
+  public void test8() throws Exception {
+    mvc
+            .perform(get("/book/delete/1").with(user("user").roles("ADMIN")))
+            .andExpect(status().is3xxRedirection())
+            .andExpect(authenticated().withUsername("user"));
+  }
+
+  @Test
+  @WithMockUser
+  public void test9() throws Exception {
+    mvc
+            .perform(get("/book/delete/1").with(user("user").roles("USER")))
+            .andExpect(status().isForbidden())
+            .andExpect(authenticated().withUsername("user"));
   }
 }

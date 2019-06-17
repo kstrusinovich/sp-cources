@@ -14,37 +14,45 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity(debug = true)
 public class BookSecurityConfig extends WebSecurityConfigurerAdapter {
 
-  private final BookJpaConfig jpaConfig;
+    private final BookJpaConfig jpaConfig;
 
-  private final UserDetailsService userDetailsService;
+    private final UserDetailsService userDetailsService;
 
-  public BookSecurityConfig(BookJpaConfig jpaConfig, UserDetailsService userDetailsService) {
-    this.jpaConfig = jpaConfig;
-    this.userDetailsService = userDetailsService;
-  }
+    public BookSecurityConfig(BookJpaConfig jpaConfig, UserDetailsService userDetailsService) {
+        this.jpaConfig = jpaConfig;
+        this.userDetailsService = userDetailsService;
+    }
 
-  @Bean
-  public PasswordEncoder passwordEncoder() {
-    return new BCryptPasswordEncoder();
-  }
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
-  @Override
-  protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
-    customAuthentication(auth);
-  }
+        customAuthentication(auth);
+    }
 
-  private void customAuthentication(AuthenticationManagerBuilder auth) throws Exception {
-    auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-  }
+    private void customAuthentication(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+    }
 
-  @Override
-  protected void configure(HttpSecurity http) throws Exception {
-    http.authorizeRequests().antMatchers("/login").permitAll().antMatchers("/book/edit/**").hasRole("ADMIN")
-        .antMatchers("/book/delete/**").hasRole("ADMIN").antMatchers("/book/find/**").hasRole("USER")
-        .antMatchers("/book/**").hasAnyRole("ADMIN", "USER") // .hasRole("USER")
-        .antMatchers("/**").hasAnyRole("ADMIN", "USER").and().formLogin().loginProcessingUrl("/book/list").and()
-        .exceptionHandling().accessDeniedPage("/403").and().logout().logoutSuccessUrl("/login").permitAll()
-        .and().csrf().disable();
-  }
+
+        @Override
+        protected void configure(HttpSecurity http) throws Exception {
+            http.authorizeRequests().antMatchers("/login")
+                    .permitAll()
+                    .antMatchers("/book/edit/**").hasRole("ADMIN")
+                    .antMatchers("/book/delete/**").hasRole("ADMIN")
+                    .antMatchers("/book/find/**").hasRole("USER")
+                    .antMatchers("/book/**").hasAnyRole("ADMIN", "USER") // .hasRole("USER")
+                    .antMatchers("/**").hasAnyRole("ADMIN", "USER")
+                    .and().formLogin().defaultSuccessUrl("/")
+                    //.and().formLogin().loginProcessingUrl("/book/list")
+                    .and().exceptionHandling().accessDeniedPage("/403")
+                    .and().logout().logoutSuccessUrl("/login")
+                    .permitAll()
+                    .and().csrf().disable();
+        }
 }
