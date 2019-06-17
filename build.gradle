@@ -1,4 +1,4 @@
-apply plugin: 'com.bmuschko.tomcat'
+apply plugin: "org.gretty"
 apply plugin: 'war'
 apply plugin: 'java'
 apply plugin: 'idea'
@@ -11,24 +11,27 @@ sourceCompatibility = 1.8
 
 buildscript {
   repositories {
-    jcenter()
+    maven {
+      url "https://plugins.gradle.org/m2/"
+    }
   }
-
   dependencies {
-    classpath 'com.bmuschko:gradle-tomcat-plugin:2.5'
+    classpath "gradle.plugin.org.gretty:gretty:2.3.1"
   }
 }
 
 repositories {
+  jcenter()
+  google()
   mavenCentral()
 }
 
 dependencies {
   //task 1
-  compile 'org.springframework:spring-context:5.1.7.RELEASE'
+  compile 'org.springframework:spring-context:5.1.5.RELEASE'
 
   //task 2
-  compile 'org.springframework:spring-jdbc:5.1.7.RELEASE'
+  compile 'org.springframework:spring-jdbc:5.1.5.RELEASE'
   compile 'com.h2database:h2:1.4.199'
 //    compile 'com.ibm.informix:jdbc:4.50.1'
 
@@ -38,19 +41,11 @@ dependencies {
   compile 'org.hibernate:hibernate-core:5.4.3.Final'
 
   //task 5
-  compile 'org.springframework:spring-webmvc:5.1.7.RELEASE'
+  compile 'org.springframework:spring-webmvc:5.1.5.RELEASE'
 //  compile 'io.undertow:undertow-core:2.0.21.Final'
 //  compile 'io.undertow:undertow-servlet:2.0.21.Final'
   compile 'com.fasterxml.jackson.core:jackson-databind:2.9.9'
   compile 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.9'
-
-  //task 6
-
-  def tomcatVersion = '8.5.16'
-  tomcat "org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}",
-      "org.apache.tomcat.embed:tomcat-embed-logging-juli:8.5.2",
-      "org.apache.tomcat.embed:tomcat-embed-jasper:${tomcatVersion}"
-
 
   compileOnly 'javax.servlet:javax.servlet-api:4.0.1'
   compile 'jstl:jstl:1.2'
@@ -63,12 +58,12 @@ dependencies {
   //task 7
   compile 'org.springframework.security:spring-security-web:5.1.5.RELEASE'
   compile 'org.springframework.security:spring-security-config:5.1.5.RELEASE'
-  
-  
+  compile 'org.glassfish:javax.el:3.0.0'
   testCompile group: 'junit', name: 'junit', version: '4.12'
+  testCompile 'org.springframework:spring-test:5.1.5.RELEASE'
+  testCompile 'org.springframework.security:spring-security-test:5.1.5.RELEASE'
 }
 
-tomcat {
-  httpProtocol = 'org.apache.coyote.http11.Http11Nio2Protocol'
-  ajpProtocol  = 'org.apache.coyote.ajp.AjpNio2Protocol'
+gretty {
+  servletContainer = 'tomcat8'
 }
