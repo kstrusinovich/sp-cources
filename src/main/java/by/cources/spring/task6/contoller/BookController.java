@@ -3,6 +3,7 @@ package by.cources.spring.task6.contoller;
 import by.cources.spring.task6.model.Author;
 import by.cources.spring.task6.model.Book;
 import by.cources.spring.task6.service.BookService;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,7 +14,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -73,7 +78,7 @@ public class BookController {
   }
 
   @RequestMapping(value = "/delete", method = RequestMethod.GET)
-  public ModelAndView delete(@RequestAttribute("id") Long id) {
+  public ModelAndView delete(@RequestParam("id") Long id) {
     ModelAndView modelAndView = new ModelAndView("book-delete");
     modelAndView.addObject("book", bookService.getBookById(id));
     List<Book> booksAll = bookService.findBooksAll();
@@ -84,8 +89,9 @@ public class BookController {
   }
 
   @RequestMapping(value = "/delete", method = RequestMethod.POST)
-  public ModelAndView submitDelete(@ModelAttribute("book-delete") Book book, BindingResult result, ModelMap model) {
-    ModelAndView  modelAndView = new ModelAndView("redirect:book/list");
+  public ModelAndView submitDelete(@ModelAttribute("delete") Long[] ids, BindingResult result, ModelMap model) {
+    LOGGER.info("Selected ids = {}", Arrays.toString(ids));
+    ModelAndView modelAndView = new ModelAndView("redirect:book/list");
     if (result.hasErrors()) {
       for (ObjectError error : result.getAllErrors()) {
         LOGGER.error(error.toString());
@@ -94,7 +100,9 @@ public class BookController {
 //      return "error";
       return modelAndView;
     }
-    bookService.deleteBook(book);
+    for (Long id : ids) {
+      bookService.deleteBook(bookService.getBookById(id));
+    }
     return modelAndView;
   }
 }
