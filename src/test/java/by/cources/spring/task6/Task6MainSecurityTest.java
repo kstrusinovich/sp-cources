@@ -17,6 +17,7 @@ import static org.springframework.security.test.web.servlet.request.SecurityMock
 import static org.springframework.security.test.web.servlet.response.SecurityMockMvcResultMatchers.authenticated;
 import static org.springframework.security.test.web.servlet.response.SecurityMockMvcResultMatchers.unauthenticated;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import javax.servlet.Filter;
@@ -129,7 +130,17 @@ public class Task6MainSecurityTest {
                 .andExpect(authenticated().withUsername("user"));
 
     }
-
+    @Test
+    @WithMockUser
+    public void test8() throws Exception {
+        mvc
+                .perform(post("/book/delete")
+                        .param("id", "3")
+                        .with(user("user").roles("ADMIN"))
+                )
+                .andExpect(status().is3xxRedirection())
+                .andExpect(authenticated().withUsername("user"));
+    }
 
 
 }
