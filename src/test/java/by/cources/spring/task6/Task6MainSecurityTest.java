@@ -48,6 +48,7 @@ public class Task6MainSecurityTest {
   public void test1() throws Exception {
     mvc
         .perform(get("/book/list"))
+        .andExpect(status().is3xxRedirection())
         .andExpect(unauthenticated());
   }
 
@@ -91,8 +92,8 @@ public class Task6MainSecurityTest {
   public void test6() throws Exception {
     mvc
         .perform(formLogin("/login")
-            .user("user", "notfound")
-            .password("pass", "invalid"))
+            .user("username", "user")
+            .password("password", "1234567"))
         .andExpect(status().is3xxRedirection())
         .andExpect(redirectedUrl("/login?error"))
         .andExpect(unauthenticated());
@@ -105,7 +106,7 @@ public class Task6MainSecurityTest {
             .user("username", "user")
             .password("password", "123456"))
         .andExpect(status().is3xxRedirection())
-        .andExpect(redirectedUrl("/"))
+        .andExpect(redirectedUrl("/book/list"))
         .andExpect(authenticated().withUsername("user"));
   }
 }
