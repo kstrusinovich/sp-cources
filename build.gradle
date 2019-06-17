@@ -81,9 +81,14 @@ dependencies
 	// 
 	compile 'org.springframework.security:spring-security-taglibs:5.1.5.RELEASE'
 
+	// 17.06.2019
+	// tests
+	compile 'org.glassfish:javax.el:3.0.0' // для валидации
+ 	testCompile 'junit:junit:4.12'
+  	testCompile 'org.springframework:spring-test:5.1.5.RELEASE'
+  	testCompile 'org.springframework.security:spring-security-test:5.1.5.RELEASE'
 
-	//
-  	testCompile group: 'junit', name: 'junit', version: '4.12'
+  	
 }
 
 
