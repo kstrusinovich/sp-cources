@@ -60,6 +60,8 @@ dependencies {
   compile 'org.springframework.security:spring-security-config:5.1.5.RELEASE'
 
   testCompile group: 'junit', name: 'junit', version: '4.12'
+  testCompile 'org.springframework:spring-test:5.1.5.RELEASE'
+  testCompile 'org.springframework.security:spring-security-test:5.1.5.RELEASE'
 }
 
 gretty {
