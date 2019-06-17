@@ -78,9 +78,8 @@ public class BookController {
   }
 
   @RequestMapping(value = "/delete", method = RequestMethod.GET)
-  public ModelAndView delete(@RequestParam("id") Long id) {
+  public ModelAndView delete() {
     ModelAndView modelAndView = new ModelAndView("book-delete");
-    modelAndView.addObject("book", bookService.getBookById(id));
     List<Book> booksAll = bookService.findBooksAll();
 //    return new ModelAndView("books", "booksVariable", booksAll);
     Map<String, Object> model = new HashMap<>();
@@ -89,17 +88,9 @@ public class BookController {
   }
 
   @RequestMapping(value = "/delete", method = RequestMethod.POST)
-  public ModelAndView submitDelete(@ModelAttribute("delete") Long[] ids, BindingResult result, ModelMap model) {
+  public ModelAndView submitDelete(@RequestParam("ids") Long[] ids, ModelMap model) {
     LOGGER.info("Selected ids = {}", Arrays.toString(ids));
-    ModelAndView modelAndView = new ModelAndView("redirect:book/list");
-    if (result.hasErrors()) {
-      for (ObjectError error : result.getAllErrors()) {
-        LOGGER.error(error.toString());
-      }
-      model.addAttribute("errorMessage", "something wrong");
-//      return "error";
-      return modelAndView;
-    }
+    ModelAndView modelAndView = new ModelAndView("redirect:/book/list");
     for (Long id : ids) {
       bookService.deleteBook(bookService.getBookById(id));
     }

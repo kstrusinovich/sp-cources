@@ -1,7 +1,11 @@
 package by.cources.spring.task6.model;
 
+import static javax.persistence.CascadeType.DETACH;
+import static javax.persistence.CascadeType.MERGE;
+import static javax.persistence.CascadeType.PERSIST;
+import static javax.persistence.CascadeType.REFRESH;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -28,7 +32,13 @@ public class Book {
   @Size(min = 1, message = "required")
   private String name;
 
-  @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+  @ManyToOne(cascade = {
+      PERSIST,
+      MERGE,
+//      REMOVE,
+      REFRESH,
+      DETACH
+  }, fetch = FetchType.LAZY)
   @JoinColumn(name = "author_id")
   @JsonIgnore
   @Valid
