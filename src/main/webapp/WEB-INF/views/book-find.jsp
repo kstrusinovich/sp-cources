@@ -8,16 +8,7 @@
 <body>
 <center><h1><font size="5" color="#00008b" >FIND BOOK</font></h1></center>
     <form:form method="POST" action="/sp-cources/book/find" modelAttribute="book">
-     <table>
-                    <tr>
-                        <td><form:label path="name">name</form:label></td>
-                        <td><form:input path="name"/></td>
-                        <td><form:errors path="name" cssClass="error" /></td>
-                    </tr>
-                   <tr>
-                         <td><input type="submit" value="Find"/></td>
-                   </tr>
-      </table>
+     <input type="text" name="query"/>
     </form:form>
 </body>
 </html>
