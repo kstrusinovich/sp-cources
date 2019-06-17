@@ -13,8 +13,8 @@
 
         <ol>
             <c:forEach var="book" items="${booksVariable}">
-                <li>${book.name}
-                <input type="checkbox" checked value=${book.id}>
+                <li>
+                <input type="checkbox" name="ids" checked value=${book.id}> ${book.name}
                 </li>
             </c:forEach>
         </ol>
