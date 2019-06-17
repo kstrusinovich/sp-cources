@@ -1,8 +1,8 @@
 package by.cources.spring.task6.model;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,26 +18,11 @@ public class MyUserPrincipal implements UserDetails
 	{
 	   this.user = user;
 	}
-
-	class MyGrantedAuthority implements GrantedAuthority
-	{
-		private String role;
-		
-		public MyGrantedAuthority(String role) {
-			this.role = role;
-		}
-		
-		@Override
-		public String getAuthority() {
-			return role;
-		}
-		
-	}
 	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() 
 	{
-		List <MyGrantedAuthority> m = new ArrayList<>();
+		Set <MyGrantedAuthority> m = new HashSet<>();
 		System.out.println(user.getRole());
 		m.add( new MyGrantedAuthority( user.getRole()) ); 
 		return m;

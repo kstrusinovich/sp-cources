@@ -38,8 +38,16 @@
                                     
                 
                     <td><form:label path="role">Role:</form:label></td>
-                    <td><form:input path="role" style="font-size: 16px;font-family: arial; "/></td>
-                    <br><form:errors path="role" cssClass="error" />
+                    <td>
+                      <form:select path="role"  style="font-size: 16px;font-family: arial; ">
+                    <c:forEach items="${roleList }" var="r">
+                    <option value="${r}" 
+                    <c:if test="${r== user.role}">selected</c:if> >${r }</option> 
+                    </c:forEach>
+                    
+                    </form:select>
+                    </td>
+                    <td><form:errors path="role" cssClass="error" />
                     </td>
                 </tr>
                  

@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import by.cources.spring.task6.model.MyUserPrincipal;
@@ -21,16 +20,11 @@ public class MyUserDetailsService implements UserDetailsService
     
     @Override
     public UserDetails loadUserByUsername(String username)
-    {
-    	System.out.println("username: " + username);
-    	
-        User user = userRepository.findByUsername(username);
-        
-        System.out.println("user: "+ user);
-        
-        if (user == null) throw new UsernameNotFoundException(username);
-        
+    {    	
+        User user = userRepository.findByUsername(username);           
+        if (user == null) throw new UsernameNotFoundException(username);  
         
         return new MyUserPrincipal(user);
     }
+    
 }

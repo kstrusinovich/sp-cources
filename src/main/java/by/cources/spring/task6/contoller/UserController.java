@@ -1,10 +1,13 @@
 package by.cources.spring.task6.contoller;
 
+import by.cources.spring.task6.field.Role;
 import by.cources.spring.task6.model.Author;
 import by.cources.spring.task6.model.User;
 import by.cources.spring.task6.service.AuthorService;
 import by.cources.spring.task6.service.BookService;
 import by.cources.spring.task6.service.UserService;
+
+import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,12 +36,14 @@ public class UserController {
   @RequestMapping(value = "/insert", method = RequestMethod.GET)
   public ModelAndView formInsert() {
 	User user = new User();
+	user.setPassword("");
     return populateForm("insert", user);
   }
 
   @RequestMapping(value = "/update/{id}", method = RequestMethod.GET)
   public ModelAndView formUpdate(@PathVariable("id") Long id) {
 	  User form = userService.findById(id);
+	  form.setPassword("");
     return populateForm("update", form);
   }
   
@@ -52,13 +57,14 @@ public class UserController {
     ModelAndView modelAndView = new ModelAndView("user-form");
     modelAndView.addObject("mode", mode);
     modelAndView.addObject("user", form);
+    modelAndView.addObject("roleList", Role.MENU);    
     return modelAndView;
   }
 
   @RequestMapping(value = "/edit/{mode}", method = RequestMethod.POST)
   public ModelAndView submit(
       @PathVariable("mode") String mode,
-      @ModelAttribute("user") User user, BindingResult result) {
+      @Valid @ModelAttribute("user") User user, BindingResult result) {
     ModelAndView modelAndView = new ModelAndView("redirect:/");
     try {
       if (result.hasErrors()) {

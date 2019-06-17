@@ -56,7 +56,7 @@ public class Task6MainTest {
   @WithMockUser
   public void test2() throws Exception {
     mvc
-        .perform(get("/book/list").with(user("user").roles("USER")))
+        .perform(get("/").with(user("user").roles("USER")))
         .andExpect(status().is2xxSuccessful())
         .andExpect(authenticated().withUsername("user"));
   }
@@ -74,7 +74,7 @@ public class Task6MainTest {
   @WithMockUser
   public void test4() throws Exception {
     mvc
-        .perform(get("/book/edit/1").with(user("user").roles("ADMIN")))
+        .perform(get("/book/update/1").with(user("user").roles("ADMIN")))
         .andExpect(status().is2xxSuccessful())
         .andExpect(authenticated().withUsername("user"));
   }

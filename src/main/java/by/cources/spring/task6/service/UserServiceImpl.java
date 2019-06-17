@@ -17,6 +17,7 @@ public class UserServiceImpl implements UserService
     
   private final PasswordEncoder passwordEncoder;
   
+  
   public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder) 
   {
     this.userRepository = userRepository;
@@ -37,8 +38,7 @@ public class UserServiceImpl implements UserService
 
   @Override
   public void saveUser(String mode, User user) 
-  {
-	  
+  {	  
 	  user.setPassword(passwordEncoder.encode(user.getPassword()));
 	  
 	  if (mode.equals(EditMode.INSERT) || mode.equals(EditMode.UPDATE)) {

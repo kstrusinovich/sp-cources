@@ -4,6 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 
+
 <html>
 <head>
 <title>Task 6</title>
@@ -11,7 +12,7 @@
 <body style="margin: 0px;font-family: arial; line-height: 1.6;">
 
 <table height=50px width=100% cellpadding=10px cellspacing=0 
-style="margin-bottom: 20px; border-bottom: 2px #888888 solid; background: #dddddd;"><tr>
+style="margin-bottom: 0px; border-bottom: 2px #888888 solid; background: #dddddd;"><tr>
 <td style="font-size: 28px; ">
 Index page
 </td>
@@ -28,15 +29,20 @@ Index page
 </td>
 </tr></table>
  
- <table cellpadding=10  style="font-family: arial; line-height: 1.6; "><tr>
+ <table cellpadding=50 width=100% style="font-family: arial; line-height: 1.6; "><tr>
  <td style="vertical-align: top">
  <h2>Books</h2>
  
+ <security:authorize access="hasRole('ADMIN')">
  <a href="/sp-cources/book/edit/insert/-1">Insert book</a><br><br>
+ </security:authorize>
+ 
 		<c:forEach var="book" items="${books}" varStatus="loop">
 			${loop.index+1}. <b>«${book.name}»</b> by ${book.author.firstName} ${book.author.lastName}, publ. in ${book.publishedIn}
+			<security:authorize access="hasRole('ADMIN')">
 			&nbsp; &nbsp; [ <a href="/sp-cources/book/edit/update/${book.id}">Update</a>
 			&nbsp; <a href="/sp-cources/book/edit/delete/${book.id}">Delete</a> ]
+			</security:authorize>
 			<br>
 		</c:forEach>
 	
@@ -45,22 +51,29 @@ Index page
  <td style="vertical-align: top; padding-left: 60px;">
  <h2>Authors</h2>
  
+ <security:authorize access="hasRole('ADMIN')">
  <a href="/sp-cources/author/edit/insert/-1">Insert author</a><br><br>
+ </security:authorize>
 		<c:forEach var="author" items="${authors}" varStatus="loop">
 			${loop.index+1}. <b>${author.firstName} ${author.lastName}</b>, born ${author.dateOfBirth}
-			&nbsp; &nbsp; [ <a href="/sp-cources/author/edit/update/${author.id}">Update</a>
-			&nbsp; <a href="/sp-cources/author/edit/delete/${author.id}">Delete</a> ]
-			<br>
+			<security:authorize access="hasRole('ADMIN')">
+				&nbsp; &nbsp; [ <a href="/sp-cources/author/edit/update/${author.id}">Update</a>
+				&nbsp; <a href="/sp-cources/author/edit/delete/${author.id}">Delete</a> ]
+			</security:authorize>
+			<br>			
 		</c:forEach>
 	
 	<br>&nbsp;<br>
 	<h2>Users</h2>
+	<security:authorize access="hasRole('ADMIN')">
 	<a href="/sp-cources/user/insert">Insert user</a><br><br>
-	
+	</security:authorize>
 		<c:forEach var="user" items="${users}" varStatus="loop">
 			${loop.index+1}. <b>${user.username}</b>, role: ${user.role}
+			<security:authorize access="hasRole('ADMIN')">
 			&nbsp; &nbsp; [ <a href="/sp-cources/user/update/${user.id}">Update</a>
 			&nbsp; <a href="/sp-cources/user/delete/${user.id}">Delete</a> ]
+			</security:authorize>
 			<br>
 		</c:forEach>
 		<br><font style="font-size: 12px;">* Редактировать данные может только пользователь с ролью ADMIN.</font>
