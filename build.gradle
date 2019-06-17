@@ -28,10 +28,10 @@ repositories {
 
 dependencies {
   //task 1
-  compile 'org.springframework:spring-context:5.1.7.RELEASE'
+  compile 'org.springframework:spring-context:5.1.5.RELEASE'
 
   //task 2
-  compile 'org.springframework:spring-jdbc:5.1.7.RELEASE'
+  compile 'org.springframework:spring-jdbc:5.1.5.RELEASE'
   compile 'com.h2database:h2:1.4.199'
 //    compile 'com.ibm.informix:jdbc:4.50.1'
 
@@ -41,7 +41,7 @@ dependencies {
   compile 'org.hibernate:hibernate-core:5.4.3.Final'
 
   //task 5
-  compile 'org.springframework:spring-webmvc:5.1.7.RELEASE'
+  compile 'org.springframework:spring-webmvc:5.1.5.RELEASE'
 //  compile 'io.undertow:undertow-core:2.0.21.Final'
 //  compile 'io.undertow:undertow-servlet:2.0.21.Final'
   compile 'com.fasterxml.jackson.core:jackson-databind:2.9.9'
@@ -58,8 +58,10 @@ dependencies {
   //task 7
   compile 'org.springframework.security:spring-security-web:5.1.5.RELEASE'
   compile 'org.springframework.security:spring-security-config:5.1.5.RELEASE'
-
+  compile 'org.glassfish:javax.el:3.0.0'
   testCompile group: 'junit', name: 'junit', version: '4.12'
+  testCompile 'org.springframework:spring-test:5.1.5.RELEASE'
+  testCompile 'org.springframework.security:spring-security-test:5.1.5.RELEASE'
 }
 
 gretty {
