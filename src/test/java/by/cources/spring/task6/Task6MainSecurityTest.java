@@ -129,4 +129,13 @@ public class Task6MainSecurityTest {
             .andExpect(status().isForbidden())
             .andExpect(authenticated().withUsername("user"));
   }
+
+  @Test
+  public void listUser() throws Exception {
+    mvc
+            .perform(get("/book/list")
+                    .with(user("user").roles("USER")))
+            .andExpect(status().is2xxSuccessful())
+            .andExpect(authenticated().withUsername("user"));
+  }
 }
