@@ -15,11 +15,15 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class BookSecurityConfig extends WebSecurityConfigurerAdapter {
 
   private final BookJpaConfig jpaConfig;
-  private final UserDetailsService userDetailsService;
+ // private final UserDetailsService userDetailsService;
 
-  public BookSecurityConfig(BookJpaConfig jpaConfig, UserDetailsService userDetailsService) {
+  /*public BookSecurityConfig(BookJpaConfig jpaConfig, UserDetailsService userDetailsService) {
     this.jpaConfig = jpaConfig;
     this.userDetailsService = userDetailsService;
+  }*/
+
+  public BookSecurityConfig(BookJpaConfig jpaConfig) {
+    this.jpaConfig = jpaConfig;
   }
 
   @Bean
@@ -29,9 +33,9 @@ public class BookSecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Override
   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//    jdbcAuthentication(auth);
+    jdbcAuthentication(auth);
 //    inMemoryAuthentication(auth);
-    userCustomAuthentication(auth);
+//    userCustomAuthentication(auth);
   }
 
   private void inMemoryAuthentication(AuthenticationManagerBuilder auth) throws Exception {
@@ -51,10 +55,10 @@ public class BookSecurityConfig extends WebSecurityConfigurerAdapter {
         .withUser("admin").password(passwordEncoder().encode("123456")).roles("USER", "ADMIN");
   }
 
-  private void userCustomAuthentication(AuthenticationManagerBuilder auth)  throws Exception {
+ /* private void userCustomAuthentication(AuthenticationManagerBuilder auth)  throws Exception {
     auth.userDetailsService(userDetailsService)
             .passwordEncoder(passwordEncoder());
-  }
+  }*/
 
 
   @Override

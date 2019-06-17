@@ -8,5 +8,5 @@ INSERT INTO book(id, author_id, name, published_in)VALUES (3, 2, 'Le Capitaine P
 INSERT INTO book(id, author_id, name, published_in)VALUES (4, 2, 'Le Capitaine Pamphile', 1839);
 INSERT INTO book(id, author_id, name, published_in)VALUES (5, 1, 'Northanger Abbey', 1818);
 
-INSERT INTO users(id, login, password, roles)VALUES (1, 'admin', '1', 'adminRoles');
-INSERT INTO users(id, login, password, roles)VALUES (2, 'user', '2', 'userRoles');
+INSERT INTO users(id, login, password, roles)VALUES (1, 'admin', '$2a$10$mk0k/7AA5nGizmFzF52Bm.yy3D4QenMgoUpVDgz6DwcWKYF4mtqIO', 'adminRoles');
+INSERT INTO users(id, login, password, roles)VALUES (2, 'user', '$2a$10$bopv5bE4mAzu4FhYDDQnAuNJd6a4eXwyf5iAqy8J8RJxOwvP6Isnm', 'userRoles');

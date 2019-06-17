@@ -21,6 +21,10 @@
         <form:form method="POST" action="/sp-cources/book/editBook" modelAttribute="book">
              <table>
                 <tr>
+                    <td><form:label path="id">id</form:label></td>
+                    <td><form:input path="id"/></td>
+                </tr>
+                <tr>
                     <td><form:label path="name">name</form:label></td>
                     <td><form:input path="name"/></td>
                     <td><form:errors path="name" cssClass="error" /></td>
@@ -48,10 +52,10 @@
                     <td><form:input path="author.dateOfBirth" type="date"/></td>
                     <td><form:errors path="author.dateOfBirth" cssClass="error" /></td>
                 </tr>
-                 <tr>
-                     <td><form:label path="author.id">author.id</form:label></td>
-                     <td><form:input path="author.id"/></td>
-                 </tr>
+                <tr>
+                    <td><form:label path="author.id">author.id</form:label></td>
+                    <td><form:input path="author.id"/></td>
+                </tr>
                 <%--<tr>
                     <td><form:label path="author">author.firstName</form:label></td>
                     <td>
