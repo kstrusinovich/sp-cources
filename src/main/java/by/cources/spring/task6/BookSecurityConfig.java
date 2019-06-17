@@ -57,6 +57,7 @@ public class BookSecurityConfig extends WebSecurityConfigurerAdapter {
         .antMatchers("/book/update/**").hasRole("ADMIN")
         .antMatchers("/book/list").hasAnyRole("ADMIN","USER")
         .antMatchers("/book/index").hasAnyRole("ADMIN","USER")
+        .antMatchers("/book/find").hasRole("USER")
         .antMatchers("/**").hasRole("ADMIN")
         .and().formLogin().defaultSuccessUrl("/book/index", true)
         //.and().formLogin().successForwardUrl("sp-cources/book/list")

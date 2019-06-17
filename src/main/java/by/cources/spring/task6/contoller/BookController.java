@@ -13,10 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -29,28 +26,6 @@ public class BookController {
   public BookController(BookService bookService) {
     this.bookService = bookService;
   }
-
-//  @RequestMapping(value = "/add", method = RequestMethod.GET)
-//  public ModelAndView add() {
-//    Book result = new Book();
-//    result.setPublishedIn(2019L);
-//    result.setAuthor(new Author());
-//    Map<String, Object> model = new HashMap<>();
-//    model.put("book", result);
-//    model.put("authors", bookService.findAuthorsAll());
-//
-//    return new ModelAndView("book-form", model);
-//  }
-
-//  @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
-//  public ModelAndView edit(@PathVariable Long id) {
-//    Book result = bookService.findBookById(id).orElseGet(Book::new);
-//    Map<String, Object> model = new HashMap<>();
-//    model.put("book", result);
-//    model.put("authors", bookService.findAuthorsAll());
-//
-//    return new ModelAndView("book-form", model);
-//  }
 
   @RequestMapping(value = "/index", method = RequestMethod.GET)
   public ModelAndView home() {
@@ -124,6 +99,19 @@ public class BookController {
     model.put("book", result);
     model.put("authors", bookService.findAuthorsAll());
     return modelAndView;
+  }
+
+  @RequestMapping(value = "/find", method = RequestMethod.GET)
+  public ModelAndView find() {
+    Book book = new Book();
+    book.setAuthor(new Author());
+    return new ModelAndView("find", "book", book);
+  }
+
+  @RequestMapping(value = "/find", method = RequestMethod.POST)
+  public ModelAndView findBook(@RequestParam("find") String name) {
+    List<Book> books = bookService.findByName(name);
+    return new ModelAndView("book-finding", "books", books);
   }
 
 }

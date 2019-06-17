@@ -28,4 +28,6 @@ public interface BookService {
   Book update(Book book);
 
   Book getBookById(Long value);
+
+  List<Book> findByName(String name);
 }

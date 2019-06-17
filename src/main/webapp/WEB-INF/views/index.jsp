@@ -23,6 +23,9 @@
             <td bgcolor="#CCCCCC"><div align="center"><a href="/sp-cources/book/list/">List books</a></div></td>
         </tr>
         <tr>
+            <td bgcolor="#CCCCCC"><div align="center"><a href="/sp-cources/book/find">Find</a></div></td>
+        </tr>
+        <tr>
             <td bgcolor="#CCCCCC"><div align="center"><a href="/sp-cources/logout">Logout</a></div></td>
         </tr>
     </table>

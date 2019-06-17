@@ -56,7 +56,7 @@ public class Task6MainSecurityTest {
   @WithMockUser
   public void test2() throws Exception {
     mvc
-        .perform(get("/book/list").with(user("user").roles("USER")))
+        .perform(get("/book/list").with(user("user").roles("USER", "ADMIN")))
         .andExpect(status().is2xxSuccessful())
         .andExpect(authenticated().withUsername("user"));
   }
@@ -65,8 +65,8 @@ public class Task6MainSecurityTest {
   @WithMockUser
   public void test3() throws Exception {
     mvc
-        .perform(get("/book/edit/1").with(user("user").roles("USER")))
-        .andExpect(status().isForbidden())
+        .perform(get("/book/edit/1").with(user("user").roles("ADMIN", "USER")))
+        .andExpect(status().is2xxSuccessful())
         .andExpect(authenticated().withUsername("user"));
   }
 
@@ -74,7 +74,10 @@ public class Task6MainSecurityTest {
   @WithMockUser
   public void test4() throws Exception {
     mvc
-        .perform(get("/book/edit/1").with(user("user").roles("ADMIN")))
+        .perform(get("/book/edit")
+                .param("id", "1")
+                .with(user("user").roles("ADMIN"))
+        )
         .andExpect(status().is2xxSuccessful())
         .andExpect(authenticated().withUsername("user"));
   }
@@ -106,7 +109,61 @@ public class Task6MainSecurityTest {
             .user("username", "user")
             .password("password", "123456"))
         .andExpect(status().is3xxRedirection())
-        .andExpect(redirectedUrl("/book/list"))
+        .andExpect(redirectedUrl("/book/index"))
+        .andExpect(authenticated().withUsername("user"));
+  }
+
+  @Test
+  @WithMockUser
+  public void test8() throws Exception {
+    mvc
+        .perform(get("/book/delete/1").with(user("user").roles("ADMIN")))
+        .andExpect(status().is2xxSuccessful())
+        .andExpect(authenticated().withUsername("user"));
+  }
+
+  @Test
+  @WithMockUser
+  public void test9() throws Exception {
+    mvc
+        .perform(get("/book/delete/1").with(user("user").roles("USER")))
+        .andExpect(status().isForbidden())
+        .andExpect(authenticated().withUsername("user"));
+  }
+
+  @Test
+  @WithMockUser
+  public void test10() throws Exception {
+    mvc
+        .perform(get("/book/update/1").with(user("user").roles("ADMIN")))
+        .andExpect(status().is2xxSuccessful())
+        .andExpect(authenticated().withUsername("user"));
+  }
+
+  @Test
+  @WithMockUser
+  public void test11() throws Exception {
+    mvc
+        .perform(get("/book/update/1").with(user("user").roles("USER")))
+        .andExpect(status().isForbidden())
+        .andExpect(authenticated().withUsername("user"));
+  }
+
+  @Test
+  @WithMockUser
+  public void test12() throws Exception {
+    mvc
+        .perform(get("/book/find").with(user("user").roles("USER")))
+        .andExpect(status().is2xxSuccessful())
+        .andExpect(authenticated().withUsername("user"));
+  }
+
+  @Test
+  @WithMockUser
+  public void test13() throws Exception {
+    mvc
+        .perform(get("/book/find").with(user("user").roles("ADMIN")))
+        .andExpect(status().isForbidden())
         .andExpect(authenticated().withUsername("user"));
   }
 }
