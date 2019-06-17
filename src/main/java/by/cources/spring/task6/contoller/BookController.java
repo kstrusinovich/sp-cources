@@ -13,7 +13,11 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
+<<<<<<<<< Temporary merge branch 1
 import org.springframework.web.bind.annotation.RequestAttribute;
+=========
+import org.springframework.web.bind.annotation.PathVariable;
+>>>>>>>>> Temporary merge branch 2
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -38,7 +42,11 @@ public class BookController {
   }
 
   @RequestMapping(value = "/edit", method = RequestMethod.POST)
+<<<<<<<<< Temporary merge branch 1
   public String submit(@ModelAttribute("book") Book book, BindingResult result, ModelMap model) {
+=========
+  public String submit(@Valid @ModelAttribute("book") Book book, BindingResult result, ModelMap model) {
+>>>>>>>>> Temporary merge branch 2
     if (result.hasErrors()) {
       for (ObjectError error : result.getAllErrors()) {
         LOGGER.error(error.toString());

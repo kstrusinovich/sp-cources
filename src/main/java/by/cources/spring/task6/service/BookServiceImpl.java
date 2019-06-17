@@ -63,6 +63,7 @@ public class BookServiceImpl implements BookService {
   }
 
   @Override
+<<<<<<<<< Temporary merge branch 1
   public void deleteBook(Book book) { bookRepository.delete(book);}
 
   @Override

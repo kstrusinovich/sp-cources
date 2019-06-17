@@ -22,7 +22,11 @@ public interface BookService {
 
   Book saveBook(Book book);
 
+<<<<<<<<< Temporary merge branch 1
   void deleteBook(Book book);
 
   Book getBookById(Long id);
+=========
+  Optional<Book> findBookById(Long id);
+>>>>>>>>> Temporary merge branch 2
 }
