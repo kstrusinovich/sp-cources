@@ -88,7 +88,7 @@ public class BookController {
   }
 
   @RequestMapping(value = "/delete", method = RequestMethod.POST)
-  public ModelAndView submitDelete(@RequestParam("ids") Long[] ids, ModelMap model) {
+  public ModelAndView submitDelete(@RequestParam("ids") Long[] ids) {
     LOGGER.info("Selected ids = {}", Arrays.toString(ids));
     ModelAndView modelAndView = new ModelAndView("redirect:/book/list");
     for (Long id : ids) {

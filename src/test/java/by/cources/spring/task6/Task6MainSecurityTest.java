@@ -4,7 +4,7 @@ import static org.springframework.security.test.web.servlet.request.SecurityMock
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.security.test.web.servlet.response.SecurityMockMvcResultMatchers.authenticated;
 import static org.springframework.security.test.web.servlet.response.SecurityMockMvcResultMatchers.unauthenticated;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -38,75 +38,91 @@ public class Task6MainSecurityTest {
   @Before
   public void setup() {
     mvc = MockMvcBuilders
-        .webAppContextSetup(context)
-        .addFilters(springSecurityFilterChain)
-        .build();
+            .webAppContextSetup(context)
+            .addFilters(springSecurityFilterChain)
+            .build();
   }
 
   @Test
   @WithMockUser
   public void test1() throws Exception {
     mvc
-        .perform(get("/book/list"))
-        .andExpect(status().is3xxRedirection())
-        .andExpect(unauthenticated());
+            .perform(get("/book/list"))
+            .andExpect(status().is3xxRedirection())
+            .andExpect(unauthenticated());
   }
 
   @Test
   @WithMockUser
   public void test2() throws Exception {
     mvc
-        .perform(get("/book/list").with(user("user").roles("USER")))
-        .andExpect(status().is2xxSuccessful())
-        .andExpect(authenticated().withUsername("user"));
+            .perform(get("/book/list").with(user("user").roles("USER")))
+            .andExpect(status().is2xxSuccessful())
+            .andExpect(authenticated().withUsername("user"));
   }
 
   @Test
   @WithMockUser
   public void test3() throws Exception {
     mvc
-        .perform(get("/book/edit/1").with(user("user").roles("USER")))
-        .andExpect(status().isForbidden())
-        .andExpect(authenticated().withUsername("user"));
+            .perform(get("/book/edit/1").with(user("user").roles("USER")))
+            .andExpect(status().isForbidden())
+            .andExpect(authenticated().withUsername("user"));
   }
 
   @Test
   @WithMockUser
   public void test4() throws Exception {
     mvc
-        .perform(get("/book/edit/1").with(user("user").roles("ADMIN")))
-        .andExpect(status().is2xxSuccessful())
-        .andExpect(authenticated().withUsername("user"));
+            .perform(get("/book/edit/1").with(user("user").roles("ADMIN")))
+            .andExpect(status().is2xxSuccessful())
+            .andExpect(authenticated().withUsername("user"));
   }
 
   @Test
   @WithMockUser
   public void test5() throws Exception {
     mvc
-        .perform(get("/logout").with(user("user").roles("ADMIN")))
-        .andExpect(status().is3xxRedirection())
-        .andExpect(unauthenticated());
+            .perform(get("/logout").with(user("user").roles("ADMIN")))
+            .andExpect(status().is3xxRedirection())
+            .andExpect(unauthenticated());
   }
 
   @Test
   public void test6() throws Exception {
     mvc
-        .perform(formLogin("/login")
-            .user("username", "user")
-            .password("password", "1234567"))
-        .andExpect(status().is3xxRedirection())
-        .andExpect(redirectedUrl("/login?error"))
-        .andExpect(unauthenticated());
+            .perform(formLogin("/login")
+                    .user("username", "user")
+                    .password("password", "1234567"))
+            .andExpect(status().is3xxRedirection())
+            .andExpect(redirectedUrl("/login?error"))
+            .andExpect(unauthenticated());
   }
 
   @Test
   public void test7() throws Exception {
     mvc
-        .perform(formLogin("/login")
-            .user("username", "user")
-            .password("password", "123456"))
-        .andExpect(status().is3xxRedirection())
-        .andExpect(redirectedUrl("/book/list"))
-        .andExpect(authenticated().withUsername("user"));
+            .perform(formLogin("/login")
+                    .user("username", "user")
+                    .password("password", "123456"))
+            .andExpect(status().is3xxRedirection())
+            .andExpect(redirectedUrl("/book/list"))
+            .andExpect(authenticated().withUsername("user"));
+  }
+
+  @Test
+  public void delete1() throws Exception {
+            mvc
+            .perform(post("/book/delete")
+             .param("ids", "1","2","3")
+                    .with(user("admin").roles("ADMIN")))
+                    .andExpect(status().is3xxRedirection())
+                    .andExpect(redirectedUrl("/book/list"))
+            .andExpect(authenticated().withUsername("admin"));
+  }
+
+  @Test
+  public void submitDelete() throws Exception {
+
   }
 }
