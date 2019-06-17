@@ -22,6 +22,7 @@
                 <tr>
                     <td><form:label path="name">name</form:label></td>
                     <td><form:input path="name"/></td>
+                    <td><form:errors path="name" cssClass="error" /></td>
                     <td></td>
                 </tr>
                 <tr>

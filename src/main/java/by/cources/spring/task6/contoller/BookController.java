@@ -56,7 +56,6 @@ public class BookController {
 
   @RequestMapping(value = "/edit", method = RequestMethod.POST)
   public String submit(@Valid @ModelAttribute("book") Book book, BindingResult result, ModelMap model) {
-      System.out.println("!!!!!!!!!!!!!!!!!"+book);
     if (result.hasErrors()) {
       for (ObjectError error : result.getAllErrors()) {
         LOGGER.error(error.toString());
@@ -65,7 +64,6 @@ public class BookController {
 //      return "error";
       return "book-form";
     }
-      System.out.println("!!!!!!!!!!!!!!!!!222"+book);
     bookService.saveBook(book);
     return "redirect:list";
   }
@@ -80,17 +78,43 @@ public class BookController {
     model.put("booksVariable", booksAll);
     return new ModelAndView("books", model);
   }
- /* @RequestMapping(value = "/delete", method = RequestMethod.GET)
-  public ModelAndView formDel() {
+  @RequestMapping(value = "/find", method = RequestMethod.GET)
+  public ModelAndView formFind() {
     Book result = new Book();
-    return new ModelAndView("book-delete", "book", result);
+    return new ModelAndView("book-find", "book", result);
+  }
+  @RequestMapping(value = "/find", method = RequestMethod.POST)
+  public ModelAndView find(@ModelAttribute("book") Book book, BindingResult result, ModelMap model) {
+    Optional<Book> book1 = bookService.findBookById(book.getId());
+    if (book1.isPresent()) {
+      return new ModelAndView("book-form", "book", book1.get());
+    } else {
+      ModelAndView errorModel = new ModelAndView("error");
+      errorModel.addObject("errorMessage", "BOOK NOT FOUND");
+      return errorModel;
+
+    }
+  }
+  /*@RequestMapping(value = "/find", method = RequestMethod.POST)
+  public String find(@ModelAttribute("book") Book book, BindingResult result, ModelMap model){
+        if (result.hasErrors()) {
+      for (ObjectError error : result.getAllErrors()) {
+        LOGGER.error(error.toString());
+      }
+      model.addAttribute("errorMessage", "something wrong");
+//      return "error";
+      return "book-find";
+    }
+    bookService.findBookById(book.getId());
+   // return "redirect:book/edit/{"+book.getId()+"}";
+    return "redirect:list";
   }*/
 
-  @DeleteMapping (value = "/delete/{id}")
+  @GetMapping(value = "/delete/{id}")
   public String delete(@PathVariable("id") Long id) {
 System.out.println("id="+id);
     bookService.deleteBook(id);
-    return "redirect:list";
+    return "redirect:/book/list";
   }
 
 

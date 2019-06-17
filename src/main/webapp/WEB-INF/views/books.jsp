@@ -1,17 +1,17 @@
 <%@ page isELIgnored="false" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
 
 <html>
 <body>
+<a href="/sp-cources/logout">Logout</a>
 
 	<h2>All books</h2>
-	<a href="/sp-cources/logout">Logout</a>
-	<p><b>Just list:</b><p>
+
 <pre>
 	${booksVariable}
 </pre>
-
-	<p><b>Iterated List:</b><p>
 
 	<table border="0">
 
@@ -45,8 +45,8 @@
 
 				<td>&nbsp;&nbsp;<a href="/sp-cources/book/edit/${book.id}">EDIT BOOK</a>&nbsp;&nbsp;</td>
 
-				<td>&nbsp;&nbsp;<a href="/sp-cources/book/editA">CHANGE AUTHOR</a>&nbsp;&nbsp;</td>
-
+				<%--<td>&nbsp;&nbsp;<a href="/sp-cources/book/editA">CHANGE AUTHOR</a>&nbsp;&nbsp;</td>
+--%>
 			</tr>
 		</c:forEach>
 	</table>

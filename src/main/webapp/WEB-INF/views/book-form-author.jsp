@@ -14,7 +14,7 @@
 <body>
 <h2>${errorMessage}</h2>
 <h3>Welcome, change author</h3>
-<form:form method="POST" action="/sp-cources/book/edita" modelAttribute="book">
+<form:form method="POST" action="/sp-cources/book/editA" modelAttribute="book">
 
      <pre>
              ${bookVar}
