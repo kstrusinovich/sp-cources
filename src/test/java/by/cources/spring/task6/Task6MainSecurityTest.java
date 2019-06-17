@@ -5,6 +5,7 @@ import static org.springframework.security.test.web.servlet.request.SecurityMock
 import static org.springframework.security.test.web.servlet.response.SecurityMockMvcResultMatchers.authenticated;
 import static org.springframework.security.test.web.servlet.response.SecurityMockMvcResultMatchers.unauthenticated;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -109,4 +110,37 @@ public class Task6MainSecurityTest {
         .andExpect(redirectedUrl("/book/list"))
         .andExpect(authenticated().withUsername("user"));
   }
+
+  @Test
+  public void test8() throws Exception {
+    mvc
+            .perform(get("/book/delete").with(user("user").roles("USER")))
+            .andExpect(status().isForbidden())
+            .andExpect(authenticated().withUsername("user"));
+  }
+
+  @Test
+  public void test9() throws Exception {
+    mvc
+            .perform(post("/book/delete")
+                    .param("id","5")
+                    .with(user("user").roles("ADMIN"))
+
+            )
+            .andExpect(status().is3xxRedirection())
+            .andExpect(authenticated().withUsername("user"));
+  }
+
+  @Test
+  public void test10() throws Exception {
+    mvc
+            .perform(formLogin("/login")
+                    .user("username", "user")
+                    .password("password", "123456"))
+            .andExpect(status().is3xxRedirection())
+            .andExpect(redirectedUrl("/book/find"));
+
+  }
+
+
 }
