@@ -14,6 +14,8 @@ import org.springframework.transaction.annotation.Transactional;
 public class JpaAuthorRepository implements AuthorRepository {
 
   @PersistenceContext
+  //@PersistenceContext предназаначена для автоматического связывания менеджера сущностей с бином.
+  //указывает на необходимость внедрения persistence контекста(entity manager)
   private EntityManager em;
 
   @Override

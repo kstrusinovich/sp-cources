@@ -9,6 +9,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 @ControllerAdvice
+// @ControllerAdvice для обработки глобальных исключений spring
 public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
 
   protected ResponseEntity<Object> handleExceptionInternal(Exception ex,

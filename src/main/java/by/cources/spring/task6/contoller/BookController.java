@@ -24,7 +24,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
+// @Controller служит для сообщения Spring'у о том, что данный класс является bean'ом
+// и его необходимо подгрузить при старте приложения
 @RequestMapping("/book")
+// @RequestMapping("/book") сообщаем, что данный контроллер будет обрабатывать запрос,
+// URI которого "/book"
 public class BookController {
 
   public static final Logger LOGGER = LoggerFactory.getLogger(BookController.class);
@@ -37,7 +41,7 @@ public class BookController {
   //загрузка формы со списком книг
   @RequestMapping(value = "/list", method = RequestMethod.GET)
   public ModelAndView list(Principal user) {
-    System.out.println(" public ModelAndView list() :: ");
+//    System.out.println(" public ModelAndView list() :: ");
     List<Book> booksAll = bookService.findBooksAll();
 //    return new ModelAndView("books", "booksVariable", booksAll);
     Map<String, Object> model = new HashMap<>();
@@ -48,19 +52,18 @@ public class BookController {
   //загрузка формы с книгой для просмотра
   @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
   public ModelAndView edit(@PathVariable Long id) {
-    System.out.println(" public ModelAndView edit(@PathVariable Long id) :: ");
+ //   System.out.println(" public ModelAndView edit(@PathVariable Long id) :: ");
     Book result = bookService.findBookById(id).orElseGet(Book::new);
     Map<String, Object> model = new HashMap<>();
     model.put("book", result);
     model.put("authors", bookService.findAuthorsAll());
-
     return new ModelAndView("book-form", model);
   }
 
   //загрузка формы с редактируемой книгой
   @RequestMapping(value = "/editBook/{id}", method = RequestMethod.GET)
   public ModelAndView formEdit(@PathVariable Long id) {
-    System.out.println("  public ModelAndView formEdit(@PathVariable Long id) :: ");
+ //   System.out.println("  public ModelAndView formEdit(@PathVariable Long id) :: ");
     Book result = bookService.findBookById(id).orElseGet(Book::new);
     Map<String, Object> model = new HashMap<>();
     model.put("book", result);
@@ -72,7 +75,7 @@ public class BookController {
   //запись редактируемой книги и переход на список книг
   @RequestMapping(value = "/editBook", method = RequestMethod.POST)
   public String submitBook(@Valid @ModelAttribute("book") Book book, BindingResult result, ModelMap model) {
-    System.out.println(" public String submit(@Valid @ModelAttribute(\"book\") Book book, BindingResult result, ModelMap model) :: ");
+ //   System.out.println(" public String submit(@Valid @ModelAttribute(\"book\") Book book, BindingResult result, ModelMap model) :: ");
     if (result.hasErrors()) {
       for (ObjectError error : result.getAllErrors()) {
         LOGGER.error(error.toString());
@@ -80,9 +83,11 @@ public class BookController {
       model.addAttribute("errorMessage", "something wrong (WTF)");
       return "book-edit";
     }
+    // Проверка инициируется с помощью аннотации @Valid
+    //В этом случае выполнится только spring проверка, декларативные проверки будут проигнорированы.
     @Valid Author author = book.getAuthor();
     Long idAuthor = author.getId();
-    System.out.println(" idAuthor = " + idAuthor);
+//    System.out.println(" idAuthor = " + idAuthor);
     if(idAuthor != null){
       Author authors = bookService.findAuthorById(idAuthor);
       if (authors != null) {
@@ -95,6 +100,7 @@ public class BookController {
 
   //удаляем книгу и возвращаемся к списку книг
   @GetMapping(value = "/delete/{id}")
+  // @GetMapping
   public String delete(@PathVariable("id") Long id) {
     System.out.println(" public String delete(@PathVariable(\"id\") Long id) :: ");
     bookService.delBook(id);

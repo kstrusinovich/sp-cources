@@ -14,6 +14,8 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
 @EnableWebMvc
+// @EnableWebMvc используется для включения Spring MVC,
+// позволяет поддерживать классы @Controller
 public class BookWebConfig implements WebMvcConfigurer {
 
   private final BookJpaConfig jpaConfig;

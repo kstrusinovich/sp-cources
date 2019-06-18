@@ -12,6 +12,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 @EnableWebSecurity(debug = true)
+// @EnableWebSecurity  в связке с WebSecurityConfigurerAdapter классом работает
+// над обеспечением аутентификации. По умолчанию в Spring Security встроены и активны
+// HTTP аутентификация и аутентификация на базе веб форм.
 public class BookSecurityConfig extends WebSecurityConfigurerAdapter {
 
   private final BookJpaConfig jpaConfig;

@@ -17,13 +17,26 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableJpaRepositories
+// @EnableJpaRepositories Эта аннотация включает поддержку Spring Data JPA
+// и автогенерацию кода для доступа к данным. Наличие этой аннотации подразумевает,
+// что в Spring context будет два бина,
+// один с именем entityManagerFactory,
+// другой с именем transactionManager.
 @EnableTransactionManagement
+// @EnableTransactionManagement указывает Spring, что классы с аннотацией @Transactional,
+// должны быть обернуты аспектом транзакций. Теперь можно использовать аннотацию @Transactional.
 public class BookJpaConfig {
 
   @Autowired
+  // @Autowired обеспечивает контроль над тем, где и как автосвязывание должны быть осуществленно.
+  // Мы можем использовать @Autowired как для методов, так и для конструкторов
   Environment environment;
 
   @Bean
+  // @Bean  используется для указания того, что метод создает, настраивает и инициализирует новый объект,
+  // управляемый Spring IoC контейнером.
+  // Такие методы можно использовать как в классах с аннотацией @Configuration,
+  // так и в классах с аннотацией @Component
   DataSource dataSource() {
     HikariDataSource source = new HikariDataSource();
     source.setJdbcUrl(environment.getProperty("url"));

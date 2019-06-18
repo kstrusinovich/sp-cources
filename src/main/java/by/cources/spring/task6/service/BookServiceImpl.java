@@ -12,6 +12,9 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
+// @Service объявляющая, что этот класс представляет собой сервис – компонент сервис-слоя.
+//Сервис является подтипом класса @Component. Использование данной аннотации
+// позволит искать бины-сервисы автоматически.
 public class BookServiceImpl implements BookService {
 
   private final BookRepository bookRepository;
@@ -23,6 +26,8 @@ public class BookServiceImpl implements BookService {
   }
 
   @Transactional
+  // @Transactional Перед исполнением метода помеченного данной аннотацией начинается транзакция,
+  // после выполнения метода транзакция коммитится, при выбрасывании RuntimeException откатывается.
   @Override
   public List<Book> findBooksAll() {
     return toList(bookRepository.findAll());
