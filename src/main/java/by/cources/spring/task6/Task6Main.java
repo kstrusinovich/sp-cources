@@ -20,7 +20,7 @@ public class Task6Main implements WebApplicationInitializer {
     encodingFilter.setInitParameter("forceEncoding", "true");
     encodingFilter.addMappingForUrlPatterns(null, true, "/*");
 
-    AnnotationConfigWebApplicationContext ctx = new AnnotationConfigWebApplicationContext();
+    AnnotationConfigWebApplicationContext ctx = new AnnotationConfigWebApplicationContext()
     ctx.register(BookConfig.class);
     ctx.setServletContext(container);
 
